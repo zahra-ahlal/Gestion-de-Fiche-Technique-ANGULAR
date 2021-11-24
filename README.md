@@ -1,0 +1,2 @@
+# Gestion-de-Fiche-Technique-ANGULAR
+L’objectif est de permettre de réaliser facilement des fiches techniques de cuisines pour la préparation de plats dans un restaurant.  Une fiche technique d’un plat peut être assimilée à une recette mais utilise des termes techniques de la profession. Elle présente également des calculs de coûts de production et de prix de vente. Le plat est bien sûr prévu pour un certain nombre de couverts.
