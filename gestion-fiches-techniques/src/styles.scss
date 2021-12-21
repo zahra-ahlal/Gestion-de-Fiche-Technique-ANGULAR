@@ -21,3 +21,6 @@ $gray-light:  #f5f6f8;
 	animation: gradient 15s ease infinite;
 	height: 100vh;
   }
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-icons/font/bootstrap-icons';

@@ -1,0 +1,41 @@
+<div *ngIf="ingredient" class="container">
+    <h4>Edit ingrdient record</h4>
+    <form #ingrForm="ngForm" (ngSubmit)="onUpdate()">
+      <div class="form-group">
+        <label>Nom Ingredient</label>
+        <input class="form-control" name="name" #nameCtrl="ngModel" 
+          [(ngModel)]="ingredient.nomIngr" placeholder="Nom Ingredient" required>
+      </div>
+      
+      <div class="form-group">
+        <label>Type Ingredient</label>
+        <select class="form-control" name="typeIng" #nameCtrl=ngModel 
+          [(ngModel)]="ingredient.typeIngr" required>
+           <option value="epices">Epice</option>
+           <option value="legumes">Legume</option>
+           <option value="fruits">Fruit</option>
+           <option value="viande">Viande</option>
+           <option value="sauce">Sauce</option>
+           <option value="fruits">Fruit</option>
+        </select>
+       </div>
+      
+      <div class="form-group"> 
+        <label>Allergene : </label>
+        <br>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" value="oui" name="gender"  #nameCtrl=ngModel [ngModel]="ingredient.allergene" required/>
+          <label class="form-check-label" for="allergene">Oui</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" value="non" name="gender" #nameCtrl=ngModel [ngModel]="ingredient.allergene" required/>
+          <label class="form-check-label" for="allergene">Non</label>
+        </div>
+      </div>
+  
+      <div class="form-group float-right">
+       <button type="submit" class="btn btn-success" [disabled]="!ingrForm.valid">
+          <i class="bi bi-plus"></i>Update Ingredient</button>
+       </div>
+    </form>
+  </div>

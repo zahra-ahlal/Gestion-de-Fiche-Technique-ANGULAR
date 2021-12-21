@@ -1,0 +1,27 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Type</th>
+      <th scope="col">Allergene</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="listeIngredients">
+    <tr *ngFor="let ingredient of listeIngredients; index as i">
+      <th scope="row">{{ i+1 }}</th>
+      <td>{{ ingredient.nomIngr }}</td>
+      <td>{{ ingredient.typeIngr }}</td>
+      <td>{{ ingredient.allergene }}</td>
+      <td>
+        <i class="bi bi-pencil-square" style="color: green;" 
+            (click)="editModal(ingredient)"></i>
+      </td>
+      <td>
+        <i class="bi bi-trash" (click)="deleteIngredient(ingredient)" style="color: red;"></i>
+      </td>
+    </tr>
+    </tbody>
+</table>
