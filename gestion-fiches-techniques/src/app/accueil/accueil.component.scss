@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
   }
+  
   // Developed by http://grohit.com/
   
   body {
@@ -127,6 +128,7 @@ body {
   text-align: center;
   font-family: 'Roboto Mono';
   padding: 1em;
+
 }
 
 h1 {
@@ -136,6 +138,7 @@ h1 {
 // base
 .flip {
     position: relative;
+    cursor: pointer; 
     >.front,
     >.back {
         display: block;

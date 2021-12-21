@@ -10,21 +10,23 @@
         </ul>
       </nav>
     </header>
-
 <div class="myblock">
-    <div class="flip">
-        <div class="front" ng-click="expression" style="background-image: url(https://images.pexels.com/photos/3785931/pexels-photo-3785931.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)">
-            <h1 class="text-shadow">Parametres</h1>
+    <div class="flip" (click)="clicSurBouton('Parametres')">
+        <div class="front"  style="background-image: url(https://images.pexels.com/photos/3785931/pexels-photo-3785931.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)">
+            <h1 class="text-shadow">Paramètres</h1>
         </div>
-
+        <div class="back">
+          <h2>Paramètres</h2>
+          <p>Dans cette section vous pourrez modifier les paramètres liès aux coûts et aux coefficients </p>
+       </div>
     </div>
-    <div class="flip">
+    <div class="flip" (click)="clicSurBouton('FichesTechniques')">
         <div class="front" style="background-image: url(https://images.pexels.com/photos/4033657/pexels-photo-4033657.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)">
            <h1 class="text-shadow">Fiches Techniques</h1>
         </div>
         <div class="back">
-           <h2>Angular</h2>
-           <p>Good tools make application development quicker and easier to maintain than if you did everything by hand..</p>
+           <h2>Fiches Techniques</h2>
+           <p>Visualisez les differentes fiches techniques et/ou creez-en</p>
         </div>
     </div>
     
@@ -32,22 +34,22 @@
     <br>
     
     <!-- vertical -->
-    <div class="flip flip-vertical">
+    <div class="flip flip-vertical" (click)="clicSurBouton('ListeIngredients')">
         <div class="front" style="background-image: url(https://images.pexels.com/photos/357743/pexels-photo-357743.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500)">
-           <h1 class="text-shadow">Liste Ingredients</h1>
+           <h1 class="text-shadow">Liste des ingredients</h1>
         </div>
         <div class="back">
-           <h2>Angular</h2>
-           <p>Good tools make application development quicker and easier to maintain than if you did everything by hand..</p>
+           <h2>Liste des ingredients</h2>
+           <p>Visualisez la liste des ingredients et ajoutez un ou plusieurs ingredients</p>
         </div>
     </div>
-    <div class="flip flip-vertical">
+    <div class="flip flip-vertical" (click)="clicSurBouton('Stock')">
         <div class="front" style="background-image: url(https://images.pexels.com/photos/3821385/pexels-photo-3821385.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)">
            <h1 class="text-shadow">Stock</h1>
         </div>
         <div class="back">
-           <h2>Angular</h2>
-           <p>Good tools make application development quicker and easier to maintain than if you did everything by hand..</p>
+           <h2>Stock</h2>
+           <p>Gerez votre stock</p>
         </div>
     </div>
 </div>
