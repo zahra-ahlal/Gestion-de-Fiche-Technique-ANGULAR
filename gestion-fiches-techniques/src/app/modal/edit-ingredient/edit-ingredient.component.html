@@ -3,13 +3,13 @@
     <form #ingrForm="ngForm" (ngSubmit)="onUpdate()">
       <div class="form-group">
         <label>Nom Ingredient</label>
-        <input class="form-control" name="name" #nameCtrl="ngModel" 
+        <input class="form-control" name="nomIngr" #nameCtrl="ngModel" 
           [(ngModel)]="ingredient.nomIngr" placeholder="Nom Ingredient" required>
       </div>
       
       <div class="form-group">
         <label>Type Ingredient</label>
-        <select class="form-control" name="typeIng" #nameCtrl=ngModel 
+        <select class="form-control" name="typeIngr" #nameCtrl=ngModel 
           [(ngModel)]="ingredient.typeIngr" required>
            <option value="epices">Epice</option>
            <option value="legumes">Legume</option>
