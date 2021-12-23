@@ -5,16 +5,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { AppRoutingModule } from './app-routing.module';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CoutComponent } from './cout/cout.component';
+import { CoutComponent } from './components/cout/cout.component';
 
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { FormsModule } from '@angular/forms';
-import { EditCoutComponent } from './modal/edit-cout/edit-cout.component';
-import { CoutsComponent } from './couts/couts.component';
+import { EditCoutComponent } from './components/modal/edit-cout/edit-cout.component';
+import { CoutsComponent } from './components/couts/couts.component';
+import { ParametreComponent } from './components/parametre/parametre.component';
+import { EditParametreComponent } from './components/modal/edit-parametre/edit-parametre.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { CoutsComponent } from './couts/couts.component';
     NotFoundComponent,
     CoutComponent,
     EditCoutComponent,
-    CoutsComponent
+    CoutsComponent,
+    ParametreComponent,
+    EditParametreComponent
   ],
   imports: [
     BrowserModule,

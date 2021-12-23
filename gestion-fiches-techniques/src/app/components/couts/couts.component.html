@@ -1,0 +1,35 @@
+<div>
+  <h1></h1>
+  <p class="text-center">
+      <strong>{{ couts.length }} Couts sont disponibles</strong>
+  </p>
+</div>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">coutMatiere</th>
+      <th scope="col">coutPersonnel</th>
+      <th scope="col">coutFluides</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="couts">
+    <tr *ngFor="let cout of couts; index as i">
+      <th scope="row">{{ i+1 }}</th>
+      <td>{{ cout.coutMatiere }}</td>
+      <td>{{ cout.coutPersonnel }}</td>
+      <td>{{ cout.coutFluides }}</td>
+      <td>
+        <i class="bi bi-pencil-square" style="color: green;" 
+            (click)="editModal(cout)"></i>
+      </td>
+      <td>
+        <i class="bi bi-trash" (click)="deleteCout(cout)" style="color: red;"></i>
+      </td>
+    </tr>
+    </tbody>
+</table>

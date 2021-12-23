@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AccueilComponent } from './accueil/accueil.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { CoutComponent } from './cout/cout.component';
-import { CoutsComponent } from './couts/couts.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { CoutComponent } from './components/cout/cout.component';
+import { CoutsComponent } from './components/couts/couts.component';
 
 
 const routes: Routes = [
