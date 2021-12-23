@@ -18,16 +18,14 @@ export class EditCoutComponent implements OnInit {
     private coutService: CoutService,
     public activeModal: NgbActiveModal)
      { }
-
+  
   ngOnInit() {
-    console.log(this.cout);
-    console.log(this.idCout);
+    console.log("Cout table "+this.cout);
     if (this.idCout)
       this.coutService.getCoutByID(this.idCout).subscribe(res => {
         this.cout = res;
       });
     
-    console.log(this.cout);
   }
 
   onUpdate() {

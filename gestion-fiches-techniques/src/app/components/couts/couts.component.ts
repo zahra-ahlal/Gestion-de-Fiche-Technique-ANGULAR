@@ -28,13 +28,12 @@ export class CoutsComponent implements OnInit {
   
 
   editModal(cout: ICout) {
-    console.log(cout);
     const modalRef = this.modal.open(EditCoutComponent, {
       size: 'lg',
       centered: true,
       windowClass: 'dark-modal',
     });
-    modalRef.componentInstance.id = cout.idCout;
+    modalRef.componentInstance.id = 1;
   }
 
   deleteCout(cout: ICout) {
