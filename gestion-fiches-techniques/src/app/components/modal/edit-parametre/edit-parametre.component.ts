@@ -27,11 +27,13 @@ export class EditParametreComponent implements OnInit {
 
 
   onUpdate() {
+
     this.parametreService.updateParametre(this.parametre).then(() => {
       this.activeModal.close();
       console.log('Data add successfully');
       
     })
+
   }
 
   setCoutHorMoy(parametre: IParametre, coutHorMoy: number) {

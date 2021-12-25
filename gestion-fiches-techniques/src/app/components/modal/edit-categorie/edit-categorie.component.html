@@ -1,0 +1,16 @@
+<div>
+    <h4>Ajouter une nouvelle catégorie</h4>
+    <form #categForm="ngForm" (ngSubmit)="onSubmit(categForm)">
+      <div class="form-group">
+         <label>Nom catégorie</label>
+         <input class="form-control" name="nomCategFiche" #name="ngModel" 
+          [(ngModel)]="categorie.nomCategFiche" placeholder="Nom catégorie" required>
+      </div>
+  
+      <div class="form-group float-right">
+        <button type="submit" class="btn btn-success" 
+          [disabled]="!categForm.valid" [disabled]="categForm.invalid">
+          <i class="bi bi-plus"></i>Add Cout</button>
+      </div>
+    </form>
+  </div>

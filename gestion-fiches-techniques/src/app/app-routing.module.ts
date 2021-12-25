@@ -6,11 +6,15 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CoutComponent } from './components/cout/cout.component';
 import { CoutsComponent } from './components/couts/couts.component';
 import { ParametreComponent } from './components/parametre/parametre.component';
+import { CategFichesService } from './services/categ-fiches.service';
+import { CategoriesFichesComponent } from './components/categories-fiches/categories-fiches.component';
 
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent, },
   { path: 'parametres', component: ParametreComponent, },
+  { path: 'categoriesFiches', component: CategoriesFichesComponent, },
+
   //{ path: 'parametres/edit', component: ParametreComponent, },
   { path: '**', component: NotFoundComponent }
 ];

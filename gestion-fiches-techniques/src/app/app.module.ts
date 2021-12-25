@@ -17,6 +17,8 @@ import { EditCoutComponent } from './components/modal/edit-cout/edit-cout.compon
 import { CoutsComponent } from './components/couts/couts.component';
 import { ParametreComponent } from './components/parametre/parametre.component';
 import { EditParametreComponent } from './components/modal/edit-parametre/edit-parametre.component';
+import { CategoriesFichesComponent } from './components/categories-fiches/categories-fiches.component';
+import { EditCategorieComponent } from './components/modal/edit-categorie/edit-categorie.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { EditParametreComponent } from './components/modal/edit-parametre/edit-p
     EditCoutComponent,
     CoutsComponent,
     ParametreComponent,
-    EditParametreComponent
+    EditParametreComponent,
+    CategoriesFichesComponent,
+    EditCategorieComponent
   ],
   imports: [
     BrowserModule,
