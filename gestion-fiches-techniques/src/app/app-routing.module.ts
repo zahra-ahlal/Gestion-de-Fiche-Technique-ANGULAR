@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AccueilComponent } from './accueil/accueil.component';
+import { AccueilComponent } from './components/accueil/accueil.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CoutComponent } from './components/cout/cout.component';
 import { CoutsComponent } from './components/couts/couts.component';
