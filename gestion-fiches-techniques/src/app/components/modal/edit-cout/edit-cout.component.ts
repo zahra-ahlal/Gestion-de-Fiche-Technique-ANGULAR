@@ -11,13 +11,14 @@ import { ICout } from 'src/app/components/models/cout.model';
 export class EditCoutComponent implements OnInit {
 
   @Input() 
-  idCout !: string ;
-  cout !: ICout;
+  idCout : string ;
+  cout : ICout;
 
   constructor(
     private coutService: CoutService,
     public activeModal: NgbActiveModal)
      { }
+
 
   ngOnInit() {
     console.log(this.cout);
@@ -25,10 +26,11 @@ export class EditCoutComponent implements OnInit {
     if (this.idCout)
       this.coutService.getCoutByID(this.idCout).subscribe(res => {
         this.cout = res;
+        console.log("If :"+this.cout);
       });
     
-    console.log(this.cout);
   }
+
 
   onUpdate() {
     this.coutService.updateCout(this.cout).then(() => {

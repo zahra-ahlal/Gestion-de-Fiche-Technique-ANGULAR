@@ -5,12 +5,13 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CoutComponent } from './components/cout/cout.component';
 import { CoutsComponent } from './components/couts/couts.component';
+import { ParametreComponent } from './components/parametre/parametre.component';
 
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent, },
-  { path: 'parametres', component: CoutComponent, },
-  { path: 'parametres/listCout', component: CoutsComponent, },
+  { path: 'parametres', component: ParametreComponent, },
+  //{ path: 'parametres/edit', component: ParametreComponent, },
   { path: '**', component: NotFoundComponent }
 ];
 

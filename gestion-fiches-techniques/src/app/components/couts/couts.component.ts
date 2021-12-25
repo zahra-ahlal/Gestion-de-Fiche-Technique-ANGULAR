@@ -12,9 +12,6 @@ import { CoutComponent } from '../cout/cout.component';
 })
 export class CoutsComponent implements OnInit {
   @Input()couts: ICout[] = [];
-  @Output()  public selectedFestival: EventEmitter<CoutComponent> = new EventEmitter<CoutComponent>();
-
-  
   
 
   constructor(private coutService: CoutService,
@@ -34,7 +31,9 @@ export class CoutsComponent implements OnInit {
       centered: true,
       windowClass: 'dark-modal',
     });
-    modalRef.componentInstance.id = cout.idCout;
+    modalRef.componentInstance.idCout= cout.idCout;
+    //console.log(modalRef.componentInstance.id );
+
   }
 
   deleteCout(cout: ICout) {

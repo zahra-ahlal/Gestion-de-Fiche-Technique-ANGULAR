@@ -20,6 +20,16 @@ export class ParametreService {
     return collectionData(parametresRef, { idField: 'idP' }) as Observable<IParametre[]>;
   }
 
+  getParametreByID(id: string) {
+    const coutRef = doc(this.firestore, `parametres/${id}`);
+    return docData(coutRef, { idField: 'idP' }) as Observable<IParametre>;
+  }
+
+  updateParametre(parametre: IParametre) {
+    const parametreDocRef = doc(this.firestore, `parametres/${parametre.idP}`);
+    return setDoc(parametreDocRef, parametre);
+  }
+
   modifyCoutHorMoy(parametre : IParametre, coutHorMoy: number) {
     const parametreDocRef = doc(this.firestore, `parametres/${parametre.idP}`);
     return updateDoc(parametreDocRef, { coutHorMoy: coutHorMoy });

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ParametreService } from 'src/app/services/parametre.service';
+import { EditParametreComponent } from '../modal/edit-parametre/edit-parametre.component';
 import { IParametre } from '../models/parametre.model';
 
 @Component({
@@ -28,6 +29,18 @@ export class ParametreComponent implements OnInit {
   onSubmit(form: NgForm) {
     //this.parametreService.addCout(form.value).
       //then(() => form.reset());
+  }
+
+
+  editModal(parametre: IParametre) {
+    const modalRef = this.modal.open(EditParametreComponent, {
+      size: 'lg',
+      centered: true,
+      windowClass: 'dark-modal',
+    });
+    modalRef.componentInstance.idP= parametre.idP;
+    //console.log(modalRef.componentInstance.id );
+
   }
 
 
