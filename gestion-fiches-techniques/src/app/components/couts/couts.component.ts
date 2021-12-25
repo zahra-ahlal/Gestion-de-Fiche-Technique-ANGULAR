@@ -3,7 +3,6 @@ import { ICout } from 'src/app/components/models/cout.model';
 import { CoutService } from 'src/app/services/cout.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditCoutComponent } from '../modal/edit-cout/edit-cout.component';
-import { CoutComponent } from '../cout/cout.component';
 
 @Component({
   selector: 'app-couts',
