@@ -20,11 +20,9 @@ export class EditCoutComponent implements OnInit {
      { }
 
 
-  ngOnInit() {
-    console.log(this.cout);
-    console.log(this.idCout);
-    if (this.idCout)
-      this.coutService.getCoutByID(this.idCout).subscribe(res => {
+ngOnInit() {
+    console.log("Cout table "+this.cout);
+  this.coutService.getCoutByID(this.idCout).subscribe(res => {
         this.cout = res;
         console.log("If :"+this.cout);
       });

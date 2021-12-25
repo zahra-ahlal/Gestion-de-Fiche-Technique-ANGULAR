@@ -25,7 +25,6 @@ export class CoutsComponent implements OnInit {
   
 
   editModal(cout: ICout) {
-    console.log(cout);
     const modalRef = this.modal.open(EditCoutComponent, {
       size: 'lg',
       centered: true,
@@ -33,7 +32,6 @@ export class CoutsComponent implements OnInit {
     });
     modalRef.componentInstance.idCout= cout.idCout;
     //console.log(modalRef.componentInstance.id );
-
   }
 
   deleteCout(cout: ICout) {
