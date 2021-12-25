@@ -3,6 +3,7 @@ import { ICategFiches } from 'src/app/components/models/categFiches.model';
 import { CategFichesService } from 'src/app/services/categ-fiches.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditCategorieComponent } from '../modal/edit-categorie/edit-categorie.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categories-fiches',
@@ -13,7 +14,7 @@ export class CategoriesFichesComponent implements OnInit {
   categories: ICategFiches[] = [];
 
   constructor(private categService: CategFichesService,
-    private modal: NgbModal) { }
+    private modal: NgbModal,private router: Router) { }
 
     ngOnInit(): void {
       this.categService.getCategFiches().subscribe((res: ICategFiches[]) => {
@@ -39,7 +40,13 @@ export class CategoriesFichesComponent implements OnInit {
       //console.log(modalRef.componentInstance.id );
     }
 
+    clicSurBouton(pageName:string){
+      this.router.navigate([`${pageName}`]);
+    }
 
+    recupNom(nom:string){
+
+    }
   
 
 }

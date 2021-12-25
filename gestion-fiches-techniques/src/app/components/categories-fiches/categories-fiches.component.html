@@ -17,7 +17,8 @@
     <tbody *ngIf="categories">
       <tr *ngFor="let categ of categories; index as i">
         <th scope="row">{{ i+1 }}</th>
-        <td>{{ categ.nomCategFiche }}</td>
+        <!--td (click)="clicSurBouton('' + categ.nomCategFiche + '\/listeFiches')">{{ categ.nomCategFiche }}</td-->
+        <td (click)="clicSurBouton('' + categ.nomCategFiche + '\/listeFiches')">{{ categ.nomCategFiche }}</td>
         <td>{{ categ.listeFiches }}</td>
         <td>
           <i class="bi bi-trash" (click)="deleteCateg(categ)" style="color: red;"></i>
@@ -26,7 +27,12 @@
       </tbody>
   </table>
 
+
   <div class="form-group float-right">
     <button type="submit" class="btn btn-success" (click)="editModal()" >
       <i class="bi bi-plus"></i>Ajouter une catégorie</button>
   </div>
+
+
+
+  

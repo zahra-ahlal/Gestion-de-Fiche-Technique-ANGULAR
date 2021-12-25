@@ -8,6 +8,7 @@ import { CoutsComponent } from './components/couts/couts.component';
 import { ParametreComponent } from './components/parametre/parametre.component';
 import { CategFichesService } from './services/categ-fiches.service';
 import { CategoriesFichesComponent } from './components/categories-fiches/categories-fiches.component';
+import { ListeFichesComponent } from './components/liste-fiches/liste-fiches.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,8 @@ const routes: Routes = [
   { path: 'categoriesFiches', component: CategoriesFichesComponent, },
 
   //{ path: 'parametres/edit', component: ParametreComponent, },
+  { path: ':nomCateg/listeFiches', component: ListeFichesComponent, },
+  
   { path: '**', component: NotFoundComponent }
 ];
 
