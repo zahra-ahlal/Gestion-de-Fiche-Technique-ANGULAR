@@ -3,7 +3,7 @@ import { ICategFiches } from 'src/app/components/models/categFiches.model';
 import { CategFichesService } from 'src/app/services/categ-fiches.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditCategorieComponent } from '../modal/edit-categorie/edit-categorie.component';
-import { Router } from '@angular/router';
+import { Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-categories-fiches',
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class CategoriesFichesComponent implements OnInit {
   categories: ICategFiches[] = [];
+  //@Output() newItemEvent = new EventEmitter<string>();
 
   constructor(private categService: CategFichesService,
     private modal: NgbModal,private router: Router) { }
@@ -40,13 +41,16 @@ export class CategoriesFichesComponent implements OnInit {
       //console.log(modalRef.componentInstance.id );
     }
 
-    clicSurBouton(pageName:string){
+    clicSurBouton(pageName:string,categ: ICategFiches){
+      //const queryParams: Params = { categorie: categ ,fiches : categ.listeFiches};
+      //console.log(queryParams)
       this.router.navigate([`${pageName}`]);
     }
 
-    recupNom(nom:string){
-
-    }
+    /*recupCateg(categ:ICategFiches){
+      //this.newItemEvent.emit(categ);
+      
+    }*/
   
 
 }

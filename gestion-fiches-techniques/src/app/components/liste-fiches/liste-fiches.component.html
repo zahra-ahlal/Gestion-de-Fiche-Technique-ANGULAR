@@ -1,1 +1,35 @@
-<p>liste-fiches works!</p>
+<div>
+    <h1></h1>
+    <p class="text-center">
+        <strong>{{ fiches.length }} Fiches sont disponibles</strong>
+    </p>
+  </div>
+  
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">nomPlat</th>
+        <th scope="col">nbCouverts</th>
+        <th scope="col">listeEtapes</th>
+        <!--th scope="col">Edit</th>
+        <th scope="col">Delete</th-->
+      </tr>
+    </thead>
+    <tbody *ngIf="fiches">
+      <tr *ngFor="let fiche of fiches; index as i">
+        <th scope="row">{{ i+1 }}</th>
+        <td>{{ fiche.nomPlat }}</td>
+        <td>{{ fiche.nbCouverts }}</td>
+        <td>{{ fiche.listeEtapes }}</td>
+        <!--td>
+          <i class="bi bi-pencil-square" style="color: green;" 
+              (click)="editModal(cout)"></i>
+        </td>
+        <td>
+          <i class="bi bi-trash" (click)="deleteCout(cout)" style="color: red;"></i>
+        </td-->
+      </tr>
+      </tbody>
+  </table>
