@@ -17,12 +17,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IngredientComponent } from './components/ingredient/ingredient.component';
 import { EditIngredientComponent } from './modal/edit-ingredient/edit-ingredient.component';
 import { ListeIngredientsComponent } from './components/liste-ingredients/liste-ingredients.component';
+import { CategoriesIngredientsComponent } from './components/categories-ingredients/categories-ingredients.component';
+import { EditCategorieIngredientComponent } from './modal/edit-categorie-ingredient/edit-categorie-ingredient.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent }, 
   { path: 'ingredient', component: IngredientComponent },
-  { path: 'listeIngr', component: ListeIngredientsComponent }
+  { path: 'categorieIngredients', component: CategoriesIngredientsComponent },
+  { path: 'listeIngr', component: ListeIngredientsComponent},
+  { path: 'listeIngr/:idCategIngr', component: ListeIngredientsComponent}
 ];
 
 @NgModule({
@@ -31,7 +35,9 @@ const appRoutes: Routes = [
     LoginComponent,
     IngredientComponent,
     EditIngredientComponent,
-    ListeIngredientsComponent
+    ListeIngredientsComponent,
+    CategoriesIngredientsComponent,
+    EditCategorieIngredientComponent
   ],
   imports: [
     BrowserModule,
