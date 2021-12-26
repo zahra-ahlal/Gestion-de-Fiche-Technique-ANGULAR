@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'categoriesFiches', component: CategoriesFichesComponent, },
 
   //{ path: 'parametres/edit', component: ParametreComponent, },
-  { path: ':nomCateg/listeFiches', component: ListeFichesComponent, },
+  { path: ':idCategFiche/:nomCateg/listeFiches', component: ListeFichesComponent, },
   
   { path: '**', component: NotFoundComponent }
 ];
