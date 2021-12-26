@@ -1,0 +1,21 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col"><i class="bi bi-plus-circle-fill" style="color: rgb(13, 133, 41); font-size: 20px; " 
+          (click)="editModal()"></i></th>
+        <th scope="col">
+          Categorie Ingredient         
+        </th>
+        <th scope="col">    
+        </th>
+      </tr>
+    </thead>
+    <tbody *ngIf="categoriesIngredients">
+      <tr *ngFor="let categorie of categoriesIngredients; index as i">
+        <th scope="row">{{ i+1 }}</th>
+        <td>{{ categorie.nomCategIngr }}</td>
+        <td><i class="bi bi-arrow-right-circle" style="color: rgb(13, 133, 41);  " 
+        (click)="selectCategorie(categorie)"></i></td>
+      </tr>
+    </tbody>
+  </table>
