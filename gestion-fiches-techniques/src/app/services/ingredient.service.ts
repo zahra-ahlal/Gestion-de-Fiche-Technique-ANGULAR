@@ -33,6 +33,11 @@ export class IngredientService {
     return docData(ingredientRef, { idField: 'idIngr' }) as Observable<IngredientInterface>;
   }
   
+  getIngredientByIdCategorie(categorie: string) {
+    const ingredientRef = doc(this.firestore, `ingredients/${categorie}`);
+    return docData(ingredientRef, { idField: 'typeIngr' }) as Observable<IngredientInterface>;
+  }
+  
   updateIngredient(ingredient: IngredientInterface) {
     const ingredientRef = doc(this.firestore, `ingredients/${ingredient.idIngr}`);
     return setDoc(ingredientRef, ingredient);
