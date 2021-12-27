@@ -24,10 +24,9 @@ import { AngularFireModule } from '@angular/fire/compat';
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent }, 
-  { path: 'ingredient', component: IngredientComponent },
   { path: 'categorieIngredients', component: CategoriesIngredientsComponent },
-  { path: 'listeIngr', component: ListeIngredientsComponent},
-  { path: 'listeIngr/:idCategIngr', component: ListeIngredientsComponent}
+  { path: 'listeIngr/:nomCateg/:idCategIngr', component: ListeIngredientsComponent},
+  { path: 'ingredients/:idCategIngr', component: IngredientComponent }
 ];
 
 @NgModule({
