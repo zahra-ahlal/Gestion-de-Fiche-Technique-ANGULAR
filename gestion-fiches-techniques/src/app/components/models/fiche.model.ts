@@ -5,6 +5,7 @@ export interface IFiche {
     nomPlat : string;
     nbCouverts: number;
     tempsTot: number;
-    listeEtapes: Array<IEtape>;
+    idCategFiche: string;
+    //listeEtapes: string;
 
 }

@@ -1,0 +1,28 @@
+<div>
+
+    <h4>Ajouter une nouvelle fiche</h4>
+    <form #ficheForm="ngForm" (ngSubmit)="onSubmit(ficheForm)">
+      <div class="form-group">
+         <label>Nom Plat</label>
+         <input class="form-control" name="nomPlat" #name="ngModel" 
+          [(ngModel)]="fiche.nomPlat" placeholder="Nom plat" required>
+      </div>
+      <div class="form-group">
+        <label>Nombre de couverts</label>
+        <input class="form-control" name="nbCouverts" #name="ngModel" 
+         [(ngModel)]="fiche.nbCouverts" placeholder="Nombre de couverts" required>
+     </div>
+     <div class="form-group">
+        <label>Temps Total</label>
+        <input class="form-control" name="tempsTot" #name="ngModel" 
+         [(ngModel)]="fiche.tempsTot" placeholder="Temps Total" required>
+     </div>
+
+  
+      <div class="form-group float-right">
+        <button type="submit" class="btn btn-success" 
+          [disabled]="!ficheForm.valid" [disabled]="ficheForm.invalid">
+          <i class="bi bi-plus"></i>Add Fiche</button>
+      </div>
+    </form>
+  </div>

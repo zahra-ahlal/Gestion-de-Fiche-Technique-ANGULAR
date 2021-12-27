@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { 
   Firestore, addDoc, collection, collectionData,
   doc, docData, deleteDoc, updateDoc, DocumentReference, setDoc, query, where
 } from '@angular/fire/firestore';
@@ -14,20 +15,56 @@ import { CategFichesService } from './categ-fiches.service';
   providedIn: 'root'
 })
 export class FicheService {
+  dbPath = 'fiches'
+  fichesRef : AngularFirestoreCollection<IFiche>;
 
-  constructor(private firestore: Firestore,private categService: CategFichesService) { }
-
-  getFichesByIDCategorie(idCateg: string): Observable<IFiche[]> {
-
-    //return(this.categService.getFichesByCategID(categ.idCategFiche));
-    //const categFichesDocRef = collection(this.firestore, `categFiches`) ;
+  constructor(private firestore: Firestore, private db: AngularFirestore) {
+    this.fichesRef = db.collection(this.dbPath)
+   }
 
 
-    const fichesRef = collection(this.firestore, `fiches`) ;
-    //idCategFiches/${idCateg}
-    //console.log('collectiopn '+ fichesRef)
-    /*const fichesQuery = query(fichesRef, where("idCategFiche", "==", categFichesDocRef.id));
-    console.log('collectiopn '+ fichesQuery)*/
-    return collectionData(fichesRef, { idField: 'idF' }) as Observable<IFiche[]>;
+  //CRUD FIRESTORE DATA BASE
+
+  getAllFiches (): AngularFirestoreCollection<IFiche> {
+    return this.fichesRef;
   }
+
+  getFichesByIDCategorie(categ : String): AngularFirestoreCollection<IFiche>{
+    return this.db.collection(this.dbPath,ref => ref.where('idCategFiche','==', categ ));
+  }
+
+  /* idF?: string;
+    nomPlat : string;
+    nbCouverts: number;
+    tempsTot: number;
+    listeEtapes: Array<IEtape>;*/
+
+
+  addFiche(f: IFiche){
+    return this.db.collection(this.dbPath).add({
+      nomPlat: f.nomPlat,
+      nbCouverts: f.nbCouverts,
+      tempsTot: f.tempsTot
+      //listeEtapes: f.listeEtapes
+    });
+  }
+
+  addFicheByIDCateg(f: IFiche,categ:string){
+    return this.db.collection(this.dbPath).add({
+      nomPlat: f.nomPlat,
+      nbCouverts: f.nbCouverts,
+      tempsTot: f.tempsTot,
+      idCategFiche: categ,
+      //listeEtapes: f.listeEtapes
+    });
+  }
+
+  updateFiche(id: string, data: any): Promise<void> {
+    return this.fichesRef.doc(id).update(data);
+  }
+
+  deleteFiche(id: string): Promise<void> {
+    return this.fichesRef.doc(id).delete();
+  }
+
 }

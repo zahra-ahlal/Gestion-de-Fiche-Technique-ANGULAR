@@ -21,6 +21,10 @@ import { CategoriesFichesComponent } from './components/categories-fiches/catego
 import { EditCategorieComponent } from './components/modal/edit-categorie/edit-categorie.component';
 //import { FicheComponent } from './components/fiche/fiche.component';
 import { ListeFichesComponent } from './components/liste-fiches/liste-fiches.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { EditFicheComponent } from './components/modal/edit-fiche/edit-fiche.component';
+//import { EditFicheComponent } from './components/modal/edit-fiche/edit-fiche.component';
+
 
 @NgModule({
   declarations: [
@@ -35,13 +39,15 @@ import { ListeFichesComponent } from './components/liste-fiches/liste-fiches.com
     CategoriesFichesComponent,
     EditCategorieComponent,
     //FicheComponent,
-    ListeFichesComponent
+    ListeFichesComponent,
+    EditFicheComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     
