@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { AngularFireDatabaseModule } from "@angular/fire/compat/database";
 
 import { AppComponent } from './app.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
@@ -12,7 +12,7 @@ import { CoutComponent } from './components/cout/cout.component';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditCoutComponent } from './components/modal/edit-cout/edit-cout.component';
 import { CoutsComponent } from './components/couts/couts.component';
 import { ParametreComponent } from './components/parametre/parametre.component';
@@ -25,8 +25,9 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { EditFicheComponent } from './components/modal/edit-fiche/edit-fiche.component';
 //import { EditFicheComponent } from './components/modal/edit-fiche/edit-fiche.component';
 import {AngularFireStorageModule} from '@angular/fire/compat/storage';
-import { ImageUploadComponent } from './components/image-upload/image-upload.component';
-import { ImageDownloadFromDBComponent } from './components/image-download-from-db/image-download-from-db.component'
+import { UploadFormComponent } from './components/upload-form/upload-form.component';
+import { UploadListComponent } from './components/upload-list/upload-list.component';
+import { UploadDetailsComponent } from './components/upload-details/upload-details.component'
 
 @NgModule({
   declarations: [
@@ -43,8 +44,9 @@ import { ImageDownloadFromDBComponent } from './components/image-download-from-d
     //FicheComponent,
     ListeFichesComponent,
     EditFicheComponent,
-    ImageUploadComponent,
-    ImageDownloadFromDBComponent
+    UploadFormComponent,
+    UploadListComponent,
+    UploadDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,8 @@ import { ImageDownloadFromDBComponent } from './components/image-download-from-d
     NgbModule,
     FormsModule,
     AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),

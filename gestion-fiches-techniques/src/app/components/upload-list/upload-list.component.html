@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="card-header">List of Files</div>
+    <ul
+      class="list-group list-group-flush"
+      *ngFor="let file of fileUploads"
+    >
+      <li class="list-group-item">
+        <app-upload-details [fileUpload]='file'></app-upload-details>
+      </li>
+    </ul>
+</div>
+
+<table *ngIf="fileUploads">
+  <tr *ngFor="let i of rowIndexArray">
+    <td>
+      <div class="imagebox" *ngIf="i==0">
+        <a routerLink="/image/upload">
+          <img src="/assets/img/new_image.jpg" class="img-fluid">
+          <span class="imagebox-desc">Insert New Image</span></a>
+      </div>
+      <div class="imagebox" *ngIf="i!=0">
+        <img [src]="fileUploads[3*i-1].imageUrl" class="img-fluid">
+        <span class="imagebox-desc">{{fileUploads[3*i-1].caption}}</span>
+      </div>
+    </td>
+    <td *ngIf="fileUploads[3*i]">
+      <div class="imagebox">
+        <img [src]="fileUploads[3*i].imageUrl" class="img-fluid">
+        <span class="imagebox-desc">{{fileUploads[3*i].caption}}</span>
+      </div>
+    </td>
+    <td *ngIf="fileUploads[3*i+1]">
+      <div class="imagebox">
+        <img [src]="fileUploads[3*i+1].imageUrl" class="img-fluid">
+        <span class="imagebox-desc">{{fileUploads[3*i+1].caption}}</span>
+      </div>
+    </td>
+  </tr>
+</table>

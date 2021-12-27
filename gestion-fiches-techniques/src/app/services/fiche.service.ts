@@ -20,7 +20,7 @@ export class FicheService {
 
   constructor(private firestore: Firestore, private db: AngularFirestore) {
     this.fichesRef = db.collection(this.dbPath)
-   }
+  }
 
 
   //CRUD FIRESTORE DATA BASE
