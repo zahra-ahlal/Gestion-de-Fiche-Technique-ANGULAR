@@ -19,6 +19,7 @@ import { EditIngredientComponent } from './modal/edit-ingredient/edit-ingredient
 import { ListeIngredientsComponent } from './components/liste-ingredients/liste-ingredients.component';
 import { CategoriesIngredientsComponent } from './components/categories-ingredients/categories-ingredients.component';
 import { EditCategorieIngredientComponent } from './modal/edit-categorie-ingredient/edit-categorie-ingredient.component';
+import { AngularFireModule } from '@angular/fire/compat';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     NgbModule,
+    AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
   ],
