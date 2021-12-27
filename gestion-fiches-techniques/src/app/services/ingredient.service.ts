@@ -8,6 +8,7 @@ import { where } from 'firebase/firestore';
 import { Observable } from 'rxjs-compat';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { IngredientInterface } from 'src/models/ingredient.model';
+import { CategoriesIngredientService } from './categories-ingredient.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class IngredientService {
 
   dbPath = 'ingredients'
 
-  constructor(private firestore: Firestore, private db: AngularFirestore) { }
+  constructor(private firestore: Firestore, private db: AngularFirestore,
+    private categService : CategoriesIngredientService) { }
 
 
   getAll(): AngularFirestoreCollection<IngredientInterface> {
@@ -26,10 +28,6 @@ export class IngredientService {
   getByIdCateg(categ : String): AngularFirestoreCollection<IngredientInterface>{
     return this.db.collection(this.dbPath,ref => ref.where('idCategIngr','==', categ ));
   }  
-
-
-
-
 
   /***********************
    * 
@@ -43,6 +41,16 @@ export class IngredientService {
     return addDoc(ingredientRef, ingredient);
   }
 
+  addIngrByIDCateg(i: IngredientInterface,categ:string){
+    return this.db.collection(this.dbPath).add({
+      nomIngr : i.nomIngr,
+      prixU : i.prixU,
+      unite : i.unite,
+      allergene : i.allergene ,
+      stock : i.stock ,
+      idCategIngr: categ
+    });
+  }
   /*getIngredients(): Observable<IngredientInterface[]> {
     const ingredientRef = collection(this.firestore, 'ingredients');
     return collectionData(ingredientRef, { idField: 'idIngr' }) as Observable<IngredientInterface[]>;
