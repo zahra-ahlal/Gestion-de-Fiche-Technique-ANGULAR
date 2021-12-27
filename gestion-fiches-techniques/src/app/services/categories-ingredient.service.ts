@@ -19,15 +19,14 @@ export class CategoriesIngredientService {
     return collectionData(categIngrRef, { idField: 'idCategIngr' }) as Observable<CategorieIngredientInterface[]>;
   }
 
-  getCategIngrByID(id: string) {
+  /*getCategIngrByID(id: string) {
     const categIngrRef = doc(this.firestore, `categIngr/${id}`);
     return docData(categIngrRef, { idField: 'nomCategIngr' }) as Observable<CategorieIngredientInterface>;
-  }
+  }*/
 
-  getIngredientsById(id: Number) {
+  getIngredientsByIdCateg(id: Number) {
     const categIngrRef = doc(this.firestore, `categIngr/${id}`);
-    //console.log("Id categore reçue :" + id);
-    return docData(categIngrRef, { idField: 'listeIngr' }) as Observable<CategorieIngredientInterface>;
+    return docData(categIngrRef, { idField: 'idCategIngr' }) as Observable<CategorieIngredientInterface>;
   }
 
   addCategorieIngredient(categorie: CategorieIngredientInterface) {
