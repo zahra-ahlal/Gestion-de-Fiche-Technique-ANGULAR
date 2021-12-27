@@ -24,7 +24,9 @@ import { ListeFichesComponent } from './components/liste-fiches/liste-fiches.com
 import { AngularFireModule } from '@angular/fire/compat';
 import { EditFicheComponent } from './components/modal/edit-fiche/edit-fiche.component';
 //import { EditFicheComponent } from './components/modal/edit-fiche/edit-fiche.component';
-
+import {AngularFireStorageModule} from '@angular/fire/compat/storage';
+import { ImageUploadComponent } from './components/image-upload/image-upload.component';
+import { ImageDownloadFromDBComponent } from './components/image-download-from-db/image-download-from-db.component'
 
 @NgModule({
   declarations: [
@@ -40,13 +42,16 @@ import { EditFicheComponent } from './components/modal/edit-fiche/edit-fiche.com
     EditCategorieComponent,
     //FicheComponent,
     ListeFichesComponent,
-    EditFicheComponent
+    EditFicheComponent,
+    ImageUploadComponent,
+    ImageDownloadFromDBComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
