@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class EditCategorieComponent implements OnInit {
 
-  categorie: ICategFiches = { nomCategFiche: "", listeFiches: null};
+  categorie: ICategFiches = { nomCategFiche: "", listeFiches: null,urlImageCateg:""};
   activeModal: any;
 
   constructor(private categService: CategFichesService) { }

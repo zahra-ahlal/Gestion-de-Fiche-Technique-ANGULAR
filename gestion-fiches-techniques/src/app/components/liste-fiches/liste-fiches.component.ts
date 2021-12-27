@@ -56,7 +56,6 @@ export class ListeFichesComponent implements OnInit {
       size: 'lg',
       centered: true,
       windowClass: 'dark-modal',
-
     });
     modalRef.componentInstance.idCategFiche= this.idCategFiche;
     //console.log(modalRef.componentInstance.id );

@@ -6,20 +6,18 @@
   </div>
   
   
-  <table class="table table-striped">
+  <!--table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">nomCategFiche</th>
-        <th scope="col">listeFiches</th>
       </tr>
     </thead>
     <tbody *ngIf="categories">
       <tr *ngFor="let categ of categories; index as i">
         <th scope="row">{{ i+1 }}</th>
-        <!--td (click)="clicSurBouton('' + categ.nomCategFiche + '\/listeFiches')">{{ categ.nomCategFiche }}</td-->
+       
         <td (click)="clicSurBouton('' + categ.idCategFiche + '\/' + categ.nomCategFiche + '\/listeFiches',categ)">{{ categ.nomCategFiche }}</td>
-        <td>{{ categ.listeFiches }}</td>
         <td>
           <i class="bi bi-trash" (click)="deleteCateg(categ)" style="color: red;"></i>
         </td>
@@ -31,8 +29,32 @@
   <div class="form-group float-right">
     <button type="submit" class="btn btn-success" (click)="editModal()" >
       <i class="bi bi-plus"></i>Ajouter une catégorie</button>
-  </div>
+  </div-->
 
+
+  <ul *ngIf="categories" class="card-wrapper">
+      <div *ngFor="let categ of categories; index as i">
+        <li class="card" (click)="clicSurBouton('' + categ.idCategFiche + '\/' + categ.nomCategFiche + '\/listeFiches',categ)">
+          <img src=categ.urlImage alt=''>
+          <h3><a href="">{{ categ.nomCategFiche }}</a></h3>
+          <p>Lorem ipsum sit dolor amit</p>
+        </li>
+
+
+        <!--li class="card">
+          <img src='https://images.unsplash.com/photo-1611083360739-bdad6e0eb1fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400' alt=''>
+          <h3><a href="">{{ categ.nomCategFiche }}</a></h3>
+          <p>Lorem ipsum sit dolor amit</p>
+        </li>
+
+
+        <li class="card">
+          <img src='https://images.unsplash.com/photo-1613230485186-2e7e0fca1253?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400' alt=''>
+          <h3><a href="">{{ categ.nomCategFiche }}</a></h3>
+          <p>Lorem ipsum sit dolor amit</p>
+        </li-->
+      </div>
+  </ul>
 
 
   
