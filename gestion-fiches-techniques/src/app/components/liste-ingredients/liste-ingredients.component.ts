@@ -4,11 +4,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { map } from 'rxjs/operators';
 import { EditIngredientComponent } from 'src/app/modal/edit-ingredient/edit-ingredient.component';
-import { CategoriesIngredientService } from 'src/app/services/categories-ingredient.service';
 import { IngredientService } from 'src/app/services/ingredient.service';
-import { TestIngredientsService } from 'src/app/services/test-ingredients.service';
-import { CategorieIngredientInterface } from 'src/models/categIngr.model';
 import { IngredientInterface } from 'src/models/ingredient.model';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-liste-ingredients',
@@ -19,7 +17,9 @@ export class ListeIngredientsComponent implements OnInit {
 
   idCategIngr : string = "";
   listeIngredients : any;
-  constructor(private ingrService: IngredientService,public afAuth: AngularFireAuth,private testService: TestIngredientsService, private modal: NgbModal, private route: ActivatedRoute) { }
+  constructor(private ingrService: IngredientService,
+      public afAuth: AngularFireAuth,private location: Location, 
+      private modal: NgbModal, private route: ActivatedRoute) { }
   
   ngOnInit(): void {
     this.route.params
@@ -57,5 +57,9 @@ export class ListeIngredientsComponent implements OnInit {
       this.ingrService.deleteIngredient(ingredient).then(() => 
        console.log('delete successful'));
     }
+  }
+
+  goBack() {
+    this.location.back();
   }
 }
