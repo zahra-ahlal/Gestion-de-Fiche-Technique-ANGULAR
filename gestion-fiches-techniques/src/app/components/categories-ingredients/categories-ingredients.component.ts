@@ -32,7 +32,7 @@ export class CategoriesIngredientsComponent implements OnInit {
 
   selectCategorie(categorie : CategorieIngredientInterface) {
     console.log('listeIngr/:' + this.getIdByCategory(categorie));
-    this.router.navigate(['listeIngr/:' + this.getIdByCategory(categorie)]);
+    this.router.navigate(['listeIngr/' + categorie.nomCategIngr +'/'+this.getIdByCategory(categorie)]);
   }
 
   getIdByCategory(categorie : CategorieIngredientInterface){

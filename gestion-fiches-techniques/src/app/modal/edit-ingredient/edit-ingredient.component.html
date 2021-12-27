@@ -1,41 +1,53 @@
 <div *ngIf="ingredient" class="container">
-    <h4>Edit ingrdient record</h4>
-    <form #ingrForm="ngForm" (ngSubmit)="onUpdate()">
-      <div class="form-group">
-        <label>Nom Ingredient</label>
-        <input class="form-control" name="nomIngr" #nameCtrl="ngModel" 
-          [(ngModel)]="ingredient.nomIngr" placeholder="Nom Ingredient" required>
-      </div>
-      
-      <div class="form-group">
-        <label>Type Ingredient</label>
-        <select class="form-control" name="typeIngr" #nameCtrl=ngModel 
-          [(ngModel)]="ingredient.typeIngr" required>
-           <option value="epices">Epice</option>
-           <option value="legumes">Legume</option>
-           <option value="fruits">Fruit</option>
-           <option value="viande">Viande</option>
-           <option value="sauce">Sauce</option>
-           <option value="fruits">Fruit</option>
+  <h4>Modifier un ingredient</h4>
+  <form #ingrForm="ngForm" (ngSubmit)="onUpdate()">
+    <!--NOM-->
+    <div class="form-group">
+      <label>Nom Ingredient</label>
+      <input class="form-control" name="nomIngr" #name="ngModel" #nameCtrl=ngModel 
+      [(ngModel)]="ingredient.nomIngr" placeholder="Nom Ingredient" required>
+    </div>
+
+    <!--PRIX-->
+    <div class="form-group">
+      <label>Prix Unitaire</label>
+      <input class="form-control" name="prixU" #name="ngModel" #nameCtrl=ngModel
+      [(ngModel)]="ingredient.prixU" placeholder="Prix Unitaire" required>
+    </div>
+
+    <!--UNITE-->
+    <div class="form-group">
+        <label>Unité</label>
+        <select class="form-control" name="unite" #name=ngModel #nameCtrl=ngModel [(ngModel)]="ingredient.unite" required>
+          <option value="g">g</option><option value="Kg">Kg</option>
+          <option value="l">l</option><option value="ml">ml</option>
         </select>
-       </div>
-      
-      <div class="form-group"> 
-        <label>Allergene : </label>
-        <br>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" value="oui" name="gender"  #nameCtrl=ngModel [ngModel]="ingredient.allergene" required/>
-          <label class="form-check-label" for="allergene">Oui</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" value="non" name="gender" #nameCtrl=ngModel [ngModel]="ingredient.allergene" required/>
-          <label class="form-check-label" for="allergene">Non</label>
-        </div>
+    </div>
+    
+    <!--ALLERGENE-->
+    <div class="form-group"> 
+      <label>Allergene : </label>
+      <br>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" value="oui" name="gender"  #nameCtrl=ngModel [ngModel]="ingredient.allergene" required/>
+        <label class="form-check-label" for="allergene">Oui</label>
       </div>
-  
-      <div class="form-group float-right">
-       <button type="submit" class="btn btn-success" [disabled]="!ingrForm.valid">
-          <i class="bi bi-plus"></i>Update Ingredient</button>
-       </div>
-    </form>
-  </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" value="non" name="gender" #nameCtrl=ngModel [ngModel]="ingredient.allergene" required/>
+        <label class="form-check-label" for="allergene">Non</label>
+      </div>
+    </div>
+    
+    <!--STOCK-->
+    <div class="form-group">
+      <label>Stock</label>
+      <input class="form-control" name="stock" #name="ngModel" #nameCtrl=ngModel
+       [(ngModel)]="ingredient.stock" placeholder="Valeur Stock" required>
+    </div>
+
+    <div class="form-group float-right">
+     <button type="submit" class="btn btn-success" [disabled]="!ingrForm.valid">
+        <i class="bi bi-plus"></i>Update Ingredient</button>
+     </div>
+  </form>
+</div>

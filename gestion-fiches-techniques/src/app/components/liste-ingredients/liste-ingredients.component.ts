@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { map } from 'rxjs/operators';
 import { EditIngredientComponent } from 'src/app/modal/edit-ingredient/edit-ingredient.component';
 import { IngredientService } from 'src/app/services/ingredient.service';
 import { IngredientInterface } from 'src/models/ingredient.model';
 import {Location} from '@angular/common';
+import { IngredientComponent } from '../ingredient/ingredient.component';
 
 @Component({
   selector: 'app-liste-ingredients',
@@ -16,17 +17,19 @@ import {Location} from '@angular/common';
 export class ListeIngredientsComponent implements OnInit {
 
   idCategIngr : string = "";
+  nomCateg : string = "";
   listeIngredients : any;
   constructor(private ingrService: IngredientService,
       public afAuth: AngularFireAuth,private location: Location, 
-      private modal: NgbModal, private route: ActivatedRoute) { }
+      private modal: NgbModal, private route: ActivatedRoute,
+      private router : Router) { }
   
   ngOnInit(): void {
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.idCategIngr = params['idCategIngr'].split(':')[1];
-        });
+    this.idCategIngr = this.route.snapshot.params['idCategIngr'];
+    console.log(this.idCategIngr);
+    this.nomCateg = this.route.snapshot.params['nomCateg'];
+    console.log(this.nomCateg)
+    
     this.getIngredients();
   }
 
@@ -48,11 +51,11 @@ export class ListeIngredientsComponent implements OnInit {
       centered: true,
       windowClass: 'dark-modal',
     });
-
     modalRef.componentInstance.id = ingredient.idIngr;
   }
 
   deleteIngredient(ingredient: IngredientInterface) {
+    console.log("ingr à supprimer " + ingredient.idIngr)
     if (confirm('Are you sure to delete this record ?') == true) {
       this.ingrService.deleteIngredient(ingredient).then(() => 
        console.log('delete successful'));
@@ -62,4 +65,14 @@ export class ListeIngredientsComponent implements OnInit {
   goBack() {
     this.location.back();
   }
+
+  ajoutIngredient() {
+    const modalRef = this.modal.open(IngredientComponent, {
+      size: 'lg',
+      centered: true,
+      windowClass: 'dark-modal',
+    });
+    modalRef.componentInstance.idCategIngr = this.idCategIngr;
+  };
+
 }

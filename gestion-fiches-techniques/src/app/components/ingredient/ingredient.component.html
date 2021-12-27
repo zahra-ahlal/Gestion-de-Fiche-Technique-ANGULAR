@@ -1,26 +1,31 @@
 <div>
-    <h4>Add new ingredient record</h4>
+    <h4>Ajoutez un ingredient</h4>
     <form #ingrForm="ngForm" (ngSubmit)="onSubmit(ingrForm)">
-
+      
+      <!--NOM-->
       <div class="form-group">
          <label>Nom Ingredient</label>
          <input class="form-control" name="nomIngr" #name="ngModel" 
           [(ngModel)]="ingredient.nomIngr" placeholder="Nom Ingredient" required>
       </div>
-  
-       <div class="form-group">
-         <label>Type Ingredient</label>
-         <select class="form-control" name="typeIngr" #name=ngModel 
-           [(ngModel)]="ingredient.typeIngr">
-            <option value="epices">Epice</option>
-            <option value="legumes">Legume</option>
-            <option value="fruits">Fruit</option>
-            <option value="viande">Viande</option>
-            <option value="sauce">Sauce</option>
-            <option value="fruits">Fruit</option>
-         </select>
-        </div>
+      
+      <!--PRIX-->
+      <div class="form-group">
+        <label>Prix Unitaire</label>
+        <input class="form-control" name="prixU" #name="ngModel" 
+         [(ngModel)]="ingredient.prixU" placeholder="Prix Unitaire" required>
+     </div>
 
+     <!--UNITE-->
+     <div class="form-group">
+         <label>Unité</label>
+         <select class="form-control" name="unite" #name=ngModel [(ngModel)]="ingredient.unite">
+            <option value="g">g</option><option value="Kg">Kg</option>
+            <option value="l">l</option><option value="ml">ml</option>
+         </select>
+     </div>
+
+     <!--ALLERGENE-->
       <div class="form-group"> 
         <label>Allergene : </label>
         <br>
@@ -33,15 +38,22 @@
           <label class="form-check-label" for="allergene">Non</label>
         </div>
       </div>
-        
+      
+      <!--STOCK-->
+      <div class="form-group">
+        <label>Stock</label>
+        <input class="form-control" name="stock" #name="ngModel" 
+         [(ngModel)]="ingredient.stock" placeholder="Valeur Stock" required>
+      </div>
 
-        <div class="form-group">  
-          <div class="form-group float-right">
-             <button type="submit" class="btn btn-success" 
-               [disabled]="!ingrForm.valid" [disabled]="ingrForm.invalid">
-                <i class="bi bi-plus"></i>Ajouter Ingredient</button>
+      <!--BUTTON ADD-->
+      <div class="form-group">  
+        <div class="form-group float-right">
+            <button type="submit" class="btn btn-success" 
+              [disabled]="!ingrForm.valid" [disabled]="ingrForm.invalid">
+              <i class="bi bi-plus"></i>Ajouter Ingredient</button>
           </div>
-        </div>
+      </div>
         
     </form>
 </div>
