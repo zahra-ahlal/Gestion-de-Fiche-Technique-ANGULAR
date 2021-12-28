@@ -13,7 +13,7 @@ import { AngularFirestore ,AngularFirestoreCollection} from '@angular/fire/compa
 
 
 
-export interface Image { id: string; imagePath: string; imageURL: string; imageName: string; maintTs: number; }
+export interface Image { id: string; imagePath: string; imageURL: string; /*imageName: string;*/ maintTs: number; }
 
 @Component({
   selector: 'app-gallery',
@@ -21,10 +21,10 @@ export interface Image { id: string; imagePath: string; imageURL: string; imageN
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
-
+  booleanTest:boolean = false;
   title = 'app';
   myForm: FormGroup;
-  imageNm: string;
+  //imageNm: string;
   imgPath: string;
   private imagesCollection: AngularFirestoreCollection<Image>;
   images: Observable<Image[]>;
@@ -52,15 +52,15 @@ export class GalleryComponent implements OnInit {
   }
 
   onUploadBtnClick() {
-    if (this.imageNm === undefined) {
+    /*if (this.imageNm === undefined) {
       this.noteSvc.setNotification(
         'Missing Information',
         'Please give a name to the image before you click on upload!'
         );
         $('.notification-btn').click();
-    } else {
+    } else {*/
       $('#imageFile').click();
-    }
+    //}
 
   }
   onFileChange(event) {
@@ -114,14 +114,14 @@ export class GalleryComponent implements OnInit {
             // storing image path in firestore
             const imagePath = this.imgPath;
             // Image name fetched from ngModel on 'imageNm' field
-            const imageName = this.imageNm;
+            //const imageName = this.imageNm;
             // To store timestamp of the image before being inserted in firestore
             const maintTs = Date.now();
-            const image: Image = { id, imagePath, imageURL, imageName, maintTs };
+            const image: Image = { id, imagePath, imageURL, /*imageName,*/ maintTs };
             // image object inserted in image collection (AngularFirestoreCollection)
             this.imagesCollection.doc(id).set(image);
             // setting the image name back to blank
-            this.imageNm = '';
+            //this.imageNm = '';
           });
 
         })
@@ -136,19 +136,19 @@ export class GalleryComponent implements OnInit {
   }
   maximizeImage(image) {
     this.modalImage = image;
-    this.noteSvc.setNotification(
-      image.imageName,
+    /*this.noteSvc.setNotification(
+      //image.imageName,
       image.imagePath
-      );
+      );*/
       $('.max-img-notification-btn').click();
   }
   onDeleteClick(image) {
     this.modalImage = image;
-    this.noteSvc.setNotification(
+    /*this.noteSvc.setNotification(
     'Confirmation',
-    'Are you sure you want to remove ' + image.imageName
+    'Are you sure you want to remove ' //+ image.imageName
     + ' from the system?'
-    );
+    );*/
     $('.del-notification-btn').click();
   }
   deleteItem() {

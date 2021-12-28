@@ -15,14 +15,14 @@ export class NotificationServicesService {
 
   constructor() { }
 
-  setNotification(title, message) {
+  /*setNotification(title//, message) {
     this.subject.next(
       this.notification = {
         title: title,
-        message: message
+        //message: message
       }
     );
-  }
+  }*/
 
   getNotification(): Observable<any> {
     return this.subject.asObservable();

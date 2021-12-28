@@ -6,11 +6,33 @@
          <input class="form-control" name="nomCategFiche" #name="ngModel" 
           [(ngModel)]="categorie.nomCategFiche" placeholder="Nom catégorie" required>
       </div>
+
+      <div class="form-group">
+        <label>Souhaitez-vous ajouter une image ?</label>
+
+      <br>
+        
+        <input type="radio" name="choix" ng-value="true" value="true" [(ngModel)]="choix"  >Oui 
+        <input type="radio" name="choix" ng-value="false" [(ngModel)]="choix" >Non
+
+        
+     </div>
+
+
   
       <div class="form-group float-right">
         <button type="submit" class="btn btn-success" 
           [disabled]="!categForm.valid" [disabled]="categForm.invalid">
           <i class="bi bi-plus"></i>Add Cout</button>
       </div>
+
     </form>
   </div>
+  <hr>
+  <div *ngIf ="choix"> 
+    <app-gallery #gallery></app-gallery>
+  </div>
+
+
+
+<!--- //////////////////////////////////////////      -->

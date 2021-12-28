@@ -11,13 +11,14 @@ import { CategoriesFichesComponent } from './components/categories-fiches/catego
 import { ListeFichesComponent } from './components/liste-fiches/liste-fiches.component';
 import { UploadFormComponent } from './components/upload-form/upload-form.component';
 import { UploadListComponent } from './components/upload-list/upload-list.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent, },
   { path: 'parametres', component: ParametreComponent, },
   { path: 'categoriesFiches', component: CategoriesFichesComponent, },
-
+  { path: 'test', component: GalleryComponent, },
   {path: 'image/upload', component: UploadFormComponent, },
   { path: 'image/list', component: UploadListComponent, },
   

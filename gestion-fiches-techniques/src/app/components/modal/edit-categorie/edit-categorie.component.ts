@@ -3,6 +3,10 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CategFichesService } from 'src/app/services/categ-fiches.service';
 import { ICategFiches } from 'src/app/components/models/categFiches.model';
 import { NgForm } from '@angular/forms';
+import { GalleryComponent } from '../../gallery/gallery.component';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @Component({
   selector: 'app-edit-categorie',
@@ -13,7 +17,9 @@ export class EditCategorieComponent implements OnInit {
 
   categorie: ICategFiches = { nomCategFiche: "", listeFiches: null,urlImage:""};
   activeModal: any;
-
+  choix: boolean;
+  
+  
   constructor(private categService: CategFichesService) { }
 
   ngOnInit(): void {
@@ -22,6 +28,11 @@ export class EditCategorieComponent implements OnInit {
         this.categorie = res;
         console.log("If :"+this.categorie);
       });*/
+    this.choix = false;
+
+
+
+      
   }
 
   onSubmit(form: NgForm) {

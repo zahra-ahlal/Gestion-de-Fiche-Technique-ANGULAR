@@ -1,20 +1,10 @@
+
 <div class="jumbotron">
-    <h2 class="display-4 text-center">New Image </h2>
-    <hr>
-  
       <div class="row" align="center">
         <div class="col-lg-4 col-md-12"></div>
         <div class="col-lg-4 col-md-12">
             <div class="input-group mb-12">
-              <div class="input-group-prepend">
-                  <label class="input-group-text"
-                  for="imageNm">Image Name</label>
-              </div>
-              <input type="text"
-              name="imageName"
-              id="imageName"
-              [(ngModel)] = "imageNm"
-              placeholder="Enter Image Name">
+
             </div>
         </div>
       </div>
@@ -35,7 +25,7 @@
               class="btn btn-sm btn-primary"
               id="uploadProductImg"
               style="float: left"
-              value="Upload" />
+              value="Importer de votre ordinateur" />
           </div>
           <div>
             <input type="file" id="imageFile"
@@ -52,6 +42,9 @@
         </progress>
       </div>
   
+
+
+<div *ngIf="booleanTest">
     <hr>
     <h2 class="display-4 text-center">Your Images </h2>
     <hr>
@@ -70,7 +63,7 @@
                   >
               </div>
               <div class="card-body">
-                  <h4 class="card-title">{{image?.imageName}}</h4>
+                  <!--h4 class="card-title">{{image?.imageName}}</h4-->
                   <button type="button"
                         class="btn btn-sm btn-info"
                         (click)="maximizeImage(image)"
@@ -90,3 +83,4 @@
           </div>
       </div>
     </div>
+</div>
