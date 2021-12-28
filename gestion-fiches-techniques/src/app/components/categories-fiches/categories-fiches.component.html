@@ -35,26 +35,22 @@
   <ul *ngIf="categories" class="card-wrapper">
       <div *ngFor="let categ of categories; index as i">
         <li class="card" (click)="clicSurBouton('' + categ.idCategFiche + '\/' + categ.nomCategFiche + '\/listeFiches',categ)">
-          <img src=categ.urlImage alt=''>
+          <img class="img-fluid"
+            data-src="{{categ.urlImage}}"
+            alt="Card image cap"
+            style="cursor: pointer; height: 150px">
           <h3><a href="">{{ categ.nomCategFiche }}</a></h3>
           <p>Lorem ipsum sit dolor amit</p>
         </li>
-
-
-        <!--li class="card">
-          <img src='https://images.unsplash.com/photo-1611083360739-bdad6e0eb1fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400' alt=''>
-          <h3><a href="">{{ categ.nomCategFiche }}</a></h3>
-          <p>Lorem ipsum sit dolor amit</p>
-        </li>
-
-
-        <li class="card">
-          <img src='https://images.unsplash.com/photo-1613230485186-2e7e0fca1253?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400' alt=''>
-          <h3><a href="">{{ categ.nomCategFiche }}</a></h3>
-          <p>Lorem ipsum sit dolor amit</p>
-        </li-->
       </div>
   </ul>
+
+  <hr>
+  <div class="form-group float-right">
+    <button type="submit" class="btn btn-success" (click)="editModal()" >
+      <i class="bi bi-plus"></i>Ajouter une catégorie</button>
+  </div>
+
 
 
   

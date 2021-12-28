@@ -4,8 +4,11 @@ import { FileUpload } from '../models/file-upload.model';
 
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { finalize } from "rxjs/operators";
-import { ImageService } from 'src/app/services/image.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { ICategFiches } from '../models/categFiches.model';
+import { CategFichesService } from 'src/app/services/categ-fiches.service';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -36,9 +39,18 @@ export class UploadFormComponent implements OnInit {
     imageUrl: new FormControl('', Validators.required)
   })
   ///////////////////
-  constructor(private uploadService: FileUploadService,private afStorage: AngularFireStorage,private service: ImageService) { }
+
+  categories: ICategFiches[] = [];
+  constructor(private uploadService: FileUploadService,private afStorage: AngularFireStorage,
+    private categService: CategFichesService,
+    private modal: NgbModal,private router: Router) { }
 
   ngOnInit(): void {
+
+    this.categService.getCategFiches().subscribe((res: ICategFiches[]) => {
+      this.categories = res;
+    })
+
     this.resetForm();
   }
 
@@ -46,14 +58,14 @@ export class UploadFormComponent implements OnInit {
     this.selectedFiles = event.target.files;
   }
 
-  upload(): void {
+  upload(nameImg: string): void {
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
       this.selectedFiles = undefined;
 
       if (file) {
         this.currentFileUpload = new FileUpload(file);
-        this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(
+        this.uploadService.pushFileToStorage(this.currentFileUpload,nameImg).subscribe(
           percentage => {
             this.percentage = Math.round(percentage ? percentage : 0);
           },
@@ -95,18 +107,22 @@ export class UploadFormComponent implements OnInit {
   onSubmit(formValue) {
     this.isSubmitted = true;
     if (this.formTemplate.valid) {
-      var filePath = `${formValue.category}/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+      /*var filePath = `${formValue.category}/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
       const fileRef = this.afStorage.ref(filePath);
       this.afStorage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe((url) => {
             formValue['imageUrl'] = url;
-            this.uploadService.insertImageDetails(formValue);
+            //this.uploadService.insertImageDetails(formValue);
+            this.upload();
+            //this.uploadService.insertImageDetails(formValue);
             this.resetForm();
+
           })
         })
-      ).subscribe();
-
+      ).subscribe();*/
+      this.upload(formValue.category);
+      
      
       //var filePath2 = `${this.selectedImage.name}_${new Date().getTime()}`
       //this.afStorage.upload('/images'+Math.random()+filePath2, filePath2);   

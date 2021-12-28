@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { ConditionalExpr } from '@angular/compiler';
+import { Injectable, Input } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 
@@ -11,15 +12,18 @@ import { FileUpload } from '../components/models/file-upload.model';
   providedIn: 'root'
 })
 export class FileUploadService {
-  private basePath = '/uploads';
-  imageDetailList: AngularFireList<any>;
+  
+  private basePath = 'uploads';
+
+
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage) { }
   
+  @Input()  imageDetailList: AngularFireList<any>;
 
-  pushFileToStorage(fileUpload: FileUpload): Observable<number | undefined> {
-    const filePath = `${this.basePath}/${fileUpload.file.name}`;
+  pushFileToStorage(fileUpload: FileUpload, nameImg: string): Observable<number | undefined> {
+    const filePath = `${this.basePath}/${nameImg}`;
     const storageRef = this.storage.ref(filePath);
-    const uploadTask = this.storage.upload(filePath, fileUpload.file);
+    const uploadTask = this.storage.upload(filePath, nameImg);
 
     uploadTask.snapshotChanges().pipe(
       finalize(() => {
@@ -62,10 +66,19 @@ export class FileUploadService {
 
 
   getImageDetailList() {
-    this.imageDetailList = this.db.list('uploads');
+    this.imageDetailList = this.db.list('/uploads');
   }
 
   insertImageDetails(imageDetails) {
-    this.imageDetailList.push(imageDetails);
+    console.log(imageDetails.category);
+    //this.imageDetailList = this.db.list('/uploads');
+    this.imageDetailList.push({
+      imageDetails,
+    })
+    //console.log(this.imageDetailList)
   }
+
 }
+
+////////////////
+

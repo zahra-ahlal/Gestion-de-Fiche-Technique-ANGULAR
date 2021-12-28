@@ -23,11 +23,21 @@ export class UploadListComponent implements OnInit {
       this.fileUploads = fileUploads;this.rowIndexArray =  Array.from(Array(Math.ceil((this.fileUploads.length+1) / 3)).keys());
     });
   }*/
-    this.uploadService.getFiles(6).snapshotChanges().subscribe(
+    /*this.uploadService.getFiles(6).snapshotChanges().subscribe(
       list => {
         this.fileUploads = list.map(item => { return item.payload.val(); });
         this.rowIndexArray =  Array.from(Array(Math.ceil((this.fileUploads.length+1) / 3)).keys());
       }
     );
+    console.log(this.fileUploads);
+    console.log(this.rowIndexArray);*/
+
+    this.uploadService.imageDetailList.snapshotChanges().subscribe(
+      list => {
+        this.fileUploads = list.map(item => { return item.payload.val(); });
+        this.rowIndexArray =  Array.from(Array(Math.ceil((this.fileUploads.length+1) / 3)).keys());
+      }
+    );
+
   }
 }
