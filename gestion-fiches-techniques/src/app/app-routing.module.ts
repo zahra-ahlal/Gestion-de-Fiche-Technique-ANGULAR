@@ -9,12 +9,17 @@ import { ParametreComponent } from './components/parametre/parametre.component';
 import { CategFichesService } from './services/categ-fiches.service';
 import { CategoriesFichesComponent } from './components/categories-fiches/categories-fiches.component';
 import { ListeFichesComponent } from './components/liste-fiches/liste-fiches.component';
+import { UploadFormComponent } from './components/upload-form/upload-form.component';
+import { UploadListComponent } from './components/upload-list/upload-list.component';
 
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent, },
   { path: 'parametres', component: ParametreComponent, },
   { path: 'categoriesFiches', component: CategoriesFichesComponent, },
+
+  {path: 'image/upload', component: UploadFormComponent, },
+  { path: 'image/list', component: UploadListComponent, },
   
 
   //{ path: 'parametres/edit', component: ParametreComponent, },

@@ -27,7 +27,10 @@ import { EditFicheComponent } from './components/modal/edit-fiche/edit-fiche.com
 import {AngularFireStorageModule} from '@angular/fire/compat/storage';
 import { UploadFormComponent } from './components/upload-form/upload-form.component';
 import { UploadListComponent } from './components/upload-list/upload-list.component';
-import { UploadDetailsComponent } from './components/upload-details/upload-details.component'
+import { UploadDetailsComponent } from './components/upload-details/upload-details.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
+import { NotificationComponent } from './components/notification/notification.component'
+import { NotificationServicesService } from './services/notification-services.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,9 @@ import { UploadDetailsComponent } from './components/upload-details/upload-detai
     EditFicheComponent,
     UploadFormComponent,
     UploadListComponent,
-    UploadDetailsComponent
+    UploadDetailsComponent,
+    GalleryComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +66,7 @@ import { UploadDetailsComponent } from './components/upload-details/upload-detai
     provideFirestore(() => getFirestore()),
     
   ],
-  providers: [],
+  providers: [NotificationServicesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
