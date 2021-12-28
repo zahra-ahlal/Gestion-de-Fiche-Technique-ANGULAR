@@ -1,0 +1,37 @@
+<div class="center-div" >
+    <h2>Ajouter une étape</h2>
+</div>
+<div class="container">
+    <div clas="row">
+        <form class="input-field col s3" #etapeForm="ngForm" (ngSubmit)="onSubmit(etapeForm)">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="nomEtape" type="text" name="nomEtape" class="validate" required>
+                    <label for="nomEtape">Nom Etape</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="time" id="duree" name="duree" min="09:00" max="18:00" required>
+                    <label for="duree">Duree</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="description" name="description" class="materialize-textarea"></textarea>
+                    <label for="description">Description</label>
+                </div>      
+            </div>
+            
+            <div class="row">
+                <div class="center">
+                    <button class="btn findbtn waves-effect waves-light" 
+                    type="submit" [disabled]="!etapeForm.valid" [disabled]="etapeForm.invalid"
+                    name="action" >Submit
+                    </button>   
+                </div>
+            </div>
+        </form>
+    </div>
+    
+</div>

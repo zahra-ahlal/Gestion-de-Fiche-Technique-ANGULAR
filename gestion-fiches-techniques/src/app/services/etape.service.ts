@@ -18,10 +18,14 @@ export class EtapeService {
     return this.etapeRef;
   }
 
-  create(etape: IEtape): any {
-    return this.etapeRef.add({ ...etape });
+  create(etape: IEtape) {
+    return this.etapeRef.add({
+      nomEtape: etape.nomEtape,
+      descritpion: etape.descritpion,
+      duree: etape.duree
+    });
   }
-
+  
   update(id: string, data: any): Promise<void> {
     return this.etapeRef.doc(id).update(data);
   }

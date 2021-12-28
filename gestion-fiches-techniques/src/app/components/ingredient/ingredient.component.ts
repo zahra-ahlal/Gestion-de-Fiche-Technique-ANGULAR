@@ -16,6 +16,7 @@ export class IngredientComponent implements OnInit {
   ingredient: IngredientInterface = { nomIngr: '', prixU : 0, unite : '', allergene: false, stock : 0,idCategIngr : '', typeIngr: '' };
   @Input() idCategIngr : string = "";
   nomCateg : string = "";
+  
   constructor(private ingrService: IngredientService,
     public afAuth: AngularFireAuth, 
     private modal: NgbModal, private route: ActivatedRoute) { }

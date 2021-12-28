@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EtapeService } from 'src/app/services/etape.service';
+import { IEtape } from 'src/models/etape.model';
 
 @Component({
   selector: 'app-etape',
@@ -9,7 +10,12 @@ import { EtapeService } from 'src/app/services/etape.service';
 })
 export class EtapeComponent implements OnInit {
 
-  constructor(private etapeService : EtapeService) { }
+  etape : IEtape = {
+    nomEtape: '',
+    descritpion: '',
+    duree: ''
+  };
+  constructor(private etapeService: EtapeService) { }
 
   ngOnInit(): void {
   }

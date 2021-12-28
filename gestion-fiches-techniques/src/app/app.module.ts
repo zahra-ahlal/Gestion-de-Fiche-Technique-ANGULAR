@@ -20,13 +20,15 @@ import { ListeIngredientsComponent } from './components/liste-ingredients/liste-
 import { CategoriesIngredientsComponent } from './components/categories-ingredients/categories-ingredients.component';
 import { EditCategorieIngredientComponent } from './modal/edit-categorie-ingredient/edit-categorie-ingredient.component';
 import { AngularFireModule } from '@angular/fire/compat';
+import { EtapeComponent } from './components/etape/etape.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent }, 
   { path: 'categorieIngredients', component: CategoriesIngredientsComponent },
   { path: 'listeIngr/:nomCateg/:idCategIngr', component: ListeIngredientsComponent},
-  { path: 'ingredients/:idCategIngr', component: IngredientComponent }
+  { path: 'ingredients/:idCategIngr', component: IngredientComponent },
+  { path: 'etape', component: EtapeComponent }
 ];
 
 @NgModule({
@@ -37,7 +39,8 @@ const appRoutes: Routes = [
     EditIngredientComponent,
     ListeIngredientsComponent,
     CategoriesIngredientsComponent,
-    EditCategorieIngredientComponent
+    EditCategorieIngredientComponent,
+    EtapeComponent
   ],
   imports: [
     BrowserModule,
