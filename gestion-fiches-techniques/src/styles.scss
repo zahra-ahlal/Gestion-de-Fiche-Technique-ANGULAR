@@ -4,3 +4,26 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-icons/font/bootstrap-icons';
 
+$green-dark:  #ccff99;
+$green-light: #3b320b;
+$gray:        #8f8f8f;
+$gray-light:  #f5f6f8;
+
+* {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  
+  html, body { height: 100%; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    
+    background: linear-gradient(-45deg, #3b5a2c, #f1ac5d, #6dda9a, #c59234);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+  }

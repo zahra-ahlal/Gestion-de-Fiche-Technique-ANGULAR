@@ -1,38 +1,44 @@
-<div>
+
+
+<div class="popup-inner" >
+  <div class="popup__photo">
+    <img src="https://aux4.iconspalace.com/uploads/884807077111615959.png" alt="">
+  </div>
+  <div class="popup__text">
     <h4>Ajouter une nouvelle catégorie</h4>
     <form #categForm="ngForm" (ngSubmit)="onSubmit(categForm)">
-      <div class="form-group">
-         <label>Nom catégorie</label>
-         <input class="form-control" name="nomCategFiche" #name="ngModel" 
-          [(ngModel)]="categorie.nomCategFiche" placeholder="Nom catégorie" required>
-      </div>
+    <div class="form-group">
+        <label>Nom catégorie</label>
+        <input class="form-control" name="nomCategFiche" #name="ngModel" 
+        [(ngModel)]="categorie.nomCategFiche" placeholder="Nom catégorie" required>
+    </div>
 
-      <div class="form-group">
+    <div class="form-group">
         <label>Souhaitez-vous ajouter une image ?</label>
 
-      <br>
+    <br>
         
         <input type="radio" name="choix" ng-value="true" value="true" [(ngModel)]="choix"  >Oui 
         <input type="radio" name="choix" ng-value="false" [(ngModel)]="choix" >Non
 
         
-     </div>
+    </div>
 
 
-  
-      <div class="form-group float-right">
+
+    <div class="form-group float-right">
         <button type="submit" class="btn btn-success" 
-          [disabled]="!categForm.valid" [disabled]="categForm.invalid">
-          <i class="bi bi-plus"></i>Add Cout</button>
-      </div>
+        [disabled]="!categForm.valid" [disabled]="categForm.invalid">
+        <i class="bi bi-plus"></i>Ajouter la catégorie</button>
+    </div>
 
     </form>
+    <p></p>
   </div>
-  <hr>
-  <div *ngIf ="choix"> 
-    <app-gallery #gallery></app-gallery>
-  </div>
+  <a class="popup__close" >X</a>
+</div>
 
 
-
-<!--- //////////////////////////////////////////      -->
+<!--div *ngIf ="choix"> 
+<app-gallery #gallery></app-gallery>
+</div-->

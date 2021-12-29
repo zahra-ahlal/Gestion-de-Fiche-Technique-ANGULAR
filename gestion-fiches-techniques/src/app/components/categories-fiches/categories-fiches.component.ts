@@ -41,6 +41,8 @@ export class CategoriesFichesComponent implements OnInit {
       //console.log(modalRef.componentInstance.id );
     }
 
+    
+
     clicSurBouton(pageName:string,categ: ICategFiches){
       //const queryParams: Params = { categorie: categ ,fiches : categ.listeFiches};
       //console.log(queryParams)
