@@ -6,6 +6,7 @@ export interface IFiche {
     nbCouverts: number;
     tempsTot: number;
     idCategFiche: string;
-    //listeEtapes: string;
+    nomResponsable: string;
+    listeEtapes: Array<IEtape>;
 
 }

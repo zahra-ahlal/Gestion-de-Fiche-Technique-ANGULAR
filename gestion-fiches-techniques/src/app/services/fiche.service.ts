@@ -55,6 +55,7 @@ export class FicheService {
       nbCouverts: f.nbCouverts,
       tempsTot: f.tempsTot,
       idCategFiche: categ,
+      nomResponsable: f.nomResponsable
       //listeEtapes: f.listeEtapes
     });
   }

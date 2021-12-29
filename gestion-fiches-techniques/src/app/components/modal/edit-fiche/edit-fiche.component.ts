@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class EditFicheComponent implements OnInit {
  
-  fiche: IFiche = { nomPlat: "", nbCouverts: 0, tempsTot: 0,idCategFiche:""}
+  fiche: IFiche = { nomPlat: "", nbCouverts: 0, tempsTot: 0,idCategFiche:"", nomResponsable:"",listeEtapes:null}
   activeModal: any;
   
   @Input() 
