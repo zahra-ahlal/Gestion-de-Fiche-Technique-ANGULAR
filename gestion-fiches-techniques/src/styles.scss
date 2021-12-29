@@ -3,17 +3,13 @@ $green-light: #3b320b;
 $gray:        #8f8f8f;
 $gray-light:  #f5f6f8;
 
-* {
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
   
-  html,
-  body {
+body {    
   background: linear-gradient(-45deg, #3b5a2c, #f1ac5d, #6dda9a, #c59234);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
-  }
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
-@import '~bootstrap-icons/font/bootstrap-icons';
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  position : relative;
+}
+.container {
+  margin-top: 10em;
+}
