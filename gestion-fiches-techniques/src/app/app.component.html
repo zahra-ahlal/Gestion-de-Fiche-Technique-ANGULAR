@@ -1,1 +1,24 @@
-<router-outlet></router-outlet>
+<nav class="navbar">
+    <div class="container-fluid">
+        <div >
+            <ul class="nav navbar-nav">
+                <li routerLinkActive="active"><a routerLink="accueil"><h5>Accueil</h5></a></li>
+                <li routerLinkActive="active"><a routerLink="categoriesFiches"><h5>Fiches Techniques</h5></a></li>
+                <li routerLinkActive="active"><a routerLink="parametres"><h5>Paramètres</h5></a></li>
+                <li routerLinkActive="active"><a routerLink="categorieIngredients"><h5>Ingredients</h5></a></li>
+            </ul>
+        </div>
+        <div class="exit">
+            <ul class="nav navbar-nav">
+                <li routerLinkActive="active"><a routerLink="login"><h5>Se déconnecter</h5></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+<div class="row">
+    <div class="col-xs-12">
+    <router-outlet></router-outlet>
+    </div>
+</div>
+</div>
