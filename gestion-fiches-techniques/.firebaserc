@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "gestion-fiches-techniques": {
+      "hosting": {
+        "gestion-fiches-techniques": [
+          "gestion-fiches-techniques"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "gestion-fiches-techniques"
+  }
+}

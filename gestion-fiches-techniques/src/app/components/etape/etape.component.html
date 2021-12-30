@@ -1,0 +1,45 @@
+
+<div class="container">
+    <div class="center-div" >
+        <h3>Ajouter une étape</h3>
+    </div>
+    <div clas="row">
+        <form #etapeForm="ngForm" (ngSubmit)="onSubmit(etapeForm)">
+            <div class="row">
+                <div class="input-field col s6" >
+                    <select style="display: block;width:100px" name="numEtape" id="numEtape">
+                        <option value="1">N° 1</option>
+                        <option value="2">N° 2</option>
+                        <option value="3">N° 3</option> 
+                        <option value="4">N° 4</option> 
+                        <option value="5">N° 5</option> 
+                        <option value="6">N° 6</option>                              
+                    </select> 
+                </div>
+                <div class="input-field col s6">
+                    <input id="nomEtape" type="text" name="nomEtape" class="validate"  #name="ngModel" [(ngModel)]="etape.nomEtape" required>
+                    <label for="nomEtape">Nom Etape</label>
+                </div>
+                <div class="input-field col s6">
+                    <input type="time" id="duree" name="duree" min="09:00" max="18:00"  #name="ngModel" [(ngModel)]="etape.duree"required>
+                    <label for="duree">Duree</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="descritpion" name="descritpion" class="materialize-textarea" #name="ngModel" [(ngModel)]="etape.descritpion"></textarea>
+                    <label for="descritpion">Description</label>
+                </div>      
+            </div>
+            
+            <div class="row">
+                <div class="center">
+                    <button class="btn findbtn waves-effect waves-light" 
+                    type="submit" [disabled]="!etapeForm.valid" [disabled]="etapeForm.invalid"
+                    name="action" > Ajouter </button>   
+                </div>
+            </div>
+        </form>
+    </div>
+    
+</div>

@@ -50,9 +50,10 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/materialize-css/dist/css/materialize.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["./node_modules/materialize-css/dist/js/materialize.js"]
           },
           "configurations": {
             "production": {
@@ -121,6 +122,16 @@
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "gestion-fiches-techniques:build:production",
+            "firebaseProject": "gestion-fiches-techniques",
+            "firebaseHostingSite": "gestion-fiches-techniques"
           }
         }
       }

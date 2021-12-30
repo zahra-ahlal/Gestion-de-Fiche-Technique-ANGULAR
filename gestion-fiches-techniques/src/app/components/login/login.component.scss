@@ -1,0 +1,113 @@
+$green-dark:  #ccff99;
+$green-light: #3b320b;
+$gray:        #5f5a43;
+$gray-light:  #878a6c;
+
+  body {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+  }
+  @keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.login-form {
+    width: 100%;
+    padding: 2em;
+    position: relative;
+    background: rgba(black, .15);
+    align-items: center;
+    
+    font-size: 1.5em;
+    
+    &:before {
+      content: '';
+      position: absolute;
+      top: -2px; left: 0;
+      height: 3px; width: 100%;
+      
+    }
+    
+    @media screen and (min-width: 600px) {
+      width: 50vw;
+      height: 15em;
+      max-width: 20em;
+    }
+  }
+  
+    .flex-row {
+      display: flex;
+      background-color: #e7ecde;
+      margin-bottom: 1em;
+    }
+    
+    .lf--label {
+      width: 3em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      background: $gray-light;
+      cursor: pointer;
+    }
+    .lf--input {
+      flex: 1;
+      padding: 1em;
+      border: 0;
+      color: $gray;
+      font-size: 1.5rem;
+      font-family :'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  
+      &:focus {
+        outline: none;
+        transition: transform .15s ease;
+        transform: scale(1.05);
+      }
+    }
+  
+    .lf--submit {
+      display: block;
+      padding: 1em;
+      width: 100%;
+      border-radius: 5% ;
+      font-family :'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      
+      background: linear-gradient(
+        to right,
+        $gray-light,
+        $gray
+      );
+      border: 0;
+      color: #fff;
+      cursor: pointer;
+      font-size: .80em;
+      font-weight: 600;
+      text-shadow: 0 1px 0 rgba(black, .2);
+      
+      &:focus {
+        outline: none;
+        transition: transform .15s ease;
+        transform: scale(1.1);
+      }
+    }
+  
+  .lf--forgot {
+    margin-top: 1em;
+    color: $green-light;
+    font-size: 1.2em;
+    text-align: center;
+    position: relative;
+  }
+  .container {
+    margin-top: 10em;
+  }
+  ::placeholder { color: $gray; }
