@@ -32,10 +32,10 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { NotificationComponent } from './components/notification/notification.component'
 import { NotificationServicesService } from './services/notification-services.service';
 import { AjoutFicheComponent } from './components/ajout-fiche/ajout-fiche.component';
-
 import { MatCardModule } from '@angular/material/card';
 
 import {DragDropModule} from '@angular/cdk/drag-drop'
+import { EtapeService } from './services/etape.service';
 @NgModule({
   declarations: [
     AppComponent,

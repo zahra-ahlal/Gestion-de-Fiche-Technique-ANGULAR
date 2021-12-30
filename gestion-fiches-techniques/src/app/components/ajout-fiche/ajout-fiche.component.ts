@@ -6,6 +6,8 @@ import { FicheService } from 'src/app/services/fiche.service';
 import { IngredientService } from 'src/app/services/ingredient.service';
 import { IFiche } from '../models/fiche.model';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { IEtape } from '../models/etape.model';
+import { EtapeService } from 'src/app/services/etape.service';
 
 @Component({
   selector: 'app-ajout-fiche',
@@ -14,21 +16,24 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 })
 export class AjoutFicheComponent implements OnInit {
   fiche: IFiche = { nomPlat: "", nbCouverts: 0, tempsTot: 0,idCategFiche:"", nomResponsable:"",listeEtapes:null}
+  etape : IEtape = {nomEtape: '',descritpion: '',duree: ''};
   activeModal: any;
   isSelected: boolean;
   ingrSelected:string;
   ingredientSelectedArray:string[];
   show: boolean = false;
   listeIngredients : any;
+  listeEtapes : any;
   
 
   constructor(private ingrService: IngredientService,
-      public afAuth: AngularFireAuth,private ficheService: FicheService) { }
+      public afAuth: AngularFireAuth,private ficheService: FicheService, private etapeService : EtapeService) { }
 
   ngOnInit(): void {
     this.isSelected = false;
     //console.log(this.idCategFiche);
     this.getListeIngredients() ;
+    this.getListeEtapes() ;
     this.ingrSelected = "";
     this.ingredientSelectedArray = [];
 
@@ -50,6 +55,18 @@ export class AjoutFicheComponent implements OnInit {
       )
     ).subscribe(data => {
       this.listeIngredients = data;
+    });
+  }
+
+  getListeEtapes() : void {
+    this.etapeService.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.listeEtapes = data;
     });
   }
 

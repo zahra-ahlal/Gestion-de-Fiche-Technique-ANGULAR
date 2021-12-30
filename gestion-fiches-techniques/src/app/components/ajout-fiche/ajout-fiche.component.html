@@ -45,7 +45,8 @@
                   <!--option value disabled>Veuillez Selectionner</option-->
                   <option *ngFor="let ingredient of listeIngredients"  [value]="ingredient.nomIngr" >{{ingredient.nomIngr}} </option>
                 </select>
-                <div class="one" ></div>
+                <div class="one" >
+            </div>
                
                 <!--p >Selected option: {{ ingrSelected }}</p-->
                 
@@ -72,6 +73,15 @@
           </li>
 
           <li><div class="divider"></div></li>
+            
+
+
+            <div>
+                <label for="quantity" style="margin-right: 0.5rem;">Etape déjà existante</label>
+                <select  >
+                <option *ngFor="let etape of listeEtapes"  [value]="etape.nomEtape" >{{etape.nomEtape}} </option>
+                </select>
+            </div>
             <div class="" style="text-align: center;margin-top:5%">
                 <button class="icon-btn add-btn">
                     <div class="add-icon"></div>

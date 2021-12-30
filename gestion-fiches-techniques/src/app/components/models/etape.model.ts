@@ -1,5 +1,8 @@
+import { IngredientInterface } from "./ingredient.model";
+
 export interface IEtape {
-    idE?: string;
-    titreEtape : string;
-    descriptionetape: string;
+    idEtape?: string;
+    nomEtape: string;
+    descritpion : string;
+    duree : string;
 }
