@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { IEtape } from 'src/models/etape.model';
+import { IEtape } from '../models/etape.model';
 
 @Injectable({
   providedIn: 'root'

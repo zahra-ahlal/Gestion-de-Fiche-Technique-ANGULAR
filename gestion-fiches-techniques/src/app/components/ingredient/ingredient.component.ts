@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IngredientService } from 'src/app/services/ingredient.service';
-import { IngredientInterface } from 'src/models/ingredient.model';
+import { IngredientInterface } from 'src/app/models/ingredient.model';
 
 @Component({
   selector: 'app-ingredient',

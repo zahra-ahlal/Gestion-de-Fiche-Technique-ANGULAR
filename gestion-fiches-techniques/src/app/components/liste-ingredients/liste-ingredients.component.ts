@@ -5,7 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { map } from 'rxjs/operators';
 import { EditIngredientComponent } from 'src/app/modal/edit-ingredient/edit-ingredient.component';
 import { IngredientService } from 'src/app/services/ingredient.service';
-import { IngredientInterface } from 'src/models/ingredient.model';
+import { IngredientInterface } from 'src/app/models/ingredient.model';
 import {Location} from '@angular/common';
 import { IngredientComponent } from '../ingredient/ingredient.component';
 

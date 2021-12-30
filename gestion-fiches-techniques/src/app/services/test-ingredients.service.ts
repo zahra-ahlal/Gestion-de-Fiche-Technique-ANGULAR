@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs-compat';
 import { map } from 'rxjs-compat/operator/map';
 import { first } from 'rxjs/operators';
-import { IngredientInterface } from 'src/models/ingredient.model';
+import { IngredientInterface } from 'src/app/models/ingredient.model';
 import { IngredientService } from './ingredient.service';
 
 @Injectable({

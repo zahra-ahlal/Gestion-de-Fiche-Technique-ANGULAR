@@ -4,8 +4,8 @@ import {
   doc, docData, deleteDoc, updateDoc, DocumentReference, setDoc
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs-compat';
-import { CategorieIngredientInterface } from 'src/models/categIngr.model';
-import { IngredientInterface } from 'src/models/ingredient.model';
+import { CategorieIngredientInterface } from 'src/app/models/categIngr.model';
+import { IngredientInterface } from 'src/app/models/ingredient.model';
 
 @Injectable({
   providedIn: 'root'

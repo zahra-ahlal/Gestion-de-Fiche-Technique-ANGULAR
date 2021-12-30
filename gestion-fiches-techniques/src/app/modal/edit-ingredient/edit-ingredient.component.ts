@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { IngredientService } from 'src/app/services/ingredient.service';
-import { IngredientInterface } from 'src/models/ingredient.model';
+import { IngredientInterface } from 'src/app/models/ingredient.model';
 
 @Component({
   selector: 'app-edit-ingredient',

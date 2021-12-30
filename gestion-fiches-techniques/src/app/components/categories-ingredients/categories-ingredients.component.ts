@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditCategorieIngredientComponent } from 'src/app/modal/edit-categorie-ingredient/edit-categorie-ingredient.component';
 import { CategoriesIngredientService } from 'src/app/services/categories-ingredient.service';
-import { CategorieIngredientInterface } from 'src/models/categIngr.model';
+import { CategorieIngredientInterface } from 'src/app/models/categIngr.model';
 import { ListeIngredientsComponent } from '../liste-ingredients/liste-ingredients.component';
 
 @Component({
