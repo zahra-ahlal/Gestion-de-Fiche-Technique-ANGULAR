@@ -38,7 +38,6 @@ import {DragDropModule} from '@angular/cdk/drag-drop'
 import { EtapeService } from './services/etape.service';
 @NgModule({
   declarations: [
-    AppComponent,
     AccueilComponent,
     NotFoundComponent,
     CoutComponent,
