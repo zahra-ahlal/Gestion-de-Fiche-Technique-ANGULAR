@@ -5,7 +5,7 @@ import {
 } from '@angular/fire/firestore';
 import { query } from '@firebase/firestore';
 import { where } from 'firebase/firestore';
-import { Observable } from 'rxjs-compat';
+import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { IngredientInterface } from 'src/app/models/ingredient.model';
 import { CategoriesIngredientService } from './categories-ingredient.service';
