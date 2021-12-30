@@ -1,0 +1,27 @@
+<div  *ngIf="cout" class="container">
+  <h4>Edit cout record</h4>
+  <form #coutForm="ngForm" (ngSubmit)="onUpdate()">
+    <div class="form-group">
+      <label>coutMatiere</label>
+      <input class="form-control" name="coutMatiere" #nameCtrl=ngModel 
+        [(ngModel)]="cout.coutMatiere" placeholder="coutMatiere" required>
+    </div>
+    
+    <div class="form-group">
+      <label>coutPersonnel</label>
+      <input class="form-control" name="coutPersonnel" #nameCtrl=ngModel 
+        [(ngModel)]="cout.coutPersonnel" required>
+     </div>
+    
+    <div class="form-group"> 
+      <label>coutFluides</label>
+        <input class="form-control" name="coutFluides"  #nameCtrl=ngModel 
+        [ngModel]="cout.coutFluides" required/>
+    </div>
+
+    <div class="form-group float-right">
+     <button type="submit" class="btn btn-success" [disabled]="!coutForm.valid">
+        <i class="bi bi-plus"></i>Update Cout</button>
+     </div>
+  </form>
+</div>

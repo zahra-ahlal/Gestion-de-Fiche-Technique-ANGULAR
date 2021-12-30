@@ -1,0 +1,33 @@
+<div  *ngIf="parametre" class="container">
+    <h4>Edit parametre record</h4>
+    <form #parametereForm="ngForm" (ngSubmit)="onUpdate()">
+      <div class="form-group">
+        <label>Cout horaire moyen </label>
+        <input class="form-control" name="coutHorMoy" #nameCtrl="ngModel" 
+          [(ngModel)]="parametre.coutHorMoy" placeholder="coutHorMoy" required>
+      </div>
+      
+      <div class="form-group">
+        <label>Cout horaire forfataire</label>
+        <input class="form-control" name="coutHorForf" #nameCtrl=ngModel 
+          [(ngModel)]="parametre.coutHorForf" required>
+       </div>
+      
+      <div class="form-group"> 
+        <label>Coeff multiplicateur</label>
+          <input class="form-control" name="coeffMulti"  #nameCtrl=ngModel 
+          [ngModel]="parametre.coeffMulti" required/>
+      </div>
+
+      <div class="form-group"> 
+        <label>Coeff</label>
+          <input class="form-control" name="coeff"  #nameCtrl=ngModel 
+          [ngModel]="parametre.coeff" required/>
+      </div>
+  
+      <div class="form-group float-right">
+       <button type="submit" class="btn btn-success" [disabled]="!parametereForm.valid">
+          <i class="bi bi-plus"></i>Update parametre</button>
+       </div>
+    </form>
+  </div>

@@ -1,0 +1,111 @@
+<div class="popup-inner" >
+  <div class="popup__photo">
+    <img src="https://www.pngall.com/wp-content/uploads/8/Cooking-Recipe-PNG-HD-Image.png" alt="">
+  </div>
+  <div class="popup__text">
+
+        <h4>Ajouter une nouvelle fiche</h4>
+        <form #ficheForm="ngForm" (ngSubmit)="onSubmit(ficheForm)">
+          <div class="promo-code">
+            <div class="form-group">
+              <label>Responsable</label>
+              <input class="form-control" name="nomResponsable" #name="ngModel" 
+                [(ngModel)]="fiche.nomResponsable" placeholder="Nom Responsable" required>
+            </div>
+
+            <div class="form-group">
+              <label>Nom Plat</label>
+              <input class="form-control" name="nomPlat" #name="ngModel" 
+                [(ngModel)]="fiche.nomPlat" placeholder="Nom plat" required>
+            </div>
+            <div class="form-group">
+              <label>Nombre couverts</label>
+              <select name="quantity" style="margin-bottom: 1rem;">
+                <option value disabled>Please select</option>
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+
+
+              <!--input class="form-control" name="nbCouverts" #name="ngModel" 
+              [(ngModel)]="fiche.nbCouverts" placeholder="Nombre de couverts" required-->
+            </div>
+          </div>
+
+
+        <hr>
+
+
+        <div>
+          <label for="quantity" style="margin-right: 0.5rem;">Ma liste d'ingredients:</label>
+          <select  style="margin-bottom: 1rem;" [(ngModel)]="ingrSelected" name="first"  (change)="setShowTrue(ingrSelected)">
+            <!--option value disabled>Veuillez Selectionner</option-->
+            <option *ngFor="let ingredient of listeIngredients"  [value]="ingredient.nomIngr" >{{ingredient.nomIngr}} </option>
+          </select>
+          <div class="one" [innerHtml]="htmlToAdd" ></div>
+         
+          <p >Selected option: {{ ingrSelected }}</p>
+        </div>
+
+        <!--div *ngFor="let ingredient of listeIngredients" class="grid">
+          <button class="colorful-button secondary">
+              <div class="wrapper">
+                  <span>{{ingredient.nomIngr}}</span>
+                  <div class="circle circle-12"></div>
+                  <div class="circle circle-11"></div>
+                  <div class="circle circle-10"></div>
+                  <div class="circle circle-9"></div>
+                  <div class="circle circle-8"></div>
+                  <div class="circle circle-7"></div>
+                  <div class="circle circle-6"></div>
+                  <div class="circle circle-5"></div>
+                  <div class="circle circle-4"></div>
+                  <div class="circle circle-3"></div>
+                  <div class="circle circle-2"></div>
+                  <div class="circle circle-1"></div>
+              </div>
+          </button>
+        
+        </div-->
+
+        <!--div  class="buttons1">
+          <button *ngFor="let ingredient of listeIngredients">{{ingredient.nomIngr}}</button>
+        </div-->
+        
+
+        
+
+        
+
+
+        <ul class="ks-cboxtags">
+          <li><input type="checkbox" id="checkboxOne" value="Rainbow Dash"><label for="checkboxOne">Rainbow Dash</label></li>
+       </ul>
+
+        <!--div class="form-group">
+            <label>Temps Total</label>
+            <input class="form-control" name="tempsTot" #name="ngModel" 
+            [(ngModel)]="fiche.tempsTot" placeholder="Temps Total" required>
+        </div-->
+
+  
+
+      
+          <div class="form-group float-right">
+            <button type="submit" class="btn btn-success" 
+              [disabled]="!ficheForm.valid" [disabled]="ficheForm.invalid">
+              <i class="bi bi-plus"></i>Ajouter la fiche</button>
+          </div>
+
+          
+        </form>
+
+        
+  </div>
+  <a class="popup__close" >X</a>
+</div>
+    
+
+
+

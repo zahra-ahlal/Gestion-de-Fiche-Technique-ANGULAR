@@ -1,0 +1,62 @@
+<div>
+    <h1></h1>
+    <p class="text-center">
+        <strong>{{ categories.length }} Categories sont disponibles</strong>
+    </p>
+  </div>
+  
+  
+  <!--table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">nomCategFiche</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="categories">
+      <tr *ngFor="let categ of categories; index as i">
+        <th scope="row">{{ i+1 }}</th>
+       
+        <td (click)="clicSurBouton('' + categ.idCategFiche + '\/' + categ.nomCategFiche + '\/listeFiches',categ)">{{ categ.nomCategFiche }}</td>
+        <td>
+          <i class="bi bi-trash" (click)="deleteCateg(categ)" style="color: red;"></i>
+        </td>
+      </tr>
+      </tbody>
+  </table>
+
+
+  <div class="form-group float-right">
+    <button type="submit" class="btn btn-success" (click)="editModal()" >
+      <i class="bi bi-plus"></i>Ajouter une catégorie</button>
+  </div-->
+
+
+  <ul *ngIf="categories" class="card-wrapper">
+      <div *ngFor="let categ of categories; index as i">
+        <li class="card" (click)="clicSurBouton('' + categ.idCategFiche + '\/' + categ.nomCategFiche + '\/listeFiches',categ)">
+          <img class="img-fluid"
+            data-src="{{categ.urlImage}}"
+            alt="Card image cap"
+            style="cursor: pointer; height: 150px">
+          <h3><a href="">{{ categ.nomCategFiche }}</a></h3>
+          <p>Lorem ipsum sit dolor amit</p>
+        </li>
+      </div>
+  </ul>
+
+  <hr>
+  <div class="form-group float-right">
+    <button type="submit" class="btn btn-success" (click)="editModal()" >
+      <i class="bi bi-plus"></i>Ajouter une catégorie</button> 
+  </div>
+
+
+
+
+
+  
+
+
+
+  
