@@ -5,7 +5,7 @@ import {
 } from '@angular/fire/firestore';
 
 import { Observable } from 'rxjs';
-import { IParametre } from '../components/models/parametre.model';
+import { IParametre } from '../models/parametre.model';
 
 @Injectable({
   providedIn: 'root'

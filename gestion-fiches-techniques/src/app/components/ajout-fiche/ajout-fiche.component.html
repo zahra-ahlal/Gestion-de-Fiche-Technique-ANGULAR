@@ -68,7 +68,6 @@
                     #todoList="cdkDropList"
                     [cdkDropListData]="ingredientSelectedArray"
                     (cdkDropListDropped)="onDrop($event)"> {{ monIngr }} </button>
-
                 </p> 
           </li>
 
@@ -78,10 +77,38 @@
 
             <div>
                 <label for="quantity" style="margin-right: 0.5rem;">Etape déjà existante</label>
-                <select  >
+                <select >
                 <option *ngFor="let etape of listeEtapes"  [value]="etape.nomEtape" >{{etape.nomEtape}} </option>
                 </select>
             </div>
+
+            /*TABLE ETAPES*/
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom Etape</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let etape of listeEtapes; index as i">
+                    <th scope="row">{{ i+1 }}</th>
+                    <td>{{ etape.nomEtape}}</td>
+                    <td>
+                      <i class="bi bi-trash"  style="color: red;"></i>
+                    </td>
+                  </tr>
+                  </tbody>
+              </table>
+
+
+
+            //////////////////
+
+
+
+
             <div class="" style="text-align: center;margin-top:5%">
                 <button class="icon-btn add-btn">
                     <div class="add-icon"></div>

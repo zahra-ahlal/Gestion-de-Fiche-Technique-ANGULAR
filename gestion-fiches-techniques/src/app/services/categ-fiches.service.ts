@@ -6,7 +6,7 @@ import {
 import { where } from 'firebase/firestore';
 
 import { Observable } from 'rxjs';
-import { ICategFiches } from '../components/models/categFiches.model';
+import { ICategFiches } from '../models/categFiches.model';
 
 @Injectable({
   providedIn: 'root'

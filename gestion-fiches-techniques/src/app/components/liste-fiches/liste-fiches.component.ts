@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IFiche } from 'src/app/components/models/fiche.model';
+import { IFiche } from 'src/app/models/fiche.model';
 import { FicheService } from 'src/app/services/fiche.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ICategFiches } from '../models/categFiches.model';
+import { ICategFiches } from '../../models/categFiches.model';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { CategFichesService } from 'src/app/services/categ-fiches.service';

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FileUploadService } from 'src/app/services/file-upload.service';
-import { FileUpload } from '../models/file-upload.model';
+import { FileUpload } from '../../models/file-upload.model';
 
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { finalize } from "rxjs/operators";
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { ICategFiches } from '../models/categFiches.model';
+import { ICategFiches } from '../../models/categFiches.model';
 import { CategFichesService } from 'src/app/services/categ-fiches.service';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';

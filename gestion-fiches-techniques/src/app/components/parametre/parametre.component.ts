@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ParametreService } from 'src/app/services/parametre.service';
 import { EditParametreComponent } from '../modal/edit-parametre/edit-parametre.component';
-import { IParametre } from '../models/parametre.model';
+import { IParametre } from '../../models/parametre.model';
 
 @Component({
   selector: 'app-parametre',

@@ -7,8 +7,8 @@ import { query } from '@firebase/firestore';
 import { where } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { IngredientInterface } from '../components/models/ingredient.model';
-import { ICategFiches } from '../components/models/categFiches.model';
+import { IngredientInterface } from '../models/ingredient.model';
+import { CategoriesIngredientService } from './categories-ingredient.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class IngredientService {
   dbPath = 'ingredients'
 
   constructor(private firestore: Firestore, private db: AngularFirestore,
-    /*private categService : ICategFiches*/) { }
+    private categService : CategoriesIngredientService) { }
 
 
   getAll(): AngularFirestoreCollection<IngredientInterface> {
@@ -58,6 +58,11 @@ export class IngredientService {
 
 
 
+  deleteIngredient(ingredient: IngredientInterface) {
+    const ingredientRef = doc(this.firestore, `ingredients/${ingredient.idIngr}`);
+    return deleteDoc(ingredientRef);
+  }
+
   getIngredientByID(id: string) {
     const ingredientRef = doc(this.firestore, `ingredients/${id}`);
     return docData(ingredientRef, { idField: 'idIngr' }) as Observable<IngredientInterface>;
@@ -76,6 +81,15 @@ export class IngredientService {
     return collectionData(ingredientRef, { idField : 'idIngr' }) as Observable<IngredientInterface[]>;
   }
   
- 
+  updateIngredient(ingredient: IngredientInterface) {
+    const ingredientRef = doc(this.firestore, `ingredients/${ingredient.idIngr}`);
+    return setDoc(ingredientRef, ingredient);
+  }
+  
+  modifyAllergene(ingredient: IngredientInterface, allerg: boolean) {
+    const ingredientRef = doc(this.firestore, `ingredients/${ingredient.idIngr}`);
+    return updateDoc(ingredientRef, { allergene: allerg });
+  }
+  
 
 }

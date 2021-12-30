@@ -1,6 +1,6 @@
 import { Component,ElementRef,EventEmitter,Input, OnInit } from '@angular/core';
 import { FicheService } from 'src/app/services/fiche.service';
-import { IFiche } from 'src/app/components/models/fiche.model';
+import { IFiche } from 'src/app/models/fiche.model';
 import { NgForm } from '@angular/forms';
 import { IngredientService } from 'src/app/services/ingredient.service';
 import { map } from 'rxjs/operators';

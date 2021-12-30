@@ -4,9 +4,9 @@ import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { FicheService } from 'src/app/services/fiche.service';
 import { IngredientService } from 'src/app/services/ingredient.service';
-import { IFiche } from '../models/fiche.model';
+import { IFiche } from '../../models/fiche.model';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import { IEtape } from '../models/etape.model';
+import { IEtape } from '../../models/etape.model';
 import { EtapeService } from 'src/app/services/etape.service';
 
 @Component({
@@ -57,6 +57,7 @@ export class AjoutFicheComponent implements OnInit {
       this.listeIngredients = data;
     });
   }
+
 
   getListeEtapes() : void {
     this.etapeService.getAll().snapshotChanges().pipe(

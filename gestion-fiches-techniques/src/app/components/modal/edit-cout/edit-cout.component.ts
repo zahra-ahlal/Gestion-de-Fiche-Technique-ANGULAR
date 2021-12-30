@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CoutService } from 'src/app/services/cout.service';
-import { ICout } from 'src/app/components/models/cout.model';
+import { ICout } from 'src/app/models/cout.model';
 
 @Component({
   selector: 'app-edit-cout',

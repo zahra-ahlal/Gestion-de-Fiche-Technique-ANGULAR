@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ICategFiches } from 'src/app/components/models/categFiches.model';
+import { ICategFiches } from 'src/app/models/categFiches.model';
 import { CategFichesService } from 'src/app/services/categ-fiches.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditCategorieComponent } from '../modal/edit-categorie/edit-categorie.component';

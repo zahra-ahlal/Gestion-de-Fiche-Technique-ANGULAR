@@ -5,7 +5,7 @@ import {
 } from '@angular/fire/firestore';
 
 import { Observable } from 'rxjs';
-import { ICout } from '../components/models/cout.model';
+import { ICout } from '../models/cout.model';
 
 @Injectable({
   providedIn: 'root'

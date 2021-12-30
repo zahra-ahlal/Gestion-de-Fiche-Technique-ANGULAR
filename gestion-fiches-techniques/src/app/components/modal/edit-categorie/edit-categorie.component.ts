@@ -1,7 +1,7 @@
 import { Component,Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CategFichesService } from 'src/app/services/categ-fiches.service';
-import { ICategFiches } from 'src/app/components/models/categFiches.model';
+import { ICategFiches } from 'src/app/models/categFiches.model';
 import { NgForm } from '@angular/forms';
 import { GalleryComponent } from '../../gallery/gallery.component';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';

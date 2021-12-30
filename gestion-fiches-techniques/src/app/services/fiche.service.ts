@@ -6,8 +6,8 @@ import {
 } from '@angular/fire/firestore';
 
 import { Observable } from 'rxjs';
-import { ICategFiches } from '../components/models/categFiches.model';
-import { IFiche } from '../components/models/fiche.model';
+import { ICategFiches } from '../models/categFiches.model';
+import { IFiche } from '../models/fiche.model';
 import { CategFichesService } from './categ-fiches.service';
 
 

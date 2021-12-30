@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ICout } from 'src/app/components/models/cout.model';
+import { ICout } from 'src/app/models/cout.model';
 import { CoutService } from 'src/app/services/cout.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditCoutComponent } from '../modal/edit-cout/edit-cout.component';

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ParametreService } from 'src/app/services/parametre.service';
-import { IParametre } from 'src/app/components/models/parametre.model';
+import { IParametre } from 'src/app/models/parametre.model';
 
 @Component({
   selector: 'app-edit-parametre',

@@ -2,8 +2,8 @@ import { Component,ElementRef, OnInit, ViewChild} from '@angular/core';
 
 import { NgForm } from '@angular/forms';
 import { deleteDoc } from 'firebase/firestore';
-import { ICout } from 'src/app/components/models/cout.model';
-import { IParametre } from 'src/app/components/models/parametre.model';
+import { ICout } from 'src/app/models/cout.model';
+import { IParametre } from 'src/app/models/parametre.model';
 
 import { CoutService } from 'src/app/services/cout.service';
 
