@@ -31,7 +31,11 @@ import { UploadDetailsComponent } from './components/upload-details/upload-detai
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { NotificationComponent } from './components/notification/notification.component'
 import { NotificationServicesService } from './services/notification-services.service';
+import { AjoutFicheComponent } from './components/ajout-fiche/ajout-fiche.component';
 
+import { MatCardModule } from '@angular/material/card';
+
+import {DragDropModule} from '@angular/cdk/drag-drop'
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +55,8 @@ import { NotificationServicesService } from './services/notification-services.se
     UploadListComponent,
     UploadDetailsComponent,
     GalleryComponent,
-    NotificationComponent
+    NotificationComponent,
+    AjoutFicheComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +66,8 @@ import { NotificationServicesService } from './services/notification-services.se
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     ReactiveFormsModule,
+    DragDropModule,
+    MatCardModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),

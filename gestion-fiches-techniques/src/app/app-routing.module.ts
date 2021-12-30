@@ -12,6 +12,7 @@ import { ListeFichesComponent } from './components/liste-fiches/liste-fiches.com
 import { UploadFormComponent } from './components/upload-form/upload-form.component';
 import { UploadListComponent } from './components/upload-list/upload-list.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { AjoutFicheComponent } from './components/ajout-fiche/ajout-fiche.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,8 @@ const routes: Routes = [
   { path: 'test', component: GalleryComponent, },
   {path: 'image/upload', component: UploadFormComponent, },
   { path: 'image/list', component: UploadListComponent, },
+  { path: 'ajoutFiche', component: AjoutFicheComponent, },
+
   
 
   //{ path: 'parametres/edit', component: ParametreComponent, },

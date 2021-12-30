@@ -44,8 +44,12 @@ export class FicheService {
     return this.db.collection(this.dbPath).add({
       nomPlat: f.nomPlat,
       nbCouverts: f.nbCouverts,
-      tempsTot: f.tempsTot
+      tempsTot: f.tempsTot,
       //listeEtapes: f.listeEtapes
+      idCategFiche :f.idCategFiche,
+      nomResponsable: f.nomResponsable,
+      listeEtapes: f.listeEtapes
+
     });
   }
 
