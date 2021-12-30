@@ -1,3 +1,5 @@
+@import '~bootstrap-icons/font/bootstrap-icons'; 
+
 $green-dark:  #ccff99;
 $green-light: #3b320b;
 $gray:        #8f8f8f;
@@ -12,4 +14,9 @@ body {
 }
 .container {
   margin-top: 10em;
+}
+.modal {
+  display: block;
+  position : relative;
+  bottom: 90%;
 }
