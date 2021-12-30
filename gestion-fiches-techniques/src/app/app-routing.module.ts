@@ -13,6 +13,11 @@ import { UploadFormComponent } from './components/upload-form/upload-form.compon
 import { UploadListComponent } from './components/upload-list/upload-list.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { AjoutFicheComponent } from './components/ajout-fiche/ajout-fiche.component';
+import { LoginComponent } from './components/login/login.component';
+import { CategoriesIngredientsComponent } from './components/categories-ingredients/categories-ingredients.component';
+import { ListeIngredientsComponent } from './components/liste-ingredients/liste-ingredients.component';
+import { IngredientComponent } from './components/ingredient/ingredient.component';
+import { EtapeComponent } from './components/etape/etape.component';
 
 
 const routes: Routes = [
@@ -23,6 +28,12 @@ const routes: Routes = [
   {path: 'image/upload', component: UploadFormComponent, },
   { path: 'image/list', component: UploadListComponent, },
   { path: 'ajoutFiche', component: AjoutFicheComponent, },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent }, 
+  { path: 'categorieIngredients', component: CategoriesIngredientsComponent },
+  { path: 'listeIngr/:nomCateg/:idCategIngr', component: ListeIngredientsComponent},
+  { path: 'ingredients/:idCategIngr', component: IngredientComponent },
+  { path: 'etape', component: EtapeComponent },
 
   
 

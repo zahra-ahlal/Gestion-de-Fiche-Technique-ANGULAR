@@ -51,14 +51,7 @@ import { MatCardModule } from '@angular/material/card';
 import {DragDropModule} from '@angular/cdk/drag-drop'
 import { EtapeService } from './services/etape.service';
 
-const appRoutes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent }, 
-  { path: 'categorieIngredients', component: CategoriesIngredientsComponent },
-  { path: 'listeIngr/:nomCateg/:idCategIngr', component: ListeIngredientsComponent},
-  { path: 'ingredients/:idCategIngr', component: IngredientComponent },
-  { path: 'etape', component: EtapeComponent }
-];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +88,7 @@ const appRoutes: Routes = [
     AngularFireStorageModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
+    //RouterModule.forRoot(appRoutes),
     NgbModule,
     DragDropModule,
     MatCardModule,
