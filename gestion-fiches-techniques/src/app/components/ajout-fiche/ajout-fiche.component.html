@@ -180,19 +180,9 @@
               <p>Nombre Couvert</p-->
                 <div class="city-item">
                   <input type="text" name="name" placeholder="Nom Plat" required/>
-                  <select style="display: block;width:100px" required>
-                    <option value="">Couverts</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="1">6</option>
-                    <option value="2">7</option>
-                    <option value="3">8</option>
-                    <option value="4">9</option>
-                    <option value="5">10</option>
-                  </select>
+                  <input type="text" class="form-control" name="nbCouverts" #name="ngModel" 
+                  [(ngModel)]="fiche.nbCouverts" placeholder="Nombre de Couverts" required>
+                  
                 </div>
               
           </div>
@@ -227,13 +217,13 @@
             </fieldset>
 
             <div class="question">
-              <div [(ngModel)]="ingrSelected" name="first"  (change)="setShowTrue(ingrSelected)" class="question-answer checkbox-item">
+              <!--div [(ngModel)]="ingrSelected" name="first"  (change)="setShowTrue(ingrSelected)" class="question-answer checkbox-item">
                 <div *ngFor="let ingredient of listeIngredients;index as i" > 
                   <input  type="checkbox" value="none" id="check_\'i+1\'" name="checklist" required/>
                   <label for="check_\'i+1\'" class="check"><span>{{ingredient.nomIngr}}</span></label>
                 </div>
                 
-              </div>
+              </div-->
             </div>
             
             
@@ -243,26 +233,56 @@
     
         <h5>2. Mes étapes</h5>
         <div class="item">
-          <p>Name and Credentials<span class="required">*</span></p>
-          <input type="text" name="name" required/>
+          <p>Votre étape existe-elle ?<span class="required">*</span></p>
+          <small>Veuillez-la selectionner</small>
+          <div [(ngModel)]="ingrSelected" name="first"  (change)="setShowTrue(ingrSelected)" class="question-answer checkbox-item">
+            <!--div>
+              <select style="display: block;width:100px" [(ngModel)]="etapeSelected" name="first"  (change)="setShowTrue(etapeSelected)" required>
+                <!--option value="">Liste d'étapes déjà existantes</option>
+                <option *ngFor="let etape of listeEtapes"  [value]="etape.nomEtape" value=""> {{etape.nomEtape}} </option>
+              </select>
+
+              Sinon 
+              <app-etape></app-etape>
+            </div-->
+            <div class="interior">
+              <a class="btn" href="#open-modal">Parcourir les étapes ⏱</a>
+            </div>
+            <app-etape></app-etape>
+
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Etape N°</th>
+                  <th scope="col">Nom etape</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Duree</th>
+                  <!--th scope="col">Edit</th-->
+                  <!--th scope="col">Delete</th-->
+                </tr>
+              </thead>
+              <tbody *ngIf="listeEtapes">
+                <tr *ngFor="let etape of listeEtapes;index as i">
+                  <th scope="row">{{ i+1 }}</th>
+                  <td>{{ etape.nomEtape }}</td>
+                  <td>{{ etape.descritpion }}</td>
+                  <td>{{ etape.duree }}</td>
+                  <!--td>
+                    <i class="bi bi-pencil-square" style="color: green;" 
+                        (click)="editModal(listeEtapes)"></i>
+                  </td>
+                  <td>
+                    <i class="bi bi-trash" (click)="deleteCout(listeEtapes)" style="color: red;"></i>
+                  </td-->
+                </tr>
+                </tbody>
+            </table>
+            
+          </div>
         </div>
-        <div class="item">
-          <p>Mailing Address<span class="required">*</span></p>
-          <input type="text" name="name" placeholder="Street address" required/>
-          <input type="text" name="name" placeholder="Street address line 2" required/>
-        </div>
-        <div class="item">
-          <p>Phone<span class="required">*</span></p>
-          <input type="text" name="name" required/>
-        </div>
-        <div class="item">
-          <p>Fax</p>
-          <input type="text" name="name" />
-        </div>
-        <div class="item">
-          <p>Email<span class="required">*</span></p>
-          <input type="text" name="name" required/>
-        </div>
+        
+        
+        
         <h5>3. Imprimer</h5>
         <div class="question">
           <p>Principle investigator:<span class="required">*</span></p>
@@ -282,52 +302,17 @@
             <label for="radio_4" class="radio"><span>No</span></label>
           </div>
         </div>
-        <h5>4. Have you applied for or are you now receiving funding support for this research?</h5>
-        <div class="question">
-          <p><span class="required">*</span></p>
-          <div class="question-answer">
-            <input type="radio" value="none" id="radio_5" name="research" required/>
-            <label for="radio_5" class="radio"><span>Yes</span></label>
-            <input type="radio" value="none" id="radio_6" name="research" required/>
-            <label for="radio_6" class="radio"><span>No</span></label>
-          </div>
-        </div>
-        <h5>5. IRB:</h5>
-        <div class="question">
-          <p>Have you applied for IRB review:</p>
-          <div class="question-answer">
-            <input type="radio" value="none" id="radio_7" name="IRB"/>
-            <label for="radio_7" class="radio"><span>Yes</span></label>
-            <input type="radio" value="none" id="radio_8" name="IRB"/>
-            <label for="radio_8" class="radio"><span>No</span></label>
-          </div>
-        </div>
-        <h5>6. Students only:</h5>
-        <div class="item">
-          <p>Name of research advisor:</p>
-          <input type="text" name="name" />
-        </div>
-        <div class="item">
-          <p>Include a letter of support from advisor in application packet.<span class="required">*</span></p>
-          <textarea rows="3" required></textarea>
-        </div>
         
-          <br />
-          <div class="question">
-            <p>If funding is approved I agree to do the following:<span class="required">*</span></p>
-            <div class="question-answer checkbox-item">
-              <div>
-                <input type="checkbox" value="none" id="check_9" name="check" required/>
-                <label for="check_9" class="check"><span>I agree to the <a href="https://www.w3docs.com/privacy-policy">terms of service.</a></span></label>
-              </div>
-            </div>
-          </div>
+        
+        
+        
+          
           <div class="item">
             <p>Electronic signature<span class="required">*</span></p>
             <textarea rows="3" required></textarea>
           </div>
           <div class="btn-block">
-            <button type="submit" href="/">Send Application</button>
+            <button type="submit" href="/">Ajouter ma fiche</button>
           </div>
       </form>
       </div>
