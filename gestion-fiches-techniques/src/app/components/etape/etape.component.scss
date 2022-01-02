@@ -1,56 +1,5 @@
-@import '~bootstrap/scss/bootstrap';
-body {
-    background: #222;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  .center-div {
-    margin: 0 auto;
-    text-align: center;
-    width: 100%; 
-  }
-  .center {
-    margin: 0 auto;
-    text-align: center;
-    width: 100%; 
-  }
-  .col.s6 > .btn {
-     width: 100%;
-  }
-  .col.s3 > .btn {
-    width: 30%;
-  }
-  .gender-male,.gender-female {
-    display: inline-block;
-  }
-  .gender-female {
-    margin-left: 35px;
-  }
-  radio:required {
-    border-color: red;
-  }
-  
-  @keyframes showUp {
-    0% {
-      transform: scale(0);
-    }
-    100% {
-      transoform: scale(1);
-    }
-  }
-  .row {margin-bottom: 10px;}
-  
-  .ngl {
-    position: absolute;
-    top: -20px;
-    right: -20px;
-  }
+//@import '~bootstrap/scss/bootstrap';
+
 .modal-window {
   position: fixed;
   background-color: rgba(255, 255, 255, 0.25);
@@ -110,7 +59,6 @@ a {
   display: grid;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 .modal-window {
@@ -187,7 +135,6 @@ a {
   display: grid;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 .modal-window {
@@ -207,6 +154,5 @@ small {
 .btn {
   background-color: #e09b4b;
   border-radius: 1rem;
-  text-decoration: none;
 }
 
