@@ -1,9 +1,12 @@
-
 <div class="container">
-    <div class="center-div" >
-        <h3>Ajouter une étape</h3>
+    <div class="interior">
+      <a class="btn" href="#open-modal">Ajouter une etape ⏱</a>
     </div>
+</div>
+<div id="open-modal" class="modal-window">
     <div clas="row">
+        <a href="#" title="Close" class="modal-close">Close</a>
+        <div><h2>Étape : {{ etape.nomEtape }}</h2></div>
         <form #etapeForm="ngForm" (ngSubmit)="onSubmit(etapeForm)">
             <div class="row">
                 <div class="input-field col s6" >
@@ -27,7 +30,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea id="descritpion" name="descritpion" class="materialize-textarea" #name="ngModel" [(ngModel)]="etape.descritpion"></textarea>
+                    <textarea id="descritpion" name="descritpion" class="materialize-textarea" #name="ngModel" [(ngModel)]="etape.descritpion" required></textarea>
                     <label for="descritpion">Description</label>
                 </div>      
             </div>
@@ -41,5 +44,4 @@
             </div>
         </form>
     </div>
-    
 </div>
