@@ -174,47 +174,73 @@
           <input type="text" class="form-control" name="nomResponsable" #name="ngModel" 
                   [(ngModel)]="fiche.nomResponsable" placeholder="Nom Responsable" required>
           <div class="item">
-            <p>Plat</p>
-            <input  type="text" class="form-control" name="nomPlat" #name="ngModel" 
+            <!--p>Plat</p>
+            <input type="text" class="form-control" name="nomPlat" #name="ngModel" 
                     [(ngModel)]="fiche.nomPlat" placeholder="Nom plat" required>
-              <p>Nombre couverts</p>
-              <select type="email" name="quantity" style="margin-bottom: 1rem;">
-                  <option value disabled>Veuillez selectionner</option>
-                  <option value="1" selected>1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-              </select>
+              <p>Nombre Couvert</p-->
+                <div class="city-item">
+                  <input type="text" name="name" placeholder="Nom Plat" required/>
+                  <select style="display: block;width:100px" required>
+                    <option value="">Couverts</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="1">6</option>
+                    <option value="2">7</option>
+                    <option value="3">8</option>
+                    <option value="4">9</option>
+                    <option value="5">10</option>
+                  </select>
+                </div>
+              
           </div>
         </div>
         
         
         <h5>1. Ma liste d'ingrédients pour ce plat</h5>
-        <!--div class="item">
-          <p>Name and Credentials<span class="required">*</span></p>
-          <input type="text" name="name" required/>
-        </div>
-        <div class="item">
-          <p>Mailing Address<span class="required">*</span></p>
-          <input type="text" name="name" placeholder="Street address" required/>
-          <input type="text" name="name" placeholder="Street address line 2" required/>
-          <div class="city-item">
-            <input type="text" name="name" placeholder="City" required/>
-            <input type="text" name="name" placeholder="Region" required/>
-            <input type="text" name="name" placeholder="Postal / Zip code" required/>
+        <div class="question">
+          <p>Faites vos courses pour votre recette:<span class="required">*</span></p>
+          <!--small>Please include the following in your application.</small-->
+          <div [(ngModel)]="ingrSelected" name="first"  (change)="setShowTrue(ingrSelected)" class="question-answer checkbox-item">
+            <div>
+
+              <select style="display: block;width:100px" [(ngModel)]="ingrSelected" name="first"  (change)="setShowTrue(ingrSelected)" required>
+                <option value="">Ingredients</option>
+                <option *ngFor="let ingredient of listeIngredients"  [value]="ingredient.nomIngr" value=""> {{ingredient.nomIngr}} </option>
+              </select>
+              <!--input *ngFor="let ingredient of listeIngredients"  [value]="ingredient.nomIngr" type="checkbox" value="none" id="check_1" name="checklist" required/>
+              <label for="check_1" class="check"><span></span></label-->
+            </div>
+
+            <fieldset>
+              <legend>Veuillez sélectionner vos intérêts</legend>
+              <div>
+                <input type="checkbox" id="coding" name="interest" value="coding" checked>
+                <label for="coding">Développement</label>
+              </div>
+              <div>
+                <input type="checkbox" id="music" name="interest" value="music">
+                <label for="music">Musique</label>
+              </div>
+            </fieldset>
+
+            <div class="question">
+              <div [(ngModel)]="ingrSelected" name="first"  (change)="setShowTrue(ingrSelected)" class="question-answer checkbox-item">
+                <div *ngFor="let ingredient of listeIngredients;index as i" > 
+                  <input  type="checkbox" value="none" id="check_\'i+1\'" name="checklist" required/>
+                  <label for="check_\'i+1\'" class="check"><span>{{ingredient.nomIngr}}</span></label>
+                </div>
+                
+              </div>
+            </div>
+            
+            
+
           </div>
-        </div-->
-        <div class="item">
-          <p>Phone<span class="required">*</span></p>
-          <input type="text" name="name" required/>
-        </div>
-        <div class="item">
-          <p>Fax</p>
-          <input type="text" name="name" />
-        </div>
-        <div class="item">
-          <p>Email<span class="required">*</span></p>
-          <input type="text" name="name" required/>
-        </div>
+          </div>
+    
         <h5>2. Mes étapes</h5>
         <div class="item">
           <p>Name and Credentials<span class="required">*</span></p>
@@ -224,19 +250,6 @@
           <p>Mailing Address<span class="required">*</span></p>
           <input type="text" name="name" placeholder="Street address" required/>
           <input type="text" name="name" placeholder="Street address line 2" required/>
-          <div class="city-item">
-            <input type="text" name="name" placeholder="City" required/>
-            <input type="text" name="name" placeholder="Region" required/>
-            <input type="text" name="name" placeholder="Postal / Zip code" required/>
-            <select style="display: block;width:100px" required>
-              <option value="">Country</option>
-              <option value="1">Russia</option>
-              <option value="2">Germany</option>
-              <option value="3">France</option>
-              <option value="4">Armenia</option>
-              <option value="5">USA</option>
-            </select>
-          </div>
         </div>
         <div class="item">
           <p>Phone<span class="required">*</span></p>
