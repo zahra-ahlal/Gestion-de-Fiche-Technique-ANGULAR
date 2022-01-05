@@ -10,6 +10,8 @@ import { IEtape } from '../../models/etape.model';
 import { EtapeService } from 'src/app/services/etape.service';
 import { EtapeComponent } from '../etape/etape.component';
 import { CategFichesService } from 'src/app/services/categ-fiches.service';
+import { ActivatedRoute } from '@angular/router';
+import { ICategFiches } from 'src/app/models/categFiches.model';
 
 
 @Component({
@@ -18,8 +20,10 @@ import { CategFichesService } from 'src/app/services/categ-fiches.service';
   styleUrls: ['./ajout-fiche.component.scss']
 })
 export class AjoutFicheComponent implements OnInit {
+
   fiche: IFiche = { nomPlat: "", nbCouverts: null, tempsTot: 0,idCategFiche:"", nomResponsable:"",listeEtapes:null}
   etape : IEtape = {nomEtape: '',descritpion: '',duree: ''};
+  categ : any;
   activeModal: any;
   isSelected: boolean;
   ingrSelected:string;
@@ -30,16 +34,22 @@ export class AjoutFicheComponent implements OnInit {
   listeIngredients : any;
   listeEtapes : any;
   listeCategories : any;
+
+  @Input() idCategFiche: string;
   
   //@Input()etapes: IEtape[] = [];
 
-  constructor(private ingrService: IngredientService,
+  constructor(private ingrService: IngredientService,private route: ActivatedRoute,
       public afAuth: AngularFireAuth,private ficheService: FicheService, private etapeService : EtapeService, private categService : CategFichesService) { }
 
   ngOnInit(): void {
     this.isSelected = false;
+
+    this.idCategFiche =this.route.snapshot.params['idCategFiche'];
+    console.log(this.idCategFiche);
     //console.log(this.idCategFiche);
     this.getListeCategories() ;
+    this.getCategFicheByID();
     this.getListeIngredients() ;
     this.getListeEtapes() ;
     this.ingrSelected = "";
@@ -55,6 +65,19 @@ export class AjoutFicheComponent implements OnInit {
       then(() => form.reset());
   }
 
+  getCategFicheByID(){
+    this.categService.getCategByID(this.idCategFiche).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.categ = data;
+    });
+  }
+
+  
   getListeCategories(){
     this.categService.getAll().snapshotChanges().pipe(
       map(changes =>

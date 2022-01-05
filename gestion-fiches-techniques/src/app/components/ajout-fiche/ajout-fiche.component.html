@@ -188,10 +188,16 @@
           </div>
           <div>
 
-            <select style="display: block;width:100px" [(ngModel)]="categSelected" name="first"  (change)="setShowTrue(categSelected)" required>
-              <option value="">Catégorie</option>
-              <option *ngFor="let categorie of listeCategories"  [value]="categorie.nomCategFiche" value=""> {{categorie.nomCategFiche}} </option>
-            </select>
+            <div *ngIf = "!idCategFiche">
+              <select style="display: block;width:100px" [(ngModel)]="categSelected" name="first"  (change)="setShowTrue(categSelected)" required>
+                <option value="">Catégorie</option>
+                <option *ngFor="let categorie of listeCategories"  [value]="categorie.nomCategFiche" value=""> {{categorie.nomCategFiche}} </option>
+              </select>
+            </div>
+
+            <div *ngIf = "idCategFiche">
+              <input type="text" name="name" value="categ.nomCategFiche" disabled/>
+            </div>
             <!--input *ngFor="let ingredient of listeIngredients"  [value]="ingredient.nomIngr" type="checkbox" value="none" id="check_1" name="checklist" required/>
             <label for="check_1" class="check"><span></span></label-->
           </div>

@@ -40,6 +40,7 @@ const routes: Routes = [
 
   //{ path: 'parametres/edit', component: ParametreComponent, },
   { path: ':idCategFiche/:nomCateg/listeFiches', component: ListeFichesComponent, },
+  { path: ':idCategFiche/:nomCateg/listeFiches/ajoutFiche', component: AjoutFicheComponent, },
   
   { path: '**', component: NotFoundComponent }
 ];

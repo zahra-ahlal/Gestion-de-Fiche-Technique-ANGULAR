@@ -19,6 +19,7 @@ export class ListeFichesComponent implements OnInit {
   @Input()fiches: any;
   //categorie: ICategFiches ;//= { nomCategFiche: this.router.url.split('/')[1], listeFiches: this.fiches};
   idCategFiche:string;
+  nomCateg:string;
   constructor(private ficheService: FicheService,
     private modal: NgbModal,private router: Router,private route: ActivatedRoute) { }
    
@@ -28,6 +29,7 @@ export class ListeFichesComponent implements OnInit {
    
     this.idCategFiche =this.route.snapshot.params['idCategFiche'];
     console.log(this.idCategFiche);
+    this.nomCateg= this.route.snapshot.params['nomCateg']
 
     this.getListeFiche();
     
@@ -66,6 +68,11 @@ export class ListeFichesComponent implements OnInit {
       this.ficheService.deleteFiche(fiche.idF).then(() => 
        console.log('delete successful'));
     }
+  }
+
+  //Fonction appelée lors du clic
+  clicSurBouton(pageName:string){
+    this.router.navigate([`${pageName}`]);
   }
 
 

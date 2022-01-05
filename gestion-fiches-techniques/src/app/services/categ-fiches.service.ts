@@ -32,6 +32,9 @@ export class CategFichesService {
     return collectionData(categFichesRef, { idField: 'idCategFiche' }) as Observable<ICategFiches[]>;
   }
 
+  getCategByID(categ : String): AngularFirestoreCollection<ICategFiches>{
+    return this.db.collection(this.dbPath,ref => ref.where('idCategFiche','==', categ ));
+  }
  
   getCategFichesByID(id: string) {
     const categFichesRef = doc(this.firestore, `categFiches/${id}`);
