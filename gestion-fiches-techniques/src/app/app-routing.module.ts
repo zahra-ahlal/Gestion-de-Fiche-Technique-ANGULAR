@@ -34,6 +34,7 @@ const routes: Routes = [
   { path: 'listeIngr/:nomCateg/:idCategIngr', component: ListeIngredientsComponent},
   { path: 'ingredients/:idCategIngr', component: IngredientComponent },
   { path: 'etape', component: EtapeComponent },
+  { path: 'listeEtapes', component: EtapeComponent },
 
   
 

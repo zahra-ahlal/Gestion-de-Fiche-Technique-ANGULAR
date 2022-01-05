@@ -9,6 +9,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 import { IEtape } from '../../models/etape.model';
 import { EtapeService } from 'src/app/services/etape.service';
 import { EtapeComponent } from '../etape/etape.component';
+import { CategFichesService } from 'src/app/services/categ-fiches.service';
 
 
 @Component({
@@ -22,20 +23,23 @@ export class AjoutFicheComponent implements OnInit {
   activeModal: any;
   isSelected: boolean;
   ingrSelected:string;
+  categSelected:string;
   etapeSelected:string;
   ingredientSelectedArray:string[];
   show: boolean = false;
   listeIngredients : any;
   listeEtapes : any;
+  listeCategories : any;
   
   //@Input()etapes: IEtape[] = [];
 
   constructor(private ingrService: IngredientService,
-      public afAuth: AngularFireAuth,private ficheService: FicheService, private etapeService : EtapeService) { }
+      public afAuth: AngularFireAuth,private ficheService: FicheService, private etapeService : EtapeService, private categService : CategFichesService) { }
 
   ngOnInit(): void {
     this.isSelected = false;
     //console.log(this.idCategFiche);
+    this.getListeCategories() ;
     this.getListeIngredients() ;
     this.getListeEtapes() ;
     this.ingrSelected = "";
@@ -49,6 +53,19 @@ export class AjoutFicheComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.ficheService.addFiche(form.value).
       then(() => form.reset());
+  }
+
+  getListeCategories(){
+    this.categService.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.listeCategories = data;
+    });
+
   }
 
   getListeIngredients() : void {

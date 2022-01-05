@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import {
   Firestore, addDoc, collection, collectionData,
   doc, docData, deleteDoc, updateDoc, DocumentReference, setDoc
@@ -13,7 +14,17 @@ import { ICategFiches } from '../models/categFiches.model';
 })
 export class CategFichesService {
 
-  constructor(private firestore: Firestore) { }
+
+  dbPath = '/categFiches'
+  categfichesRef: AngularFirestoreCollection<ICategFiches>;
+
+  constructor(private firestore: Firestore, private db: AngularFirestore) { 
+    this.categfichesRef = db.collection(this.dbPath);
+  }
+
+  getAll(): AngularFirestoreCollection<ICategFiches> {
+    return this.categfichesRef;
+  }
  
 
   getCategFiches(): Observable<ICategFiches[]> {
