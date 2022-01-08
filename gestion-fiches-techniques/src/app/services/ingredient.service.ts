@@ -27,24 +27,9 @@ export class IngredientService {
   }
 
   getByIdCateg(categ : String): AngularFirestoreCollection<IngredientInterface>{
-    console.log("TEEEEEST"+this.db.collection(this.dbPath,ref => ref.where('idCategIngr','==', categ )).valueChanges())
-    const ingrService : IngredientService = null;
-    ingrService.test('6qBR1o2wVEWmnzs9DoHp').snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(data => {
-      console.log("WOOOOOW"+data);
-    });
+    //console.log("TEEEEEST"+this.db.collection(this.dbPath,ref => ref.where('idCategIngr','==', categ )).valueChanges())
     return this.db.collection(this.dbPath,ref => ref.where('idCategIngr','==', categ ));
   }  
-
-  test(categ : String): AngularFirestoreCollection<IngredientInterface>{
-    return this.db.collection(this.dbPath,ref => ref.where('idCategIngr','==', categ ));
-  }  
-
 
   addIngredient(ingredient: IngredientInterface) {
     const ingredientRef = collection(this.firestore, 'ingredients'); 
@@ -68,38 +53,23 @@ export class IngredientService {
 
   //modifier le stock quand impression pour vente
   updateStock(id : string , value : number){
-    let ingr : any = null ;
-    //const test = this.getStock(id).doc('stock');
-    //let newStock = ingr.
-    let ancienStock = this.db.collection('ingredients').doc('')
-    //ingrRef.doc(id).update({ stock: (value) });
+    var stock : any;
+    const ingrService : IngredientService = null;
+    this.getDocById(id).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      stock = data[0].stock;
+      console.log("stock"+data[0].stock);
+    });
+
+    let newStock = stock - value;
+    this.db.collection(this.dbPath).doc(id).update({ stock: (newStock) });
   }
 
-  getStocks(i : IngredientInterface, value : number) {
-
-    const ingredientDocuments = this.getDocById(i.idIngr);
-    var stock = 0;
-    const ingredient = ingredientDocuments.snapshotChanges().pipe(
-      map(changes => changes.map(a => {
-        const data = a.payload.doc.data() as IngredientInterface;
-        const id = a.payload.doc.id;
-      }))
-    );
-    
-    //this.msgList = this.dp.monitorConversation(conversationId);
-
-    
-    // customerRef: AngularFirestoreDocument<Customer>;
-    // const ingrRef = this.db.doc(`ingredients/${id}`);
-    // // var stock = 0;
-    // // // cust: Observable<Customer>;
-    // const ingredient = ingrRef.snapshotChanges().map(action => {
-    //    const data = action.payload.data() as IngredientInterface;
-    //    const stock = action.payload.stock;
-    //    return { stock, ...data };
-    // });
-    // // return stock;
-  }
 
   /*getIngredients(): Observable<Ingred"ientInterface[]> {
     const ingredientRef = collection(this.firestore, 'ingredients');
