@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Output, ViewChild } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { map } from 'rxjs/operators';
 import { IngredientService } from 'src/app/services/ingredient.service';
@@ -15,7 +15,7 @@ export class EditIngredientsFicheComponent implements OnInit {
   @Output()
   ingredientSelectedArray:string[];
  
-  @ViewChild('closebutton') closebutton;
+  //@ViewChild('closebutton') closebutton;
   constructor(private ingrService: IngredientService) { }
 
   ngOnInit(): void {
@@ -27,6 +27,20 @@ export class EditIngredientsFicheComponent implements OnInit {
 
   }
 
+  @ViewChild('closeBtn') closeBtn: ElementRef;
+
+    yourFunction() {
+        //do something
+        //close your modal
+        this.closeModal();
+    }
+
+    //call this wherever you want to close modal
+    private closeModal(): void {
+        this.closeBtn.nativeElement.click();
+    }
+
+  
 
   setShowTrue(name: string){
     console.log(name);
@@ -60,6 +74,11 @@ export class EditIngredientsFicheComponent implements OnInit {
     })*/
 
   }
+
+
+  /////////////////////////////////////////////////////////////////////////////////
+  
+
 
 
 

@@ -16,7 +16,11 @@ body {
   margin-top: 10em;
 }
 .modal {
-  display: block;
+  display: block;/*
   position : relative;
-  bottom: 90%;
+  bottom: 90%;*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

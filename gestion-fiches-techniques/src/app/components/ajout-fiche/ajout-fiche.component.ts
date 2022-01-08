@@ -13,7 +13,7 @@ import { CategFichesService } from 'src/app/services/categ-fiches.service';
 import { ActivatedRoute } from '@angular/router';
 import { ICategFiches } from 'src/app/models/categFiches.model';
 import { IngredientInterface } from 'src/app/models/ingredient.model';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditIngredientsFicheComponent } from '../../modal/edit-ingredients-fiche/edit-ingredients-fiche.component';
 
 
@@ -44,7 +44,7 @@ export class AjoutFicheComponent implements OnInit {
   //@Input()etapes: IEtape[] = [];
   
 
-  constructor(private ingrService: IngredientService,private route: ActivatedRoute,
+  constructor(private ingrService: IngredientService,private route: ActivatedRoute,private modalService: NgbModal,
       public afAuth: AngularFireAuth,private ficheService: FicheService, 
       private etapeService : EtapeService, private categService : CategFichesService,private modal: NgbModal) { }
 
@@ -176,6 +176,28 @@ export class AjoutFicheComponent implements OnInit {
     //modalRef.componentInstance.idP= listeIngredients.idP;
     //console.log(modalRef.componentInstance.id );
 
+  }
+
+  closeModal: string;
+  
+
+    
+  triggerModal(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((res) => {
+      this.closeModal = `Closed with: ${res}`;
+    }, (res) => {
+      this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
+    });
+  }
+  
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
 
