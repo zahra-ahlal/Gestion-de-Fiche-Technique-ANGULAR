@@ -179,7 +179,7 @@
                     [(ngModel)]="fiche.nomPlat" placeholder="Nom plat" required>
               <p>Nombre Couvert</p-->
                 <div class="city-item">
-                  <input type="text" name="name" placeholder="Nom Plat" required/>
+                  <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="fiche.nomPlat" placeholder="Nom Plat" required/>
                   <input type="text" class="form-control" name="nbCouverts" #name="ngModel" 
                   [(ngModel)]="fiche.nbCouverts" placeholder="Nombre de Couverts" required>
                   
@@ -189,7 +189,7 @@
           <div>
 
             <div *ngIf = "!idCategFiche">
-              <select style="display: block;width:100px" [(ngModel)]="categSelected" name="first"  (change)="setShowTrue(categSelected)" required>
+              <select style="display: block;width:100px" [(ngModel)]="categSelected" name="categorie"  (change)="setShowTrue(categSelected)" required>
                 <option value="">Catégorie</option>
                 <option *ngFor="let categorie of listeCategories"  [value]="categorie.nomCategFiche" value=""> {{categorie.nomCategFiche}} </option>
               </select>
@@ -211,48 +211,42 @@
             <!--a class="btn" href="#open-modal">Choisir Ingrédients📙 </a-->
             <!--button class="btn btn-danger" (click)="triggerModal(modalData)">Choisir Ingrédients📙</button-->
             <button class="btn btn-danger" (click)="triggerModal(modalData)">Open Modal</button>
+            
 
             <ng-template #modalData let-modal>
               <div class="modal-header">
-                <h4 class="modal-title" id="modal-basic-title">Angular Bootstrap Modal Popup</h4>
-                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                  <span aria-hidden="true">×</span>
-                </button>
+                  <h4 class="modal-title" id="modal-basic-title">Liste des ingrédients</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">×</span>
+                  </button>
               </div>
-              <div class="modal-body">
-                <p><strong>Are you sure you want to delete <span class="text-primary">"Agatha Harkness"</span> profile?</strong></p>
-                
-                <p>All data related to west view profile will be removed permanently.
-                </p>
+              <div id="open-modal" class="modal-body">
+                  <div clas="row">
+                      <p>Sélectionner ceux dont vous aurez besoin <span class="required">*</span></p>
+                      <ul class="ks-cboxtags">
+                      <li *ngFor="let ingredient of listeIngredients"><input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value=""><label [for]="ingredient.nomIngr" (change)="setShowTrue(ingredient.nomIngr)" required>{{ingredient.nomIngr}}</label></li>
+                      </ul>
+                  </div>
               </div>
               <div class="modal-footer">
+                <button type="button" class="btn btn-success"  >Valider</button>
                 <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
               </div>
             </ng-template>
             
 
           </div>
-          <app-edit-ingredients-fiche></app-edit-ingredients-fiche>
+        <br>
           <!--small> Please include the following in your application.</small-->
           <div name="first"  class="question-answer checkbox-item">
-            <div>
-
-            
-              <select style="display: block;width:100px" [(ngModel)]="ingrSelected" name="ingredients"  (change)="setShowTrue(ingrSelected)" required>
-                <!--option value="">Ingredients</option-->
-                <option *ngFor="let ingredient of listeIngredients"  [value]="ingredient.nomIngr" value=""> {{ingredient.nomIngr}} </option>
-              </select>
-              <!--input *ngFor="let ingredient of listeIngredients"  [value]="ingredient.nomIngr" type="checkbox" value="none" id="check_1" name="checklist" required/>
-              <label for="check_1" class="check"><span></span></label-->
-            </div>
-
             <fieldset>
-              <legend>Veuillez sélectionner vos intérêts</legend>
+              <p>Veuillez sélectionner vos intérêts</p>
               <ul>
                 <li *ngFor="let ingredient of ingredientSelectedArray">
                 <input type="checkbox" id="music" name="interest" value="music">
                 <label for="coding">{{ingredient}}</label></li>
               </ul>
+              
             </fieldset>
 
         
@@ -276,7 +270,7 @@
         <div class="item">
           <p>Votre étape existe-elle ?<span class="required">*</span></p>
           <small>Veuillez-la selectionner</small>
-          <div [(ngModel)]="ingrSelected" name="first"  (change)="setShowTrue(ingrSelected)" class="question-answer checkbox-item">
+          <div >
             <!--div>
               <select style="display: block;width:100px" [(ngModel)]="etapeSelected" name="first"  (change)="setShowTrue(etapeSelected)" required>
                 <!--option value="">Liste d'étapes déjà existantes</option>

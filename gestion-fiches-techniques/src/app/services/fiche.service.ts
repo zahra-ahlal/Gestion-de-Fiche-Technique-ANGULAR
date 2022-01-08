@@ -15,7 +15,7 @@ import { CategFichesService } from './categ-fiches.service';
   providedIn: 'root'
 })
 export class FicheService {
-  dbPath = 'fiches'
+  dbPath = '/fiches'
   fichesRef : AngularFirestoreCollection<IFiche>;
 
   constructor(private firestore: Firestore, private db: AngularFirestore) {
@@ -33,11 +33,6 @@ export class FicheService {
     return this.db.collection(this.dbPath,ref => ref.where('idCategFiche','==', categ ));
   }
 
-  /* idF?: string;
-    nomPlat : string;
-    nbCouverts: number;
-    tempsTot: number;
-    listeEtapes: Array<IEtape>;*/
 
 
   addFiche(f: IFiche){

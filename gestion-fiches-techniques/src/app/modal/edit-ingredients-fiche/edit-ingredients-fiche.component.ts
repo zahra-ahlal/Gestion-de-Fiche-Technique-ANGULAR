@@ -26,20 +26,6 @@ export class EditIngredientsFicheComponent implements OnInit {
 
 
   }
-
-  @ViewChild('closeBtn') closeBtn: ElementRef;
-
-    yourFunction() {
-        //do something
-        //close your modal
-        this.closeModal();
-    }
-
-    //call this wherever you want to close modal
-    private closeModal(): void {
-        this.closeBtn.nativeElement.click();
-    }
-
   
 
   setShowTrue(name: string){
@@ -62,20 +48,8 @@ export class EditIngredientsFicheComponent implements OnInit {
   }
 
 
-  valider(listeIngredients:string[]){
-
-  }
-  onUpdate() {
-
-    /*this.parametreService.updateParametre(this.parametre).then(() => {
-      this.activeModal.close();
-      console.log('Data add successfully');
-      
-    })*/
-
-  }
-
-
+ 
+ 
   /////////////////////////////////////////////////////////////////////////////////
   
 

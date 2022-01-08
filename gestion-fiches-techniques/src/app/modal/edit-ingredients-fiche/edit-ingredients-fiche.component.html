@@ -1,35 +1,16 @@
-<ng-template #modalData let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Angular Bootstrap Modal Popup</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">×</span>
-        </button>
-    </div>
-    <div id="open-modal" class="modal-body">
-        <div clas="row">
-            <div class="modal-header">
-                <button type="button" #closeBtn class="close" data-dismiss="modal" (click)="yourFunction()">&times;</button>
-            </div>
-            <div><h2>Liste des ingrédients</h2></div>
-            <p>Sélectionner ceux dont vous aurez besoin <span class="required">*</span></p>
-            <ul class="ks-cboxtags">
-            <li *ngFor="let ingredient of listeIngredients"><input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value=""><label [for]="ingredient.nomIngr" (change)="setShowTrue(ingredient.nomIngr)" required>{{ingredient.nomIngr}}</label></li>
-            </ul>
-            <div>
-                <button type="button" class="btn btn-success" (click)="valider(listeIngredients)" >Valider</button>
-            </div> 
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
-    </div>
-</ng-template>
 
-
-<!---->
-
-
-  
-  
-
-  
+<div id="open-modal" class="modal-window">
+    <div clas="row">
+        <div class="modal-header">
+            <button type="button" #closeBtn class="close" data-dismiss="modal">&times;</button>
+          </div>
+        <div><h2>Liste des ingrédients</h2></div>
+        <p>Sélectionner ceux dont vous aurez besoin <span class="required">*</span></p>
+        <ul class="ks-cboxtags">
+        <li *ngFor="let ingredient of listeIngredients"><input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value=""><label [for]="ingredient.nomIngr" (change)="setShowTrue(ingredient.nomIngr)" required>{{ingredient.nomIngr}}</label></li>
+        </ul>
+        <div>
+            <button type="button" class="btn btn-success" >Valider</button>
+        </div> 
+   </div>
+</div>

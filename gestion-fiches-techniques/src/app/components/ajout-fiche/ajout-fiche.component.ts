@@ -15,6 +15,7 @@ import { ICategFiches } from 'src/app/models/categFiches.model';
 import { IngredientInterface } from 'src/app/models/ingredient.model';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditIngredientsFicheComponent } from '../../modal/edit-ingredients-fiche/edit-ingredients-fiche.component';
+import { Console } from 'console';
 
 
 
@@ -39,7 +40,12 @@ export class AjoutFicheComponent implements OnInit {
   listeEtapes : any;
   listeCategories : any;
 
-  @Input() idCategFiche: string; ingredientSelectedArray:string[];
+  closeModal: string;
+  ingredientSelectedArray:string[];
+
+
+  @Input() idCategFiche: string; 
+  
   
   //@Input()etapes: IEtape[] = [];
   
@@ -51,12 +57,12 @@ export class AjoutFicheComponent implements OnInit {
   ngOnInit(): void {
     this.isSelected = false;
 
-    this.idCategFiche =this.route.snapshot.params['idCategFiche'];
-    console.log(this.idCategFiche);
+    //this.idCategFiche =this.route.snapshot.params['idCategFiche'];
+    //console.log(this.idCategFiche);
     //console.log(this.idCategFiche);
     this.getListeCategories() ;
     this.getListeIngredients() ;
-    this.getCategFicheByID();
+    //this.getCategFicheByID();
     
     this.getListeEtapes() ;
     this.ingrSelected = "";
@@ -66,13 +72,13 @@ export class AjoutFicheComponent implements OnInit {
   }
 
   
-
+  
   onSubmit(form: NgForm) {
     this.ficheService.addFiche(form.value).
       then(() => form.reset());
   }
 
-  getCategFicheByID(){
+  /*getCategFicheByID(){
     this.categService.getCategByID(this.idCategFiche).snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -82,7 +88,7 @@ export class AjoutFicheComponent implements OnInit {
     ).subscribe(data => {
       this.categ = data;
     });
-  }
+  }*/
 
   
   getListeCategories(){
@@ -139,9 +145,14 @@ export class AjoutFicheComponent implements OnInit {
     //console.log("coucouuu");
   }
 
+  
+
   setShowTrue(name: string){
+    console.log("dffgfgffvf");
+
     console.log(name);
     this.ingredientSelectedArray.push(name);
+    //console.log(this.ingredientSelectedArray[0])
   }
 
   onDrop(event: CdkDragDrop<any>){
@@ -156,31 +167,7 @@ export class AjoutFicheComponent implements OnInit {
     }
   }
   
-  /*editModal(listeIngredients: IngredientInterface) {
-    const modalRef = this.modal.open(EditParametreComponent, {
-      size: 'lg',
-      centered: true,
-      windowClass: 'dark-modal',
-    });
-    modalRef.componentInstance.idP= listeIngredients.idP;
-    //console.log(modalRef.componentInstance.id );
-
-  }*/
-
-  editModal() {
-    const modalRef = this.modal.open(EditIngredientsFicheComponent, {
-      size: 'lg',
-      centered: true,
-      windowClass: 'dark-modal',
-    });
-    //modalRef.componentInstance.idP= listeIngredients.idP;
-    //console.log(modalRef.componentInstance.id );
-
-  }
-
-  closeModal: string;
-  
-
+    
     
   triggerModal(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((res) => {
