@@ -12,6 +12,10 @@ import { EtapeComponent } from '../etape/etape.component';
 import { CategFichesService } from 'src/app/services/categ-fiches.service';
 import { ActivatedRoute } from '@angular/router';
 import { ICategFiches } from 'src/app/models/categFiches.model';
+import { IngredientInterface } from 'src/app/models/ingredient.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditIngredientsFicheComponent } from '../../modal/edit-ingredients-fiche/edit-ingredients-fiche.component';
+
 
 
 @Component({
@@ -29,18 +33,20 @@ export class AjoutFicheComponent implements OnInit {
   ingrSelected:string;
   categSelected:string;
   etapeSelected:string;
-  ingredientSelectedArray:string[];
+  
   show: boolean = false;
   listeIngredients : any;
   listeEtapes : any;
   listeCategories : any;
 
-  @Input() idCategFiche: string;
+  @Input() idCategFiche: string; ingredientSelectedArray:string[];
   
   //@Input()etapes: IEtape[] = [];
+  
 
   constructor(private ingrService: IngredientService,private route: ActivatedRoute,
-      public afAuth: AngularFireAuth,private ficheService: FicheService, private etapeService : EtapeService, private categService : CategFichesService) { }
+      public afAuth: AngularFireAuth,private ficheService: FicheService, 
+      private etapeService : EtapeService, private categService : CategFichesService,private modal: NgbModal) { }
 
   ngOnInit(): void {
     this.isSelected = false;
@@ -149,7 +155,28 @@ export class AjoutFicheComponent implements OnInit {
         event.previousIndex, event.currentIndex);
     }
   }
+  
+  /*editModal(listeIngredients: IngredientInterface) {
+    const modalRef = this.modal.open(EditParametreComponent, {
+      size: 'lg',
+      centered: true,
+      windowClass: 'dark-modal',
+    });
+    modalRef.componentInstance.idP= listeIngredients.idP;
+    //console.log(modalRef.componentInstance.id );
 
+  }*/
+
+  editModal() {
+    const modalRef = this.modal.open(EditIngredientsFicheComponent, {
+      size: 'lg',
+      centered: true,
+      windowClass: 'dark-modal',
+    });
+    //modalRef.componentInstance.idP= listeIngredients.idP;
+    //console.log(modalRef.componentInstance.id );
+
+  }
 
 
 }

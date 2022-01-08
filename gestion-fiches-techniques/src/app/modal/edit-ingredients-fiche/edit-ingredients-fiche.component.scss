@@ -1,0 +1,268 @@
+@import '~bootstrap/scss/bootstrap';
+
+.modal-window {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.25);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  &:target {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  & > div {
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    background: white;
+  }
+  header {
+    font-weight: bold;
+  }
+  h1 {
+    font-size: 150%;
+    margin: 0 0 15px;
+  }
+}
+
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+  &:hover {
+    color: black;
+  }
+}
+
+/* Demo Styles */
+a {
+  color: inherit;
+}
+
+.container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-window {
+  & > div {
+    border-radius: 1rem;
+  }
+}
+
+.modal-window div:not(:last-of-type) {
+  margin-bottom: 15px;
+}
+
+small {
+  color: lightgray;
+}
+
+/******/
+.modal-window {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.25);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  &:target {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  & > div {
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    background: white;
+  }
+  header {
+    font-weight: bold;
+  }
+  h1 {
+    font-size: 150%;
+    margin: 0 0 15px;
+  }
+}
+
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+  &:hover {
+    color: black;
+  }
+}
+
+/* Demo Styles */
+a {
+  color: inherit;
+}
+
+.container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-window {
+  & > div {
+    border-radius: 1rem;
+  }
+}
+
+.modal-window div:not(:last-of-type) {
+  margin-bottom: 15px;
+}
+
+small {
+  color: lightgray;
+}
+
+.btn {
+  background-color: #e09b4b;
+  border-radius: 1rem;
+}
+
+  //////////////////////////////////////////////////////////////////////@at-root
+  body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #FFEFBA;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #FFEFBA);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.container {
+    max-width: 640px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+}
+
+ul.ks-cboxtags {
+    list-style: none;
+    padding: 20px;
+}
+ul.ks-cboxtags li{
+  display: inline;
+}
+ul.ks-cboxtags li label{
+    display: inline-block;
+    background-color: rgba(255, 255, 255, .9);
+    border: 2px solid rgba(139, 139, 139, .3);
+    color: #adadad;
+    border-radius: 25px;
+    white-space: nowrap;
+    margin: 3px 0px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .2s;
+}
+
+ul.ks-cboxtags li label {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+ul.ks-cboxtags li label::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 12px;
+    padding: 2px 6px 2px 2px;
+    content: "\f067";
+    transition: transform .3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label::before {
+    content: "\f00c";
+    transform: rotate(-360deg);
+    transition: transform .3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label {
+    border: 2px solid #1bdbf8;
+    background-color: #12bbd4;
+    color: #fff;
+    transition: all .2s;
+}
+
+ul.ks-cboxtags li input[type="checkbox"] {
+  display: absolute;
+}
+ul.ks-cboxtags li input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+ul.ks-cboxtags li input[type="checkbox"]:focus + label {
+  border: 2px solid #e9a1ff;
+}
+
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+  &:hover {
+    color: black;
+  }
+}
+  
+  

@@ -18,6 +18,7 @@ import { CategoriesIngredientsComponent } from './components/categories-ingredie
 import { ListeIngredientsComponent } from './components/liste-ingredients/liste-ingredients.component';
 import { IngredientComponent } from './components/ingredient/ingredient.component';
 import { EtapeComponent } from './components/etape/etape.component';
+import { EditIngredientsFicheComponent } from './modal/edit-ingredients-fiche/edit-ingredients-fiche.component';
 
 
 const routes: Routes = [
@@ -36,7 +37,7 @@ const routes: Routes = [
   { path: 'etape', component: EtapeComponent },
   { path: 'listeEtapes', component: EtapeComponent },
 
-  
+  { path: 'selctionnerIngr', component: EditIngredientsFicheComponent },
 
   //{ path: 'parametres/edit', component: ParametreComponent, },
   { path: ':idCategFiche/:nomCateg/listeFiches', component: ListeFichesComponent, },

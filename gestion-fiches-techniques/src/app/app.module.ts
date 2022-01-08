@@ -51,6 +51,7 @@ import { MatCardModule } from '@angular/material/card';
 import {DragDropModule} from '@angular/cdk/drag-drop'
 import { EtapeService } from './services/etape.service';
 import { ListeEtapesComponent } from './components/liste-etapes/liste-etapes.component';
+import { EditIngredientsFicheComponent } from './modal/edit-ingredients-fiche/edit-ingredients-fiche.component';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { ListeEtapesComponent } from './components/liste-etapes/liste-etapes.com
     GalleryComponent,
     NotificationComponent,
     AjoutFicheComponent,
-    ListeEtapesComponent
+    ListeEtapesComponent,
+    EditIngredientsFicheComponent,
   ],
   imports: [
     BrowserModule,

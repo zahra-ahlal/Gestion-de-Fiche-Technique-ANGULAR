@@ -1,0 +1,16 @@
+
+<div id="open-modal" class="modal-window">
+    <div clas="row">
+        <div class="modal-header">
+            <button type="button" #closebutton class="close" data-dismiss="modal">&times;</button>
+          </div>
+        <div><h2>Liste des ingrédients </h2></div>
+        <p>Sélectionner ceux dont vous aurez besoin <span class="required">*</span></p>
+        <ul class="ks-cboxtags">
+        <li *ngFor="let ingredient of listeIngredients"><input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value=""><label [for]="ingredient.nomIngr" (change)="setShowTrue(ingredient.nomIngr)" required>{{ingredient.nomIngr}}</label></li>
+        </ul>
+        <div>
+            <button type="button" class="btn btn-success" (click)="valider(listeIngredients)" >Valider</button>
+        </div> 
+   </div>
+</div>

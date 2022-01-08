@@ -207,6 +207,10 @@
         <h5>1. Ma liste d'ingrédients pour ce plat</h5>
         <div class="question">
           <p>Faites vos courses pour votre recette:<span class="required">*</span></p>
+          <div class="interior">
+            <a class="btn" href="#open-modal">Choisir Ingrédients📙</a>
+          </div>
+          <app-edit-ingredients-fiche></app-edit-ingredients-fiche>
           <!--small> Please include the following in your application.</small-->
           <div name="first"  class="question-answer checkbox-item">
             <div>
@@ -222,15 +226,14 @@
 
             <fieldset>
               <legend>Veuillez sélectionner vos intérêts</legend>
-              <div>
-                <input type="checkbox" id="coding" name="interest" value="coding" checked>
-                <label for="coding">Développement</label>
-              </div>
-              <div>
+              <ul>
+                <li *ngFor="let ingredient of ingredientSelectedArray">
                 <input type="checkbox" id="music" name="interest" value="music">
-                <label for="music">Musique</label>
-              </div>
+                <label for="coding">{{ingredient}}</label></li>
+              </ul>
             </fieldset>
+
+        
 
             <div class="question">
               <!--div [(ngModel)]="ingrSelected" name="first"  (change)="setShowTrue(ingrSelected)" class="question-answer checkbox-item">
