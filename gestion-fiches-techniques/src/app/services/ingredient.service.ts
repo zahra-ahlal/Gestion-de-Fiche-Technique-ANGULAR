@@ -9,39 +9,28 @@ import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { IngredientInterface } from '../models/ingredient.model';
 import { CategoriesIngredientService } from './categories-ingredient.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IngredientService {
 
-  dbPath = '/ingredients'
-  ingredientsRef : AngularFirestoreCollection<IngredientInterface>;
+  dbPath = 'ingredients'
 
-  constructor(private firestore: Firestore, private db: AngularFirestore) { 
-    this.ingredientsRef = db.collection(this.dbPath)
-  }
+  constructor(private firestore: Firestore, private db: AngularFirestore,
+    private categService : CategoriesIngredientService) { }
 
-  
-  getAllIngr() { 
-    return this.ingredientsRef;
-  }
 
   getAll(): AngularFirestoreCollection<IngredientInterface> {
-    return this.ingredientsRef;
+    return this.db.collection(this.dbPath);
   }
 
   getByIdCateg(categ : String): AngularFirestoreCollection<IngredientInterface>{
+    //console.log("TEEEEEST"+this.db.collection(this.dbPath,ref => ref.where('idCategIngr','==', categ )).valueChanges())
     return this.db.collection(this.dbPath,ref => ref.where('idCategIngr','==', categ ));
   }  
 
-  /***********************
-   * 
-   * 
-   * FIRESTORE
-   * 
-   * 
-   * ******************* */
   addIngredient(ingredient: IngredientInterface) {
     const ingredientRef = collection(this.firestore, 'ingredients'); 
     return addDoc(ingredientRef, ingredient);
@@ -57,12 +46,44 @@ export class IngredientService {
       idCategIngr: categ
     });
   }
-  /*getIngredients(): Observable<IngredientInterface[]> {
+  //get stock
+  getDocById(id : String): AngularFirestoreCollection<IngredientInterface>{
+    return this.db.collection(this.dbPath,ref => ref.where('idIngr','==', id ));
+  }
+
+  //modifier le stock quand impression pour vente
+  updateStock(id : string , value : number){
+    var stock : any;
+    const ingrService : IngredientService = null;
+    this.getDocById(id).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      stock = data[0].stock;
+      console.log("stock"+data[0].stock);
+    });
+
+    let newStock = stock - value;
+    this.db.collection(this.dbPath).doc(id).update({ stock: (newStock) });
+  }
+
+
+  /*getIngredients(): Observable<Ingred"ientInterface[]> {
     const ingredientRef = collection(this.firestore, 'ingredients');
     return collectionData(ingredientRef, { idField: 'idIngr' }) as Observable<IngredientInterface[]>;
   }*/
 
 
+   /***********************
+   * 
+   * 
+   * encore des methodes a convertir vers FIRESTORE
+   * 
+   * 
+   * ******************* */
 
   deleteIngredient(ingredient: IngredientInterface) {
     const ingredientRef = doc(this.firestore, `ingredients/${ingredient.idIngr}`);
@@ -75,8 +96,6 @@ export class IngredientService {
   }
 
 
-
-  
   //-----------------get ingredient by Id categorie---------------------------
   getIngredientsByCategorie(idCateg: string) {
     const ingredientRef = collection(this.firestore, 'ingredients');

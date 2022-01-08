@@ -1,42 +1,41 @@
-<div>
-  <h4 class="card-title">{{ nomCateg }} </h4>
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nom </th>
-      <th scope="col">Prix</th>
-      <th scope="col">U</th>
-      <th scope="col">Allergene</th>
-      <th scope="col">Stock</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Delete</th>
-    </tr>
-  </thead>
-  <tbody *ngIf="listeIngredients">
-    <tr *ngFor="let ingredient of listeIngredients; index as i">
-      <th scope="row">{{ i+1 }}</th>
-      <td>{{ ingredient.nomIngr }}</td>
-      <td>{{ ingredient.prixU }}</td>
-      <td>{{ ingredient.unite }}</td>
-      <td>{{ ingredient.allergene }}</td>
-      <td>{{ ingredient.stock }}</td>
-      <td>
-        <i class="bi bi-pencil-square" style="color: green;" 
-            (click)="editModal(ingredient)"></i>
-      </td>
-      <td>
-        <i class="bi bi-trash" (click)="deleteIngredient(ingredient)" style="color: red;"></i>
-      </td>
-    </tr>
-    </tbody>
-</table>
-<!--BUTTON ADD-->
-<div class="form-group">  
-  <button type="button" class="btn btn-primary" (click)="goBack()" >Back</button>
-  <div class="form-group float-right">
-      <button type="submit" class="btn btn-success" (click)="ajoutIngredient()" >
-        <i class="bi bi-plus"></i>Ajouter Ingredient</button>
-    </div>
+<div class="container">
+  <div>
+    <h4 class="card-title">{{ nomCateg }} </h4>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom </th>
+        <th scope="col">Prix</th>
+        <th scope="col">U</th>
+        <th scope="col">Allergene</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="listeIngredients">
+      <tr *ngFor="let ingredient of listeIngredients; index as i">
+        <th scope="row">{{ i+1 }}</th>
+        <td>{{ ingredient.nomIngr }}</td>
+        <td>{{ ingredient.prixU }}</td>
+        <td>{{ ingredient.unite }}</td>
+        <td>{{ ingredient.allergene }}</td>
+        <td>{{ ingredient.stock }}</td>
+        <td>
+          <i class="bi bi-pencil-square" style="color: green;" 
+              (click)="editModal(ingredient)"></i>
+        </td>
+        <td>
+          <i class="bi bi-trash" (click)="deleteIngredient(ingredient)" style="color: red;"></i>
+        </td>
+      </tr>
+      </tbody>
+  </table>
+  <!--BUTTON ADD-->
+  <div class="interior">
+    <button type="button" class="btn btn-primary" (click)="goBack()" >Back</button>
+    <a class="btn" href="#open-modal" (click)="ajoutIngredient()">Ajouter un ingredient</a>
+  </div>
 </div>
