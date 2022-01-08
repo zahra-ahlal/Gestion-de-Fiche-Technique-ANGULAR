@@ -207,12 +207,13 @@
         <h5>1. Ma liste d'ingrédients pour ce plat</h5>
         <div class="question">
           <p>Faites vos courses pour votre recette:<span class="required">*</span></p>
-          <!--small>Please include the following in your application.</small-->
-          <div [(ngModel)]="ingrSelected" name="first"  (change)="setShowTrue(ingrSelected)" class="question-answer checkbox-item">
+          <!--small> Please include the following in your application.</small-->
+          <div name="first"  class="question-answer checkbox-item">
             <div>
 
-              <select style="display: block;width:100px" [(ngModel)]="ingrSelected" name="first"  (change)="setShowTrue(ingrSelected)" required>
-                <option value="">Ingredients</option>
+            
+              <select style="display: block;width:100px" [(ngModel)]="ingrSelected" name="ingredients"  (change)="setShowTrue(ingrSelected)" required>
+                <!--option value="">Ingredients</option-->
                 <option *ngFor="let ingredient of listeIngredients"  [value]="ingredient.nomIngr" value=""> {{ingredient.nomIngr}} </option>
               </select>
               <!--input *ngFor="let ingredient of listeIngredients"  [value]="ingredient.nomIngr" type="checkbox" value="none" id="check_1" name="checklist" required/>

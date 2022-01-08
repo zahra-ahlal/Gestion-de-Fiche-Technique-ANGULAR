@@ -100,6 +100,7 @@ export class AjoutFicheComponent implements OnInit {
       )
     ).subscribe(data => {
       this.listeIngredients = data;
+      console.log(this.listeIngredients)
     });
   }
 
