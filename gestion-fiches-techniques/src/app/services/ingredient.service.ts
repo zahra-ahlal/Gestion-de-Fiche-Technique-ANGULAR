@@ -15,14 +15,20 @@ import { CategoriesIngredientService } from './categories-ingredient.service';
 })
 export class IngredientService {
 
-  dbPath = 'ingredients'
+  dbPath = '/ingredients'
+  ingredientsRef : AngularFirestoreCollection<IngredientInterface>;
 
-  constructor(private firestore: Firestore, private db: AngularFirestore,
-    private categService : CategoriesIngredientService) { }
+  constructor(private firestore: Firestore, private db: AngularFirestore) { 
+    this.ingredientsRef = db.collection(this.dbPath)
+  }
 
+  
+  getAllIngr() { 
+    return this.ingredientsRef;
+  }
 
   getAll(): AngularFirestoreCollection<IngredientInterface> {
-    return this.db.collection(this.dbPath);
+    return this.ingredientsRef;
   }
 
   getByIdCateg(categ : String): AngularFirestoreCollection<IngredientInterface>{

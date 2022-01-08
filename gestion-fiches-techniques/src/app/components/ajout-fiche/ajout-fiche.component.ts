@@ -49,8 +49,9 @@ export class AjoutFicheComponent implements OnInit {
     console.log(this.idCategFiche);
     //console.log(this.idCategFiche);
     this.getListeCategories() ;
-    this.getCategFicheByID();
     this.getListeIngredients() ;
+    this.getCategFicheByID();
+    
     this.getListeEtapes() ;
     this.ingrSelected = "";
     this.ingredientSelectedArray = [];
@@ -100,8 +101,8 @@ export class AjoutFicheComponent implements OnInit {
       )
     ).subscribe(data => {
       this.listeIngredients = data;
-      console.log(this.listeIngredients)
     });
+    
   }
 
 
