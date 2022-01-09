@@ -48,6 +48,10 @@ export class FicheService {
     });
   }
 
+  getFicheByName(fiche : String): AngularFirestoreCollection<IFiche>{
+    return this.db.collection(this.dbPath,ref => ref.where('nomPlat','==', fiche ));
+  }
+  
   addFicheByIDCateg(f: IFiche,categ:string){
     return this.db.collection(this.dbPath).add({
       nomPlat: f.nomPlat,

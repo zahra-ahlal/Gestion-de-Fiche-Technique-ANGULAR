@@ -26,6 +26,9 @@ export class CategFichesService {
     return this.categfichesRef;
   }
  
+  getCategByName(categ : String): AngularFirestoreCollection<ICategFiches>{
+    return this.db.collection(this.dbPath,ref => ref.where('nomCategFiche','==', categ ));
+  }
 
   getCategFiches(): Observable<ICategFiches[]> {
     const categFichesRef = collection(this.firestore, 'categFiches');

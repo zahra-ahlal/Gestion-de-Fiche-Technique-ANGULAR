@@ -15,7 +15,7 @@
     <tr *ngFor="let categorie of categoriesIngredients; index as i" class="active-row">
       <th scope="row">{{ i+1 }}</th>
       <td>{{ categorie.nomCategIngr }}</td>
-      <td><i class="bi bi-arrow-right-circle" style="color: rgb(72, 138, 66);  " 
+      <td><i class="bi bi-arrow-right-circle" style="color:#6e3806;size: 10px; " 
       (click)="selectCategorie(categorie)"></i></td>
     </tr>
   </tbody>
