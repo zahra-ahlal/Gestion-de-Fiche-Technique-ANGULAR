@@ -19,6 +19,7 @@ import { ListeIngredientsComponent } from './components/liste-ingredients/liste-
 import { IngredientComponent } from './components/ingredient/ingredient.component';
 import { EtapeComponent } from './components/etape/etape.component';
 import { EditIngredientsFicheComponent } from './modal/edit-ingredients-fiche/edit-ingredients-fiche.component';
+import { BrouillonComponent } from './components/brouillon/brouillon.component';
 
 
 const routes: Routes = [
@@ -38,12 +39,15 @@ const routes: Routes = [
   { path: 'listeEtapes', component: EtapeComponent },
 
   { path: 'selctionnerIngr', component: EditIngredientsFicheComponent },
+  { path: 'l', component: BrouillonComponent },
+
 
   //{ path: 'parametres/edit', component: ParametreComponent, },
   { path: ':idCategFiche/:nomCateg/listeFiches', component: ListeFichesComponent, },
   { path: ':idCategFiche/:nomCateg/listeFiches/ajoutFiche', component: AjoutFicheComponent, },
   
-  { path: '**', component: NotFoundComponent }
+  { path: '**', component: NotFoundComponent },
+  
 ];
 
 
