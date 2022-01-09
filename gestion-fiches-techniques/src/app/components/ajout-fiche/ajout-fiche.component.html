@@ -178,12 +178,12 @@
                 <div class="city-item">
           <input type="text" class="form-control" name="nomResponsable" #name="ngModel" 
                   [(ngModel)]="fiche.nomResponsable" placeholder="Nom Responsable" required>
-                  <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="fiche.nomPlat" placeholder="Nom Plat" required/>
-                  <input type="text" class="form-control" name="nbCouverts" #name="ngModel" 
+                  <input type="text" class="form-control" name="nomPlat" #name="ngModel" [(ngModel)]="fiche.nomPlat" placeholder="Nom Plat" required/>
+                  <input type="text" class="form-control" name="nomCategFiche" #name="ngModel" 
                   [(ngModel)]="fiche.nbCouverts" placeholder="Nombre de Couverts" required>
          
                   <div *ngIf = "!idCategFiche" >
-                    <select style="display: block;width:500px" [(ngModel)]="categSelected" name="categorie" required>
+                    <select style="display: block;width:500px" [(ngModel)]="categSelected" name="nomCategFiche" required>
                       <option value="">Catégorie</option>
                       <option *ngFor="let categorie of listeCategories"  [value]="categorie.nomCategFiche" value=""> {{categorie.nomCategFiche}} </option>
                     </select>
@@ -194,7 +194,7 @@
             
 
             <div *ngIf = "idCategFiche">
-              <input type="text" name="name" value="categ.nomCategFiche" disabled/>
+              <input type="text" name="nomCategFiche" value="categ.nomCategFiche" disabled/>
             </div>
             <!--input *ngFor="let ingredient of listeIngredients"  [value]="ingredient.nomIngr" type="checkbox" value="none" id="check_1" name="checklist" required/>
             <label for="check_1" class="check"><span></span></label-->
@@ -206,8 +206,6 @@
         <div class="question">
           <p>Faites vos courses pour votre recette:<span class="required">*</span></p>
           <div class="interior">
-            <!--a class="btn" href="#open-modal">Choisir Ingrédients📙 </a-->
-            <!--button class="btn btn-danger" (click)="triggerModal(modalData)">Choisir Ingrédients📙</button-->
             <button class="btn btn-danger" (click)="triggerModal(modalData)">Ingrédients📙</button>
             
 
@@ -222,7 +220,7 @@
                   <div clas="row">
                       <p>Sélectionner ceux dont vous aurez besoin <span class="required">*</span></p>
                       <ul class="ks-cboxtags">
-                      <li *ngFor="let ingredient of listeIngredients"><input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value="" (change)="setShowTrue(ingredient.nomIngr)" ><label [for]="ingredient.nomIngr"  required>{{ingredient.nomIngr}}</label></li>
+                      <li *ngFor="let ingredient of listeIngredients" ><input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value="" (change)="setShowTrue(ingredient.nomIngr)" ><label [for]="ingredient.nomIngr"  required>{{ingredient.nomIngr}}</label></li>
                       </ul>
                   </div>
               </div>
@@ -244,7 +242,7 @@
               <p>Veuillez sélectionner vos intérêts</p>
               <ul>
                 <li *ngFor="let ingredient of ingredientSelectedArray">
-                <label for="coding">{{ingredient}}</label></li>
+                <label for="coding" >{{ingredient}}</label></li>
               </ul>
               
             </fieldset>
@@ -294,9 +292,6 @@
               <!-------      FIN CHOISIR ETAPE        ---------->
             </div>
             <small>Veuillez l'ajouter</small>
-            <div class="interior">
-              <a class="btn" href="#open-modal">Ajouter une étape ⏱</a>
-            </div>
             <app-etape></app-etape>
             <table class="table table-striped">
               <thead>
