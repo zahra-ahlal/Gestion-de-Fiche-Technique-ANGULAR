@@ -35,24 +35,14 @@
             
             <!-- BEGIN FILTER BY INGREDIENTS -->
             <h4>Par ingrédients:</h4>
-            <div>
-              <li *ngFor="let ingredient of listeIngredients">
-                <input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value="" (change)="setShowTrue(ingredient.nomIngr)" >
-                <label [for]="ingredient.nomIngr"  required>{{ingredient.nomIngr}}</label>
-              </li>
-              
-              
-              <!--
-              <input type="text" class="form-control">
-              <span class="input-group-addon bg-blue"><i class="fa fa-th"></i></span>
+            <div clas="row">
+                <ul class="ks-cboxtags">
+                <li *ngFor="let ingredient of listeIngredients"><input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value="" (change)="setShowTrue(ingredient.nomIngr)" ><label [for]="ingredient.nomIngr"  required>{{ingredient.nomIngr}}</label></li>
+                </ul>
             </div>
-            <input type="hidden" id="dtp_input1" value="">-->
-            </div>
-            
             <!-- END FILTER BY DATE -->
-            
+
             <div class="padding"></div>
-      
           </div>
           <!-- END FILTERS -->
           <!-- BEGIN RESULT -->
@@ -65,8 +55,8 @@
                 <mat-form-field>
                   <input type="text" class="form-control" formControlName="ficheTechnique" matInput [matAutocomplete]="auto" >
                   <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let fiche of listFiches" [value]="fiche.nomPlat">
-                      {{fiche.nomPlat}}
+                    <mat-option *ngFor="let fiche of nomPlats" [value]="fiche">
+                      {{fiche}}
                     </mat-option>
                     
                   </mat-autocomplete>
@@ -83,19 +73,7 @@
             
             <div class="padding"></div>
             
-            <div class="row">
-              <!-- BEGIN ORDER RESULT -->
-              <div class="col-sm-6">
-                <div class="btn-group">
-                  
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Ordre Alphabetique Croissant</a></li>
-                    <li><a href="#">Ordre Alphabetique Décroissant</a></li>
-                  </ul>
-                </div>
-              </div>
-              <!-- END ORDER RESULT -->
-              
+            <div class="row">            
               <div class="col-md-6 text-right">
                 <div class="btn-group">
                   <button type="button" class="btn btn-default active"><i class="fa fa-list"></i></button>
@@ -105,12 +83,12 @@
             </div>
             
             <!-- BEGIN TABLE RESULT -->
-            <div  class="table-responsive">
+            <div class="table-responsive">
               <table class="table table-hover">
                 <tbody><tr *ngFor="let fiche of listFiches;index as i">
                   <th class="number text-center" scope="row">{{ i+1 }}</th>
                   <td class="image"><img src="https://via.placeholder.com/400x300/FF8C0" alt="">
-                  <td class="product"><strong>{{fiche}}</strong></td>
+                  <td class="product"><strong>{{fiche.nomPlat}}</strong></td>
                   <td class="product"><strong>Nombre de couverts</strong><br>{{fiche.nbCouverts}}</td>
                   <td class="product"><strong>Temps Total</strong><br>{{fiche.tempsTot}}</td>
                   <td class="product"><strong>Responsable</strong><br>{{fiche.nomResponsable}}</td>

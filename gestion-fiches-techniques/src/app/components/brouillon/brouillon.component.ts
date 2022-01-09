@@ -7,6 +7,7 @@ import { FicheService } from 'src/app/services/fiche.service';
 import { IngredientService } from 'src/app/services/ingredient.service';
 
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -22,13 +23,19 @@ export class BrouillonComponent implements OnInit {
   listOfContacts:any ;
   listCategFiche:any ;
   listFiches:any ;
+  listFichesSearched:any ;
+  
   listeIngredients : any;
   categSelectedArray : string[];
   isSearched : boolean = false;
   nomPlats: string[] = new Array();
+  nbCouverts: number[] = new Array();
+  tempsTot: number[] = new Array();
+  nomResponsable: string[] = new Array();
+  closeModal: string;
 
   formGroup : FormGroup;
-  constructor(private fb : FormBuilder,private ingrService: IngredientService,private http: HttpClient, private categService:CategFichesService,private ficheService: FicheService){ 
+  constructor(private modalService: NgbModal,private fb : FormBuilder,private ingrService: IngredientService,private http: HttpClient, private categService:CategFichesService,private ficheService: FicheService){ 
   }
 
   ngOnInit(): void {
@@ -37,6 +44,7 @@ export class BrouillonComponent implements OnInit {
     this.initForm();
     this.getFiches();
     this.getListeIngredients() ;
+    //this.listFiches = [];
   }
 
   initForm(){
@@ -50,10 +58,12 @@ export class BrouillonComponent implements OnInit {
   }
 
   filterData(enteredData){
+   
     //console.log(this.nomPlats[0])
-    this.listFiches = this.nomPlats.filter(item => {
-      return item.toLowerCase().indexOf(enteredData.toLowerCase()) > -1
-    })
+      this.listFiches=this.listFiches.filter(item => {
+        return item.nomPlat.toLowerCase().indexOf(enteredData.toLowerCase()) > -1
+      })
+    
   }
 
   getCategFiche(){
@@ -85,6 +95,10 @@ export class BrouillonComponent implements OnInit {
       this.listFiches = data;
       for(let i =0;i<data.length;i++){
         this.nomPlats.push(data[i].nomPlat)
+        this.nbCouverts.push(data[i].nbCouverts)
+        this.tempsTot.push(data[i].tempsTot)
+        this.nomResponsable.push(data[i].nomResponsable)
+        
         console.log(this.nomPlats[i]);
       }
       
@@ -127,6 +141,24 @@ export class BrouillonComponent implements OnInit {
                this.listOfContacts = data;
                    }, error => console.error(error));             
            } */
+      }
+
+      triggerModal(content) {
+        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((res) => {
+          this.closeModal = `Closed with: ${res}`;
+        }, (res) => {
+          this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
+        });
+      }
+      
+      private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+          return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+          return 'by clicking on a backdrop';
+        } else {
+          return  `with: ${reason}`;
+        }
       }
 
 }
