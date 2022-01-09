@@ -7,7 +7,7 @@
     <div class="row">
         <a href="#" title="Close" class="modal-close">Close</a>
         <div><h2>Étape : {{ etape.nomEtape }}</h2></div>
-        <form #etapeForm="ngForm" (ngSubmit)="onSubmit(etapeForm)">
+        <form #etapeForm="ngForm" >
             <div class="row">
                 <div class="input-field col s6" >
                     <select style="display: block;width:100px" name="numEtape" id="numEtape">
@@ -38,10 +38,8 @@
             <!--############### TEST###############""""-->
             <h5>Liste des ingredients:</h5>
             <div >
-            <button  class="waves-effect waves-light btn col s4" *ngFor="let ingredient of listeIngredients"
-            (click)="addIngredient(ingredient)">
-            {{ ingredient.nomIngr}}
-            </button>
+            <button  type="button" class="waves-effect waves-light btn col s4" *ngFor="let ingredient of listeIngredients"
+            (click)="addIngredient(ingredient);"> {{ ingredient.nomIngr}} </button>
             <table class="table" cellpadding=0 cellspacing=0>
                 <tr >
                 <th scope="col" style="width:10%">Ingredient</th>
@@ -57,7 +55,6 @@
                 </th>
                 <th>
                     <a class="col s1" (click)="removeIngredient(ingredient)">x</a>
-                    <a class="col s1" (click)="addIngrDansEtape(ingredient)"><span>&#10003;</span></a>
                 </th>
                 </tr>
             </table>

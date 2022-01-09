@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { IngredientComponent } from '../components/ingredient/ingredient.component';
 import { IEtape } from '../models/etape.model';
+import { IngredientInterface } from '../models/ingredient.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,12 +20,12 @@ export class EtapeService {
     return this.etapeRef;
   }
 
-  create(etape: IEtape) {
+  create(etape: IEtape,liste : IngredientInterface[]) {
     return this.etapeRef.add({
       nomEtape: etape.nomEtape,
       descritpion: etape.descritpion,
       duree: etape.duree,
-      listeIngr : etape.listeIngr
+      listeIngr : liste
     });
   }
   

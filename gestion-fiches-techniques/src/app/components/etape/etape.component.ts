@@ -15,7 +15,7 @@ export class EtapeComponent implements OnInit {
   [x: string]: any;
 
   ingredientSelectedArray: IngredientInterface[] = new Array();
-  listeIngredients : any;
+  listeIngredientsFinal :  IngredientInterface[] = new Array();
 
   quantite : number = 0;
 
@@ -23,7 +23,7 @@ export class EtapeComponent implements OnInit {
     nomEtape: '',
     descritpion: '',
     duree: '',
-    listeIngr : null
+    listeIngr : new Array()
   };
   constructor(private etapeService: EtapeService, private ingrService : IngredientService) { }
 
@@ -40,7 +40,8 @@ export class EtapeComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.etapeService.create(form.value).
+    this.listeIngredientsFinal = this.ingredientSelectedArray;
+    this.etapeService.create(form.value,this.listeIngredientsFinal).
       then(() => form.reset());
   }
 
@@ -57,17 +58,16 @@ export class EtapeComponent implements OnInit {
   }
 
   addIngredient(ingredient : IngredientInterface){
-    console.log(ingredient.nomIngr);
+    //console.log(ingredient.nomIngr);
     this.ingredientSelectedArray.push(ingredient);
   }
 
   removeIngredient = ingredient => {
     let index = this.ingredientSelectedArray.indexOf(ingredient);
     if (index > -1) this.ingredientSelectedArray.splice(index, 1);
+    console.log("Suppression de la liste "+ingredient.nomIngr)
   };
 
-  addIngrDansEtape(i : IngredientInterface){
-
-  }
+  
 
 }
