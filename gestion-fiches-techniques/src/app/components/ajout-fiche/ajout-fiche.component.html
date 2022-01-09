@@ -170,30 +170,28 @@
           <h1>Nouvelle Fiche Technique</h1>
         </div>
         <div class="item">
-          <p>Responsable</p>
-          <input type="text" class="form-control" name="nomResponsable" #name="ngModel" 
-                  [(ngModel)]="fiche.nomResponsable" placeholder="Nom Responsable" required>
-          <div class="item">
+          
             <!--p>Plat</p>
             <input type="text" class="form-control" name="nomPlat" #name="ngModel" 
                     [(ngModel)]="fiche.nomPlat" placeholder="Nom plat" required>
               <p>Nombre Couvert</p-->
                 <div class="city-item">
+          <input type="text" class="form-control" name="nomResponsable" #name="ngModel" 
+                  [(ngModel)]="fiche.nomResponsable" placeholder="Nom Responsable" required>
                   <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="fiche.nomPlat" placeholder="Nom Plat" required/>
                   <input type="text" class="form-control" name="nbCouverts" #name="ngModel" 
                   [(ngModel)]="fiche.nbCouverts" placeholder="Nombre de Couverts" required>
-                  
-                </div>
-              
+         
+                  <div *ngIf = "!idCategFiche" >
+                    <select style="display: block;width:500px" [(ngModel)]="categSelected" name="categorie" required>
+                      <option value="">Catégorie</option>
+                      <option *ngFor="let categorie of listeCategories"  [value]="categorie.nomCategFiche" value=""> {{categorie.nomCategFiche}} </option>
+                    </select>
+                  </div>
           </div>
           <div>
 
-            <div *ngIf = "!idCategFiche">
-              <select style="display: block;width:100px" [(ngModel)]="categSelected" name="categorie" required>
-                <option value="">Catégorie</option>
-                <option *ngFor="let categorie of listeCategories"  [value]="categorie.nomCategFiche" value=""> {{categorie.nomCategFiche}} </option>
-              </select>
-            </div>
+            
 
             <div *ngIf = "idCategFiche">
               <input type="text" name="name" value="categ.nomCategFiche" disabled/>
