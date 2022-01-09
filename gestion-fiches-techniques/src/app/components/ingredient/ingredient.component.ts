@@ -13,7 +13,7 @@ import { IngredientInterface } from 'src/app/models/ingredient.model';
 })
 export class IngredientComponent implements OnInit {
 
-  ingredient: IngredientInterface = { nomIngr: '', prixU : 0, unite : '', allergene: false, stock : 0,idCategIngr : '', typeIngr: '' };
+  ingredient: IngredientInterface = { nomIngr: '', prixU : 0, unite : '', allergene: false, stock : 0,idCategIngr : '', typeIngr: '' , quantite : 0};
   @Input() idCategIngr : string = "";
   nomCateg : string = "";
   

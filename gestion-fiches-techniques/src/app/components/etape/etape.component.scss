@@ -38,12 +38,12 @@
 .modal-close {
   color: #aaa;
   line-height: 50px;
-  font-size: 80%;
+  font-size: 90%;
   position: absolute;
   right: 0;
   text-align: center;
   top: 0;
-  width: 70px;
+  width: 80px;
   text-decoration: none;
   &:hover {
     color: black;
@@ -94,7 +94,7 @@ small {
     pointer-events: auto;
   }
   & > div {
-    width: 400px;
+    width: 500px;
     position: absolute;
     top: 50%;
     left: 50%;

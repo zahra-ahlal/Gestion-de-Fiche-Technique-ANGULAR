@@ -7,4 +7,5 @@ export interface IngredientInterface {
     stock : number;
     idCategIngr : string;
     typeIngr : string;
+    quantite : number ;
 }
