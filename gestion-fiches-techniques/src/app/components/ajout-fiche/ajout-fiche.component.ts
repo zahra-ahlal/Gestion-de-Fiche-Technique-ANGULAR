@@ -27,7 +27,7 @@ import { Console } from 'console';
 export class AjoutFicheComponent implements OnInit {
 
   fiche: IFiche = { nomPlat: "", nbCouverts: null, tempsTot: 0,idCategFiche:"", nomResponsable:"",listeEtapes:null}
-  etape : IEtape = {nomEtape: '',descritpion: '',duree: ''};
+  etape : IEtape = {nomEtape: '',descritpion: '',duree: '', listeIngr : null};
   categ : any;
   activeModal: any;
   isSelected: boolean;

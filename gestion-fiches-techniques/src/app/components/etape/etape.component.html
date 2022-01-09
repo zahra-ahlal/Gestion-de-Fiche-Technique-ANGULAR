@@ -34,7 +34,27 @@
                     <label for="descritpion">Description</label>
                 </div>      
             </div>
-            
+            <!--- INGREDIENTS -->
+            <div class="row">
+                <h5>Liste des ingrédients</h5>
+                <div clas="row">
+                    <p>Sélectionner ceux dont vous aurez besoin <span class="required">*</span></p>
+                    <ul class="ks-cboxtags">
+                    <li *ngFor="let ingredient of listeIngredients"><input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value="" (change)="setShowTrue(ingredient.nomIngr)" ><label [for]="ingredient.nomIngr"  required>{{ingredient.nomIngr}}</label></li>
+                    </ul>
+                </div>
+                <!--small> Please include the following in your application.</small-->
+                <div name="first"  class="question-answer checkbox-item">
+                    <fieldset>
+                    <p>Veuillez sélectionner vos intérêts</p>
+                    <ul>
+                        <li *ngFor="let ingredient of ingredientSelectedArray">
+                        <label for="coding">{{ingredient}}</label></li>
+                    </ul>                    
+                    </fieldset>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="center">
                     <button class="btn findbtn waves-effect waves-light" 
@@ -42,6 +62,7 @@
                     name="action" > Ajouter </button>   
                 </div>
             </div>
+            <!------>>
         </form>
     </div>
 </div>
