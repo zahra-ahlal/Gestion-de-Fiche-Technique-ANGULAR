@@ -229,8 +229,8 @@
                   </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-success"  (click)="valider()">Valider</button>
-                <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
+                <button type="button" class="btn btn-success"  (click)="modal.close('Save click')">Valider</button>
+                <!--button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button-->
               </div>
             </ng-template>
 
@@ -251,41 +251,22 @@
               
             </fieldset>
 
-        
-
-            <div class="question">
-              <!--div [(ngModel)]="ingrSelected" name="first"  (change)="setShowTrue(ingrSelected)" class="question-answer checkbox-item">
-                <div *ngFor="let ingredient of listeIngredients;index as i" > 
-                  <input  type="checkbox" value="none" id="check_\'i+1\'" name="checklist" required/>
-                  <label for="check_\'i+1\'" class="check"><span>{{ingredient.nomIngr}}</span></label>
-                </div>
-                
-              </div-->
-            </div>
-            
-            
-
           </div>
           </div>
     
         <h5>2. Mes étapes</h5>
         <div class="item">
           <p>Votre étape existe-elle ?<span class="required">*</span></p>
-          <small>Veuillez-la selectionner</small>
+          <small>Veuillez la selectionner</small>
           <div >
-            <!--div>
-              <select style="display: block;width:100px" [(ngModel)]="etapeSelected" name="first"  (change)="setShowTrue(etapeSelected)" required>
-                <!--option value="">Liste d'étapes déjà existantes</option>
-                <option *ngFor="let etape of listeEtapes"  [value]="etape.nomEtape" value=""> {{etape.nomEtape}} </option>
-              </select>
-
-              Sinon 
-              <app-etape></app-etape>
-            </div-->
             <div class="interior">
               <a class="btn" href="#open-modal">Parcourir les étapes ⏱</a>
             </div>
-            <app-etape></app-etape>
+            <small>Veuillez l'ajouter</small>
+            <div class="interior">
+              <a class="btn" href="#open-modal">Ajouter une étape ⏱</a>
+            </div>
+            
 
             <table class="table table-striped">
               <thead>
@@ -320,32 +301,17 @@
         
         <h5>3. Couts</h5>
         <fieldset>
-          <p>Veuillez sélectionner vos intérêts</p>
           <ul>
-            <li *ngFor="let ingredient of ingredientSelectedArray">
-            <label for="coding">{{ingredient}}</label></li>
+            <p>Temps total : </p>
+            <li>
+            <label for="coding">hhh</label></li>
           </ul>
           
         </fieldset>
-        
+        <!--
         <h5>4. Imprimer</h5>
         <div class="question">
-          <p>Principle investigator:<span class="required">*</span></p>
-          <div class="question-answer">
-            <input type="radio" value="none" id="radio_1" name="investigator" required/>
-            <label for="radio_1" class="radio"><span>Yes</span></label>
-            <input type="radio" value="none" id="radio_2" name="investigator" required/>
-            <label for="radio_2" class="radio"><span>No</span></label>
-          </div>
-        </div>
-        <div class="question">
-          <p>Co-Investigator:<span class="required">*</span></p>
-          <div class="question-answer">
-            <input type="radio" value="none" id="radio_3" name="co-investigator" required/>
-            <label for="radio_3" class="radio"><span>Yes</span></label>
-            <input type="radio" value="none" id="radio_4" name="co-investigator" required/>
-            <label for="radio_4" class="radio"><span>No</span></label>
-          </div>
+          
         </div>
         
         
@@ -356,6 +322,9 @@
             <p>Electronic signature<span class="required">*</span></p>
             <textarea rows="3" required></textarea>
           </div>
+          <div class="btn-block">
+            <button type="submit" href="/">Ajouter ma fiche</button>
+          </div>-->
           <div class="btn-block">
             <button type="submit" href="/">Ajouter ma fiche</button>
           </div>
