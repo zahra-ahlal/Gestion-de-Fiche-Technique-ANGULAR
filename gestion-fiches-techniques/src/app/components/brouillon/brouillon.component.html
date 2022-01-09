@@ -1,0 +1,112 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+<div class="row">
+  <!-- BEGIN SEARCH RESULT -->
+  <div class="col-md-12">
+    <div class="grid search">
+      <div class="grid-body">
+        <div class="row">
+          <!-- BEGIN FILTERS -->
+          <div class="col-md-3">
+            <h2 class="grid-title"><i class="fa fa-filter"></i> Filtres</h2>
+            <hr>
+            
+            <div class="padding"></div>
+            
+            <!-- BEGIN FILTER BY INGREDIENTS -->
+            <h4>Par ingrédients:</h4>
+            <div>
+              <li *ngFor="let ingredient of listeIngredients">
+                <input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value="" (change)="setShowTrue(ingredient.nomIngr)" >
+                <label [for]="ingredient.nomIngr"  required>{{ingredient.nomIngr}}</label>
+              </li>
+              
+              
+              <!--
+              <input type="text" class="form-control">
+              <span class="input-group-addon bg-blue"><i class="fa fa-th"></i></span>
+            </div>
+            <input type="hidden" id="dtp_input1" value="">-->
+            </div>
+            
+            <!-- END FILTER BY DATE -->
+            
+            <div class="padding"></div>
+      
+          </div>
+          <!-- END FILTERS -->
+          <!-- BEGIN RESULT -->
+          <div class="col-md-9">
+            <h2><i class="fa fa-file-o"></i> Résultat(s)</h2>
+            <hr>
+            <!-- BEGIN SEARCH INPUT -->
+            <div class="input-group">
+              <input type="text" class="form-control" value="Nom Fiche Technique" [(ngModel)]="searchText"  (input)="Search(searchText)">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" ><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+            <!-- END SEARCH INPUT -->
+            <p>Tous les résultats correspondant à  "web development"</p>
+            
+            <div class="padding"></div>
+            
+            <div class="row">
+              <!-- BEGIN ORDER RESULT -->
+              <div class="col-sm-6">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Ordonner par <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Ordre Alphabetique Croissant</a></li>
+                    <li><a href="#">Ordre Alphabetique Décroissant</a></li>
+                  </ul>
+                </div>
+              </div>
+              <!-- END ORDER RESULT -->
+              
+              <div class="col-md-6 text-right">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default active"><i class="fa fa-list"></i></button>
+                  <button type="button" class="btn btn-default"><i class="fa fa-th"></i></button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- BEGIN TABLE RESULT -->
+            <div  class="table-responsive">
+              <table class="table table-hover">
+                <tbody><tr *ngFor="let fiche of listFiches;index as i">
+                  <th class="number text-center" scope="row">{{ i+1 }}</th>
+                  <td class="image"><img src="https://via.placeholder.com/400x300/FF8C0" alt="">
+                  <td class="product"><strong>{{fiche.nomPlat}}</strong></td>
+                  <td class="product"><strong>Nombre de couverts</strong><br>{{fiche.nbCouverts}}</td>
+                  <td class="product"><strong>Temps Total</strong><br>{{fiche.tempsTot}}</td>
+                  <td class="product"><strong>Responsable</strong><br>{{fiche.nomResponsable}}</td>
+                  <td class="price text-right">$350</td>
+                </tr>
+              </tbody></table>
+            </div>
+            <!-- END TABLE RESULT -->
+            
+            <!-- BEGIN PAGINATION -->
+            <ul class="pagination">
+              <li class="disabled"><a href="#">«</a></li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#">»</a></li>
+            </ul>
+            <!-- END PAGINATION -->
+          </div>
+          <!-- END RESULT -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END SEARCH RESULT -->
+</div>
+</div>

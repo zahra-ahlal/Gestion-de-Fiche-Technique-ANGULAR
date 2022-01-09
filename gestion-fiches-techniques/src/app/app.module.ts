@@ -52,6 +52,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop'
 import { EtapeService } from './services/etape.service';
 import { ListeEtapesComponent } from './components/liste-etapes/liste-etapes.component';
 import { EditIngredientsFicheComponent } from './modal/edit-ingredients-fiche/edit-ingredients-fiche.component';
+import { BrouillonComponent } from './components/brouillon/brouillon.component';
 
 
 @NgModule({
@@ -84,6 +85,7 @@ import { EditIngredientsFicheComponent } from './modal/edit-ingredients-fiche/ed
     AjoutFicheComponent,
     ListeEtapesComponent,
     EditIngredientsFicheComponent,
+    BrouillonComponent,
   ],
   imports: [
     BrowserModule,
