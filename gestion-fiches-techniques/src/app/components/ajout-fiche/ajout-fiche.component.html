@@ -331,21 +331,41 @@
         </div>
         
         <h5>3. Couts</h5>
-        <fieldset>
-          <ul>
-            <p>Temps total : {{tempsTotcalc}}</p>
-            <p>Total Denrées : {{tempsTotcalc}}</p>
-            <p>ASS 5% : {{tempsTotcalc}}</p>
-            <p>Coût Matières : {{tempsTotcalc}}</p>
-            <p>Coût Personnel : {{tempsTotcalc}}</p>
-            <p>Coût Fluide : {{tempsTotcalc}}</p>
-            <p>Coût de Production Total : {{tempsTotcalc}}</p>
-            <p>Coût de Production Portion : {{tempsTotcalc}}</p>
-            <li>
-            <label for="coding">hhh</label></li>
-          </ul>
-          
-        </fieldset>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Total Denrées</th>
+              <th scope="col">ASS 5%</th>
+              <th scope="col">Coût Matières</th>
+              <th scope="col">Coût Personnel</th>
+              <th scope="col">Coût Fluide</th>
+              <th scope="col">Coût de Production Total</th>
+              <th scope="col">Coût de Production Portion</th>
+
+
+              <!--th scope="col">Edit</th-->
+              <!--th scope="col">Delete</th-->
+            </tr>
+          </thead>
+          <tbody *ngIf="listeEtapes">
+            <tr >
+              <td>{{ tempsTotcalc }}</td>
+              <td>{{ tempsTotcalc }}</td>
+              <td>{{ tempsTotcalc }}</td>
+              <td>{{ tempsTotcalc }}</td>
+              <td>{{ tempsTotcalc }}</td>
+              <td>{{ tempsTotcalc }}</td>
+              <td>{{ tempsTotcalc }}</td>
+              <!--td>
+                <i class="bi bi-pencil-square" style="color: green;" 
+                    (click)="editModal(listeEtapes)"></i>
+              </td>
+              <td>
+                <i class="bi bi-trash" (click)="deleteCout(listeEtapes)" style="color: red;"></i>
+              </td-->
+            </tr>
+            </tbody>
+        </table>
         <!--
         <h5>4. Imprimer</h5>
         <div class="question">
