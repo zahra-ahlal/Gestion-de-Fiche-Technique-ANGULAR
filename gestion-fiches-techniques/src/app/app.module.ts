@@ -52,6 +52,16 @@ import {DragDropModule} from '@angular/cdk/drag-drop'
 import { EtapeService } from './services/etape.service';
 import { ListeEtapesComponent } from './components/liste-etapes/liste-etapes.component';
 import { EditIngredientsFicheComponent } from './modal/edit-ingredients-fiche/edit-ingredients-fiche.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+
+
+ 
+
+
 
 
 @NgModule({
@@ -95,10 +105,13 @@ import { EditIngredientsFicheComponent } from './modal/edit-ingredients-fiche/ed
     //RouterModule.forRoot(appRoutes),
     NgbModule,
     DragDropModule,
-    MatCardModule,
+    //MatCardModule,
+    //MatIconModule,
+    //MatFormFieldModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    BrowserAnimationsModule
   ],
   providers: [AuthService, AuthGuardService,NotificationServicesService,{provide: APP_BASE_HREF, useValue : '/' }],
   bootstrap: [AppComponent],
