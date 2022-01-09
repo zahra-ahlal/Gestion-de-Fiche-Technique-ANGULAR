@@ -8,23 +8,14 @@ $main-color: #9191E9;
 }
 
 
-
+/*
 html, body {
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
   //background-color:rgba(0, 0, 0, .80);
 
-}
-
-@media screen and (max-width: 768px) {
-  html, body {
-    font-size: 12px;
-    //background-color:rgba(0, 0, 0, .80);
-  }
-}
-
-
-  
+}*/
+ 
 .container {
   background-color: $main-color;
   //display: flex;
@@ -142,3 +133,53 @@ html, body {
     text-decoration: none;
   }
 }
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////::after
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #FFEFBA;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #FFEFBA);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.container {
+    max-width: 640px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
+}
+
+
+
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+  &:hover {
+    color: black;
+  }
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////@at-root
