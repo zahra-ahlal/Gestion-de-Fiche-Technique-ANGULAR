@@ -28,6 +28,8 @@ export class AjoutFicheComponent implements OnInit {
 
   fiche: IFiche = { nomPlat: "", nbCouverts: null, tempsTot: 0,idCategFiche:"", nomResponsable:"",listeEtapes:null}
   etape : IEtape = {nomEtape: '',descritpion: '',duree: '', listeIngr : null};
+  
+  tempsTotcalc:number;
   categ : any;
   activeModal: any;
   isSelected: boolean;
@@ -67,6 +69,7 @@ export class AjoutFicheComponent implements OnInit {
     this.getListeEtapes() ;
     this.ingrSelected = "";
     this.ingredientSelectedArray = [];
+    this.tempsTotcalc=0;
    
 
   }
@@ -152,7 +155,7 @@ export class AjoutFicheComponent implements OnInit {
   }
 
   valider(){
-    
+
   }
 
   onDrop(event: CdkDragDrop<any>){
