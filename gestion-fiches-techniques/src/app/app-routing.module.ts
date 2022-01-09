@@ -35,6 +35,7 @@ const routes: Routes = [
   { path: 'categorieIngredients', component: CategoriesIngredientsComponent },
   { path: 'listeIngr/:nomCateg/:idCategIngr', component: ListeIngredientsComponent},
   { path: 'ingredients/:idCategIngr', component: IngredientComponent },
+  { path: 'ajoutIngredient', component: IngredientComponent },
   { path: 'etape', component: EtapeComponent },
   { path: 'listeEtapes', component: EtapeComponent },
   { path: 'br', component: BrouillonComponent },
