@@ -56,7 +56,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { BrouillonComponent } from './components/brouillon/brouillon.component';
 
 
 
@@ -95,7 +94,6 @@ import { BrouillonComponent } from './components/brouillon/brouillon.component';
     AjoutFicheComponent,
     ListeEtapesComponent,
     EditIngredientsFicheComponent,
-    BrouillonComponent,
   ],
   imports: [
     BrowserModule,

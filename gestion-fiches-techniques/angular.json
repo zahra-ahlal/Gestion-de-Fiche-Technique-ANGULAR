@@ -54,11 +54,9 @@
             ],
             "styles": [
               "./node_modules/materialize-css/dist/css/materialize.css",
-              "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/styles.scss"
             ],
-            "scripts": ["./node_modules/materialize-css/dist/js/materialize.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"]
+            "scripts": ["./node_modules/materialize-css/dist/js/materialize.js"]
           },
           "configurations": {
             "production": {
