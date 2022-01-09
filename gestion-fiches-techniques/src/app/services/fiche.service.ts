@@ -6,6 +6,8 @@ import {
 } from '@angular/fire/firestore';
 
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { ICategFiches } from '../models/categFiches.model';
 import { IFiche } from '../models/fiche.model';
 import { CategFichesService } from './categ-fiches.service';
@@ -32,7 +34,7 @@ export class FicheService {
   getFichesByIDCategorie(categ : String): AngularFirestoreCollection<IFiche>{
     return this.db.collection(this.dbPath,ref => ref.where('idCategFiche','==', categ ));
   }
-
+  
 
 
   addFiche(f: IFiche){
@@ -50,6 +52,28 @@ export class FicheService {
 
   getFicheByName(fiche : String): AngularFirestoreCollection<IFiche>{
     return this.db.collection(this.dbPath,ref => ref.where('nomPlat','==', fiche ));
+  }
+  
+  
+  getDocById(): AngularFirestoreCollection<IFiche>{
+    return this.db.collection(this.dbPath);
+  }
+
+  //modifier le stock quand impression pour vente
+  getData(){
+    var nomPlat : any;
+    const fichzeService : FicheService = null;
+    this.getAllFiches().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      nomPlat = data;
+      console.log("nomPlat"+data);
+    });
+    return nomPlat;
   }
   
   addFicheByIDCateg(f: IFiche,categ:string){
