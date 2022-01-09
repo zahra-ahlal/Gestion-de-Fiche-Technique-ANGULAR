@@ -170,30 +170,28 @@
           <h1>Nouvelle Fiche Technique</h1>
         </div>
         <div class="item">
-          <p>Responsable</p>
-          <input type="text" class="form-control" name="nomResponsable" #name="ngModel" 
-                  [(ngModel)]="fiche.nomResponsable" placeholder="Nom Responsable" required>
-          <div class="item">
+          
             <!--p>Plat</p>
             <input type="text" class="form-control" name="nomPlat" #name="ngModel" 
                     [(ngModel)]="fiche.nomPlat" placeholder="Nom plat" required>
               <p>Nombre Couvert</p-->
                 <div class="city-item">
+          <input type="text" class="form-control" name="nomResponsable" #name="ngModel" 
+                  [(ngModel)]="fiche.nomResponsable" placeholder="Nom Responsable" required>
                   <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="fiche.nomPlat" placeholder="Nom Plat" required/>
                   <input type="text" class="form-control" name="nbCouverts" #name="ngModel" 
                   [(ngModel)]="fiche.nbCouverts" placeholder="Nombre de Couverts" required>
-                  
-                </div>
-              
+         
+                  <div *ngIf = "!idCategFiche" >
+                    <select style="display: block;width:500px" [(ngModel)]="categSelected" name="categorie" required>
+                      <option value="">Catégorie</option>
+                      <option *ngFor="let categorie of listeCategories"  [value]="categorie.nomCategFiche" value=""> {{categorie.nomCategFiche}} </option>
+                    </select>
+                  </div>
           </div>
           <div>
 
-            <div *ngIf = "!idCategFiche">
-              <select style="display: block;width:100px" [(ngModel)]="categSelected" name="categorie" required>
-                <option value="">Catégorie</option>
-                <option *ngFor="let categorie of listeCategories"  [value]="categorie.nomCategFiche" value=""> {{categorie.nomCategFiche}} </option>
-              </select>
-            </div>
+            
 
             <div *ngIf = "idCategFiche">
               <input type="text" name="name" value="categ.nomCategFiche" disabled/>
@@ -259,8 +257,41 @@
           <p>Votre étape existe-elle ?<span class="required">*</span></p>
           <small>Veuillez la selectionner</small>
           <div >
+            <!-------      CHOISIR ETAPE        ---------->
             <div class="interior">
-              <a class="btn" href="#open-modal">Parcourir les étapes ⏱</a>
+              <a class="btn" href="#chosir-etape">Parcourir les étapes ⏱</a>
+            </div>
+            <div id="chosir-etape" class="modal-window">
+              <div clas="row">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Etape N°</th>
+                      <th scope="col">Nom etape</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Duree</th>
+                      <!--th scope="col">Edit</th-->
+                      <!--th scope="col">Delete</th-->
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="listeEtapes">
+                    <tr *ngFor="let etape of listeEtapes;index as i">
+                      <th scope="row">{{ i+1 }}</th>
+                      <td>{{ etape.nomEtape }}</td>
+                      <td>{{ etape.descritpion }}</td>
+                      <td>{{ etape.duree }}</td>
+                      <!--td>
+                        <i class="bi bi-pencil-square" style="color: green;" 
+                            (click)="editModal(listeEtapes)"></i>
+                      </td>
+                      <td>
+                        <i class="bi bi-trash" (click)="deleteCout(listeEtapes)" style="color: red;"></i>
+                      </td-->
+                    </tr>
+                    </tbody>
+                </table>
+              </div>
+              <!-------      FIN CHOISIR ETAPE        ---------->
             </div>
             <small>Veuillez l'ajouter</small>
             <div class="interior">

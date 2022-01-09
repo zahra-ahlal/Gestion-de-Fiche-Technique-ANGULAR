@@ -5,4 +5,5 @@ export interface IEtape {
     nomEtape: string;
     descritpion : string;
     duree : string;
+    listeIngr : IngredientInterface[]
 }

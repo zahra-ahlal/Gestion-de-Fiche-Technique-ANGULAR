@@ -41,5 +41,6 @@ export class LoginComponent implements OnInit {
         this.errorMessage = error;
       }
     );
+    this.router.navigate(['/accueil']);
   }
 }

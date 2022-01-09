@@ -22,7 +22,8 @@ export class EtapeService {
     return this.etapeRef.add({
       nomEtape: etape.nomEtape,
       descritpion: etape.descritpion,
-      duree: etape.duree
+      duree: etape.duree,
+      listeIngr : etape.listeIngr
     });
   }
   
