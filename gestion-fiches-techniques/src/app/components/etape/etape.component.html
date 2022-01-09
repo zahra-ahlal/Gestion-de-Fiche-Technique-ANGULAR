@@ -34,35 +34,36 @@
                     <label for="descritpion">Description</label>
                 </div>      
             </div>
-            <!--- INGREDIENTS -->
-            <div class="row">
-                <h5>Liste des ingrédients</h5>
-                <div clas="row">
-                    <p>Sélectionner ceux dont vous aurez besoin <span class="required">*</span></p>
-                    <ul class="ks-cboxtags">
-                    <li *ngFor="let ingredient of listeIngredients"><input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value="" (change)="setShowTrue(ingredient.nomIngr)" ><label [for]="ingredient.nomIngr"  required>{{ingredient.nomIngr}}</label></li>
-                    </ul>
-                </div>
-                <!--small> Please include the following in your application.</small-->
-                <div name="first"  class="question-answer checkbox-item">
-                    <fieldset>
-                    <p>Veuillez sélectionner vos intérêts</p>
-                    <ul>
-                        <li *ngFor="let ingredient of ingredientSelectedArray">
-                        <label for="coding">{{ingredient}}</label></li>
-                    </ul>                    
-                    </fieldset>
-                </div>
+            
+            <!--############### TEST###############""""-->
+            <h5>Liste des ingredients:</h5>
+            <div >
+            <button  class="waves-effect waves-light btn col s4" *ngFor="let ingredient of listeIngredients"
+            (click)="addIngredient(ingredient)">
+            {{ ingredient.nomIngr}}
+            </button>
+            <table class="table" cellpadding=0 cellspacing=0>
+                <tr >
+                <th scope="col" style="width:10%">Ingredient</th>
+                <th>Quantité</th>
+                <th>Supprimer</th>
+                </tr>
+                <tr *ngFor="let ingredient of ingredientSelectedArray " >
+                <th scope="col" style="width:10%">
+                    {{ ingredient.nomIngr }}
+                </th>
+                <th>
+                    <input type="text" name="quantite" [(ngModel)]="quantite" id="quantite">
+                </th>
+                <th>
+                    <a class="col s1" (click)="removeIngredient(ingredient)">x</a>
+                    <a class="col s1" (click)="addIngrDansEtape(ingredient)"><span>&#10003;</span></a>
+                </th>
+                </tr>
+            </table>
             </div>
-
-            <div class="row">
-                <div class="center">
-                    <button class="btn findbtn waves-effect waves-light" 
-                    type="submit" [disabled]="!etapeForm.valid" [disabled]="etapeForm.invalid"
-                    name="action" > Ajouter </button>   
-                </div>
-            </div>
-            <!------>>
+            <button  class="waves-effect waves-light btn col s4" style="width:100%" (click)="onSubmit(etapeForm)">VALIDER</button>
+            <!------>
         </form>
     </div>
 </div>

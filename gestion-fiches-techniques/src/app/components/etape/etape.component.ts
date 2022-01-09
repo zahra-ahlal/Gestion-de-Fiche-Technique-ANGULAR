@@ -4,6 +4,7 @@ import { EtapeService } from 'src/app/services/etape.service';
 import { IEtape } from 'src/app/models/etape.model';
 import { IngredientService } from 'src/app/services/ingredient.service';
 import { map } from 'rxjs/operators';
+import { IngredientInterface } from 'src/app/models/ingredient.model';
 
 @Component({
   selector: 'app-etape',
@@ -13,8 +14,10 @@ import { map } from 'rxjs/operators';
 export class EtapeComponent implements OnInit {
   [x: string]: any;
 
-  ingredientSelectedArray:string[];
+  ingredientSelectedArray: IngredientInterface[] = new Array();
   listeIngredients : any;
+
+  quantite : number = 0;
 
   etape : IEtape = {
     nomEtape: '',
@@ -42,7 +45,7 @@ export class EtapeComponent implements OnInit {
   }
 
   setShowTrue(name: string){
-    this.ingredientSelectedArray.push(name);
+    //this.ingredientSelectedArray.push(name);
   }
 
   triggerModal(content) {
@@ -51,6 +54,20 @@ export class EtapeComponent implements OnInit {
     }, (res) => {
       this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
     });
+  }
+
+  addIngredient(ingredient : IngredientInterface){
+    console.log(ingredient.nomIngr);
+    this.ingredientSelectedArray.push(ingredient);
+  }
+
+  removeIngredient = ingredient => {
+    let index = this.ingredientSelectedArray.indexOf(ingredient);
+    if (index > -1) this.ingredientSelectedArray.splice(index, 1);
+  };
+
+  addIngrDansEtape(i : IngredientInterface){
+
   }
 
 }
