@@ -58,6 +58,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
 
 
  
@@ -107,6 +110,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     //RouterModule.forRoot(appRoutes),
     NgbModule,
     DragDropModule,
+    MatInputModule,
+    MatAutocompleteModule,
     //MatCardModule,
     //MatIconModule,
     //MatFormFieldModule,
