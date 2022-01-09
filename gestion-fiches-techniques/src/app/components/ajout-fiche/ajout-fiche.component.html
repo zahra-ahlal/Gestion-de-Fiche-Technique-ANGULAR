@@ -159,14 +159,13 @@
   <!DOCTYPE html>
   <html>
     <head>
-      <title>Nouvelle Fiche Technique</title>
       <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     </head>
     <body>
       <div class="testbox">
       <form action="#" #ficheForm="ngForm" (ngSubmit)="onSubmit(ficheForm)">
-        <div class="banner " style="border-radius:2em;background-image: linear-gradient(rgba(100, 78, 109, 0.5), rgba(180, 132, 43, 0.5)), url('/home/ubuntu/Documents/IG4/AWI/PROJET_AWI/Gestion-de-Fiche-Technique-ANGULAR/gestion-fiches-techniques/src/assets/benner.jpg');">
+        <div class="banner " >
           <h1>Nouvelle Fiche Technique</h1>
         </div>
         <div class="item">
@@ -239,7 +238,6 @@
           <!--small> Please include the following in your application.</small-->
           <div name="first"  class="question-answer checkbox-item">
             <fieldset>
-              <p>Veuillez sélectionner vos intérêts</p>
               <ul>
                 <li *ngFor="let ingredient of ingredientSelectedArray">
                 <label for="coding" >{{ingredient}}</label></li>
@@ -252,13 +250,14 @@
     
         <h5>2. Mes étapes 🕑</h5>
         <div class="item">
-          <p>Votre étape existe-elle ?<span class="required">*</span></p>
-          <small>Veuillez la selectionner</small>
-          <div >
+              <p>Votre étape existe-elle ?<span class="required">*</span></p>
+          <div align="center" >
             <!-------      CHOISIR ETAPE        ---------->
             <div class="interior">
               <a class="btn" href="#chosir-etape">Parcourir les étapes ⏱</a>
+              <app-etape></app-etape>
             </div>
+              
             <div id="chosir-etape" class="modal-window">
               <div clas="row">
                 <table class="table table-striped">
@@ -290,9 +289,10 @@
                 </table>
               </div>
               <!-------      FIN CHOISIR ETAPE        ---------->
+              
+            
             </div>
-            <small>Veuillez l'ajouter</small>
-            <app-etape></app-etape>
+            
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -300,6 +300,7 @@
                   <th scope="col">Nom etape</th>
                   <th scope="col">Description</th>
                   <th scope="col">Duree</th>
+                  <th scope="col">Ingredients</th>
                   <!--th scope="col">Edit</th-->
                   <!--th scope="col">Delete</th-->
                 </tr>
@@ -310,6 +311,7 @@
                   <td>{{ etape.nomEtape }}</td>
                   <td>{{ etape.descritpion }}</td>
                   <td>{{ etape.duree }}</td>
+                  <td><p *ngFor="let ingredient of etape.listeIngr"> {{ingredient.nomIngr}} : {{ingredient.quantite}} : {{ingredient.unite}} </p> </td>
                   <!--td>
                     <i class="bi bi-pencil-square" style="color: green;" 
                         (click)="editModal(listeEtapes)"></i>

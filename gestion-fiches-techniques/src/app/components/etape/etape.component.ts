@@ -42,7 +42,7 @@ export class EtapeComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.listeIngredientsFinal = this.ingredientSelectedArray;
     this.etapeService.create(form.value,this.listeIngredientsFinal).
-      then(() => form.reset());
+       then(() => form.reset());
   }
 
   setShowTrue(name: string){
