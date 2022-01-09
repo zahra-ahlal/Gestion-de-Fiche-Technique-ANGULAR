@@ -148,11 +148,11 @@ export class AjoutFicheComponent implements OnInit {
   
 
   setShowTrue(name: string){
-    console.log("dffgfgffvf");
-
-    console.log(name);
     this.ingredientSelectedArray.push(name);
-    //console.log(this.ingredientSelectedArray[0])
+  }
+
+  valider(){
+    
   }
 
   onDrop(event: CdkDragDrop<any>){

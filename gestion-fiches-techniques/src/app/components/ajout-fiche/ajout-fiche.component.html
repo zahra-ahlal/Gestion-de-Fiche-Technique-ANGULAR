@@ -189,7 +189,7 @@
           <div>
 
             <div *ngIf = "!idCategFiche">
-              <select style="display: block;width:100px" [(ngModel)]="categSelected" name="categorie"  (change)="setShowTrue(categSelected)" required>
+              <select style="display: block;width:100px" [(ngModel)]="categSelected" name="categorie" required>
                 <option value="">Catégorie</option>
                 <option *ngFor="let categorie of listeCategories"  [value]="categorie.nomCategFiche" value=""> {{categorie.nomCategFiche}} </option>
               </select>
@@ -210,7 +210,7 @@
           <div class="interior">
             <!--a class="btn" href="#open-modal">Choisir Ingrédients📙 </a-->
             <!--button class="btn btn-danger" (click)="triggerModal(modalData)">Choisir Ingrédients📙</button-->
-            <button class="btn btn-danger" (click)="triggerModal(modalData)">Open Modal</button>
+            <button class="btn btn-danger" (click)="triggerModal(modalData)">Ingrédients📙</button>
             
 
             <ng-template #modalData let-modal>
@@ -224,15 +224,18 @@
                   <div clas="row">
                       <p>Sélectionner ceux dont vous aurez besoin <span class="required">*</span></p>
                       <ul class="ks-cboxtags">
-                      <li *ngFor="let ingredient of listeIngredients"><input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value=""><label [for]="ingredient.nomIngr" (change)="setShowTrue(ingredient.nomIngr)" required>{{ingredient.nomIngr}}</label></li>
+                      <li *ngFor="let ingredient of listeIngredients"><input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value="" (change)="setShowTrue(ingredient.nomIngr)" ><label [for]="ingredient.nomIngr"  required>{{ingredient.nomIngr}}</label></li>
                       </ul>
                   </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-success"  >Valider</button>
+                <button type="button" class="btn btn-success"  (click)="valider()">Valider</button>
                 <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
               </div>
             </ng-template>
+
+            
+
             
 
           </div>
@@ -243,7 +246,6 @@
               <p>Veuillez sélectionner vos intérêts</p>
               <ul>
                 <li *ngFor="let ingredient of ingredientSelectedArray">
-                <input type="checkbox" id="music" name="interest" value="music">
                 <label for="coding">{{ingredient}}</label></li>
               </ul>
               
@@ -316,9 +318,17 @@
           </div>
         </div>
         
+        <h5>3. Couts</h5>
+        <fieldset>
+          <p>Veuillez sélectionner vos intérêts</p>
+          <ul>
+            <li *ngFor="let ingredient of ingredientSelectedArray">
+            <label for="coding">{{ingredient}}</label></li>
+          </ul>
+          
+        </fieldset>
         
-        
-        <h5>3. Imprimer</h5>
+        <h5>4. Imprimer</h5>
         <div class="question">
           <p>Principle investigator:<span class="required">*</span></p>
           <div class="question-answer">
