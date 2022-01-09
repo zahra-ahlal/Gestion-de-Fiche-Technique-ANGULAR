@@ -6,6 +6,9 @@ import { map } from 'rxjs/operators';
 import { FicheService } from 'src/app/services/fiche.service';
 import { IngredientService } from 'src/app/services/ingredient.service';
 
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+
+
 @Component({
   selector: 'app-brouillon',
   templateUrl: './brouillon.component.html',
@@ -14,6 +17,7 @@ import { IngredientService } from 'src/app/services/ingredient.service';
 export class BrouillonComponent implements OnInit {
 
   title = 'angular13';
+  fiche: any;
   searchText = "";
   listOfContacts:any ;
   listCategFiche:any ;
@@ -21,15 +25,35 @@ export class BrouillonComponent implements OnInit {
   listeIngredients : any;
   categSelectedArray : string[];
   isSearched : boolean = false;
+  nomPlats: string[] = new Array();
 
-  constructor(private ingrService: IngredientService,private http: HttpClient, private categService:CategFichesService,private ficheService: FicheService){ 
+  formGroup : FormGroup;
+  constructor(private fb : FormBuilder,private ingrService: IngredientService,private http: HttpClient, private categService:CategFichesService,private ficheService: FicheService){ 
   }
 
   ngOnInit(): void {
     this.categSelectedArray = [];
     this.getCategFiche();
+    this.initForm();
     this.getFiches();
     this.getListeIngredients() ;
+  }
+
+  initForm(){
+    this.formGroup = this.fb.group({
+      'ficheTechnique' : ['']
+    })
+    this.formGroup.get('ficheTechnique').valueChanges.subscribe(response => {
+      console.log('data is ', response);
+      this.filterData(response);
+    })
+  }
+
+  filterData(enteredData){
+    //console.log(this.nomPlats[0])
+    this.listFiches = this.nomPlats.filter(item => {
+      return item.toLowerCase().indexOf(enteredData.toLowerCase()) > -1
+    })
   }
 
   getCategFiche(){
@@ -49,6 +73,7 @@ export class BrouillonComponent implements OnInit {
   }
 
   getFiches(){
+    
     this.ficheService.getAllFiches().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -56,8 +81,15 @@ export class BrouillonComponent implements OnInit {
         )
       )
     ).subscribe(data => {
+      console.log("eaeaeaea")
       this.listFiches = data;
+      for(let i =0;i<data.length;i++){
+        this.nomPlats.push(data[i].nomPlat)
+        console.log(this.nomPlats[i]);
+      }
+      
     });
+
   }
 
   getListeIngredients() : void {
