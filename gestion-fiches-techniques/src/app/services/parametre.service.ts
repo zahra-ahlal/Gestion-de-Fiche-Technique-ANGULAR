@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import {
   Firestore, addDoc, collection, collectionData,
   doc, docData, deleteDoc, updateDoc, DocumentReference, setDoc
@@ -11,13 +12,18 @@ import { IParametre } from '../models/parametre.model';
   providedIn: 'root'
 })
 export class ParametreService {
+  dbPath = '/parametres'
+  paramsRef : AngularFirestoreCollection<IParametre>;
 
-  constructor(private firestore: Firestore) { }
+  constructor(private firestore: Firestore,private db: AngularFirestore) {
+    this.paramsRef = db.collection(this.dbPath)
+   }
 
  
-  getParametres(): Observable<IParametre[]> {
-    const parametresRef = collection(this.firestore, 'parametres');
-    return collectionData(parametresRef, { idField: 'idP' }) as Observable<IParametre[]>;
+  getParametres():AngularFirestoreCollection<IParametre> {//Observable<IParametre[]> {
+    return this.paramsRef;
+    /*const parametresRef = collection(this.firestore, 'parametres');
+    return collectionData(parametresRef, { idField: 'idP' }) as Observable<IParametre[]>;*/
   }
 
   getParametreByID(id: string) {
