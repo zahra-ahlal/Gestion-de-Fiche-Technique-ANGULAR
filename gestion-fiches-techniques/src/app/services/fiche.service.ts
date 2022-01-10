@@ -9,7 +9,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { ICategFiches } from '../models/categFiches.model';
+import { IEtape } from '../models/etape.model';
 import { IFiche } from '../models/fiche.model';
+import { IngredientInterface } from '../models/ingredient.model';
 import { CategFichesService } from './categ-fiches.service';
 
 
@@ -37,7 +39,7 @@ export class FicheService {
   
 
 
-  addFiche(f: IFiche){
+  addFiche(f: IFiche,listeIngr : IngredientInterface[],listEtape : IEtape[]){
     return this.db.collection(this.dbPath).add({
       nomPlat: f.nomPlat,
       nbCouverts: f.nbCouverts,
@@ -45,10 +47,14 @@ export class FicheService {
       //listeEtapes: f.listeEtapes
       idCategFiche :f.idCategFiche,
       nomResponsable: f.nomResponsable,
-      listeEtapes: f.listeEtapes
+      listeEtapes: listEtape,
+      listeIngr : listeIngr,
+      listeCouts:f.listeCouts
 
     });
   }
+
+  
 
   getFicheByName(fiche : String): AngularFirestoreCollection<IFiche>{
     return this.db.collection(this.dbPath,ref => ref.where('nomPlat','==', fiche ));

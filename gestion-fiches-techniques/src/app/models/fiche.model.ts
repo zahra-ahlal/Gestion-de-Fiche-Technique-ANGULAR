@@ -1,4 +1,6 @@
+import { ICout } from "./cout.model";
 import { IEtape } from "./etape.model";
+import { IngredientInterface } from "./ingredient.model";
 
 export interface IFiche {
     idF?: string;
@@ -7,6 +9,8 @@ export interface IFiche {
     tempsTot: number;
     idCategFiche: string;
     nomResponsable: string;
-    listeEtapes: Array<IEtape>;
+    listeEtapes: IEtape[];
+    listeIngr : IngredientInterface[];
+    listeCouts : ICout;
 
 }
