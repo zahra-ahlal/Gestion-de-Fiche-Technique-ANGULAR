@@ -56,6 +56,9 @@ export class ViewFicheComponent implements OnInit {
     console.log(this.fiche)
   }
 
+  printComponent(){
+    window.print();
+  }   
   
 
 }
