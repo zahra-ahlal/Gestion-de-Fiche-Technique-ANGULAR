@@ -45,7 +45,7 @@ export class AjoutFicheComponent implements OnInit {
   coutPers:number=0;
   nbCouverts:number=10;
   isValidate:boolean=false;
-
+  tempsTot : number = 0;
 
   tempsTotcalc:number;
   categ : any;
@@ -117,7 +117,7 @@ export class AjoutFicheComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.listeIngredientsFinal = this.ingredientSelectedArray;
     this.listeEtapesFinal = this.listeEtapesSelected;
-    this.ficheService.addFiche(form.value,this.listeIngredientsFinal,this.listeEtapesFinal).//,this.listeIngredientsFinal)
+    this.ficheService.addFiche(form.value,this.listeIngredientsFinal,this.listeEtapesFinal,this.tempsTot).//,this.listeIngredientsFinal)
       then(() => form.reset());
   }
 

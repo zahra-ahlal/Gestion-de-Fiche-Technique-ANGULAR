@@ -43,18 +43,17 @@ export class FicheService {
   
 
 
-  addFiche(f: IFiche,listeIngr : IngredientInterface[],listEtape : IEtape[]){
+  addFiche(f: IFiche,listeIngr : IngredientInterface[],listEtape : IEtape[],temps : number){
     return this.db.collection(this.dbPath).add({
       nomPlat: f.nomPlat,
       nbCouverts: f.nbCouverts,
-      tempsTot: f.tempsTot,
+      tempsTot: temps,
       //listeEtapes: f.listeEtapes
       idCategFiche :f.idCategFiche,
       nomResponsable: f.nomResponsable,
       listeEtapes: listEtape,
       listeIngr : listeIngr,
       listeCouts:f.listeCouts
-
     });
   }
 
