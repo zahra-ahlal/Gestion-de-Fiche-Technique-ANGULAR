@@ -47,7 +47,7 @@
                     {{ ingredient.nomIngr }}
                 </th>
                 <th>
-                    <input type="text" name="ingredient.quantite" [(ngModel)]="ingredient.quantite">
+                    <input type="number" name="ingredient.quantite" [(ngModel)]="ingredient.quantite">
                 </th>
                 <th>
                     <a class="col s1" (click)="removeIngredient(ingredient)">x</a>
