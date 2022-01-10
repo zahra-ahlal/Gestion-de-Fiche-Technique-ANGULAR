@@ -98,7 +98,10 @@ export class AjoutFicheComponent implements OnInit {
     this.listeEtapesSelected = []
     this.tempsTotcalc=0;
   }
-
+  
+  print() {
+    console.log(this.assaisonnement);
+  }
   getParams():void{
     this.paramsService.getParametres().snapshotChanges().pipe(
       map(changes =>
@@ -193,9 +196,12 @@ export class AjoutFicheComponent implements OnInit {
   }
  
 
-  setShowTrue(name: IngredientInterface){
-    this.ingredientSelectedArray.push(name);
-    //console.log(this.ingredientSelectedArray)
+  setShowTrue(name: number){
+    //this.ingredientSelectedArray.push(name);
+    console.log(name)
+  }
+  onKey(event: any) { // without type info
+    this.assaisonnement= event.target.value ;
   }
 
   addIngr(ingr: IngredientInterface){

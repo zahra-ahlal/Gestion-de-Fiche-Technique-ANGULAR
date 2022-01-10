@@ -183,9 +183,19 @@
          
                   <div *ngIf = "!idCategFiche" >
                     <select style="display: block;width:500px" [(ngModel)]="categSelected" name="nomCategFiche" required>
-                      <option value="">Catégorie</option>
+                      <option [value]="categ" value="" disabled>Catégorie</option>
                       <option *ngFor="let categorie of listeCategories"  [value]="categorie.nomCategFiche" value=""> {{categorie.nomCategFiche}} </option>
                     </select>
+                  </div>
+
+                  <div >
+                    <!--select style="display: block;width:500px" [(ngModel)]="assaisonnement" (change)="setShowTrue(assaisonnement)" name="assaisonnement" placeholder="Assaisonnement" required>
+                      <option  value="" disabled> Assaisonnement </option>
+                      <option  [value]="assaisonnement" value="" > {{5 }} %</option>
+                      <option  [value]="assaisonnement" value=""> {{10}} % </option>
+                    </select-->
+                  
+                    
                   </div>
           </div>
           <div>
@@ -341,7 +351,7 @@
             <thead>
               <tr>
                 <th scope="col">Total Denrées</th>
-                <th scope="col">Assaisonnement</th>
+                <th scope="col">Assaisonnement<br><input type="number" min="0" max="1" step="0.05"  value="{{assaisonnement}}" (keyup)="onKey($event)" >{{assaisonnement}}</th>
                 <th scope="col">Coût Matières</th>
                 <th scope="col">Coût Personnel</th>
                 <th scope="col">Coût Fluide</th>

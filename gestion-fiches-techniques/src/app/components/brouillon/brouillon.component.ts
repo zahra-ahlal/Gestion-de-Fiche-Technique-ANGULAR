@@ -8,6 +8,7 @@ import { IngredientService } from 'src/app/services/ingredient.service';
 
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -35,7 +36,7 @@ export class BrouillonComponent implements OnInit {
   closeModal: string;
 
   formGroup : FormGroup;
-  constructor(private modalService: NgbModal,private fb : FormBuilder,private ingrService: IngredientService,private http: HttpClient, private categService:CategFichesService,private ficheService: FicheService){ 
+  constructor(private router: Router,private modalService: NgbModal,private fb : FormBuilder,private ingrService: IngredientService,private http: HttpClient, private categService:CategFichesService,private ficheService: FicheService){ 
   }
 
   ngOnInit(): void {
@@ -79,7 +80,8 @@ export class BrouillonComponent implements OnInit {
   }
 
   setShowTrue(name: string){
-    this.categSelectedArray.push(name);
+    //this.categSelectedArray.push(name);
+    console.log(name)
   }
 
   getFiches(){
@@ -159,6 +161,12 @@ export class BrouillonComponent implements OnInit {
         } else {
           return  `with: ${reason}`;
         }
+      }
+
+      clicSurBouton(pageName:string){
+        //const queryParams: Params = { categorie: categ ,fiches : categ.listeFiches};
+        console.log(pageName)
+        this.router.navigate([`${pageName}`]);
       }
 
 }
