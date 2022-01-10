@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { map } from 'rxjs/operators';
 import { EditIngredientComponent } from 'src/app/modal/edit-ingredient/edit-ingredient.component';
 import { IngredientService } from 'src/app/services/ingredient.service';
@@ -16,13 +16,22 @@ import { IngredientComponent } from '../ingredient/ingredient.component';
 })
 export class ListeIngredientsComponent implements OnInit {
 
+  title = 'ng-bootstrap-modal-demo';
+  closeResult: string;
+  modalOptions:NgbModalOptions;
+
+
+
   idCategIngr : string = "";
   nomCateg : string = "";
   listeIngredients : any;
   constructor(private ingrService: IngredientService,
       public afAuth: AngularFireAuth,private location: Location, 
-      private modal: NgbModal, private route: ActivatedRoute,
-      private router : Router) { }
+      private modalService: NgbModal, private route: ActivatedRoute,
+      private router : Router) { this.modalOptions = {
+        backdrop:'static',
+        backdropClass:'customBackdrop'
+      } }
   
   ngOnInit(): void {
     this.idCategIngr = this.route.snapshot.params['idCategIngr'];
@@ -46,7 +55,7 @@ export class ListeIngredientsComponent implements OnInit {
   }
   
   editModal(ingredient: IngredientInterface) {
-    const modalRef = this.modal.open(EditIngredientComponent, {
+    const modalRef = this.modalService.open(EditIngredientComponent, {
       size: 'lg',
       centered: true,
       windowClass: 'dark-modal',
@@ -62,12 +71,30 @@ export class ListeIngredientsComponent implements OnInit {
     }
   }
 
+  open(content) {
+    this.modalService.open(content, this.modalOptions).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+
   goBack() {
     this.location.back();
   }
 
   ajoutIngredient() {
-    const modalRef = this.modal.open(IngredientComponent, {
+    const modalRef = this.modalService.open(IngredientComponent, {
       size: 'lg',
       centered: true,
       windowClass: 'dark-modal',

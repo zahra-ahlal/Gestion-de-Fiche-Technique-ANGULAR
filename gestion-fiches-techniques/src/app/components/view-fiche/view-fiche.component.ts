@@ -32,7 +32,7 @@ export class ViewFicheComponent implements OnInit {
   activeModal: any;
   
   
-  @Input()fiche: any;
+  fiche: any;
   idFicheSelected:string;
   constructor(private ficheService:FicheService,private route: ActivatedRoute) { }
  
@@ -40,7 +40,7 @@ export class ViewFicheComponent implements OnInit {
     this.idFicheSelected =this.route.snapshot.params['idFiche'];
     console.log(this.idFicheSelected)
     this.getFicheById();
-    console.log(this.getFicheById())  
+    //console.log(this.getFicheById())  
   }
 
   getFicheById(){
@@ -51,8 +51,9 @@ export class ViewFicheComponent implements OnInit {
         )
       )
     ).subscribe(data => {
-      this.fiche = data;
+      this.fiche = data[0];
     });
+    console.log(this.fiche)
   }
 
   

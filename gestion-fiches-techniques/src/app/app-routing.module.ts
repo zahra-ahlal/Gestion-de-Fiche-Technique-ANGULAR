@@ -43,7 +43,7 @@ const routes: Routes = [
   { path: 'br', component: BrouillonComponent },
   { path: 'selctionnerIngr', component: EditIngredientsFicheComponent },
   { path: 'rechercher', component: BrouillonComponent },
-  //{ path: ':idFiche', component: ViewFicheComponent, },
+  { path: ':idFiche', component: ViewFicheComponent, },
   //{ path: 'parametres/edit', component: ParametreComponent, },
   { path: ':idCategFiche/:nomCateg/listeFiches', component: ListeFichesComponent, },
   { path: ':idCategFiche/:nomCateg/listeFiches/ajoutFiche', component: AjoutFicheComponent, },
