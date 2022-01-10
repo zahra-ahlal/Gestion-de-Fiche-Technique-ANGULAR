@@ -120,7 +120,7 @@ import { ProfilComponent } from './components/profil/profil.component';
     //MatIconModule,
     //MatFormFieldModule,
     AngularFireModule.initializeApp(environment.firebase),
-    //provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     BrowserAnimationsModule
   ],
