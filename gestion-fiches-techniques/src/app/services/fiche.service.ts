@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { ICategFiches } from '../models/categFiches.model';
+import { ICout } from '../models/cout.model';
 import { IEtape } from '../models/etape.model';
 import { IFiche } from '../models/fiche.model';
 import { IngredientInterface } from '../models/ingredient.model';
@@ -43,17 +44,17 @@ export class FicheService {
   
 
 
-  addFiche(f: IFiche,listeIngr : IngredientInterface[],listEtape : IEtape[],temps : number){
+  addFiche(f: IFiche,categ:string,listeIngr : IngredientInterface[],listEtape : IEtape[],temps : number,couts:ICout){
     return this.db.collection(this.dbPath).add({
       nomPlat: f.nomPlat,
       nbCouverts: f.nbCouverts,
       tempsTot: temps,
       //listeEtapes: f.listeEtapes
-      idCategFiche :f.idCategFiche,
+      idCategFiche :categ,
       nomResponsable: f.nomResponsable,
       listeEtapes: listEtape,
       listeIngr : listeIngr,
-      listeCouts:f.listeCouts
+      listeCouts:couts
     });
   }
 

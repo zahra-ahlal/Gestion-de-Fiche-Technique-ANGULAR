@@ -37,6 +37,10 @@ export class AjoutFicheComponent implements OnInit {
   }
   etape : IEtape = {nomEtape: '',descritpion: '',duree: '', listeIngr : null};
 
+  categfinal:any;
+  idCategSelected:number;
+
+
   couts:ICout={coutMatiere : 0,coutPersonnel : 0,coutFluides : 0};
   params:any;
   pHT:number = 0;
@@ -60,6 +64,7 @@ export class AjoutFicheComponent implements OnInit {
   listeIngredients : any;
   listeEtapes : any;
   listeCategories : any;
+  //listeCouts:any;
 
   closeModal: string;
 
@@ -69,7 +74,7 @@ export class AjoutFicheComponent implements OnInit {
 
   ingredientSelectedArray:IngredientInterface[];
   listeIngredientsFinal:  IngredientInterface[] = new Array();
-
+ 
 
   @Input() idCategFiche: string; 
   
@@ -94,6 +99,7 @@ export class AjoutFicheComponent implements OnInit {
     
     this.getListeEtapes() ;
     this.ingrSelected = "";
+    this.categSelected="";
     this.ingredientSelectedArray = [];
     this.listeEtapesSelected = []
     this.tempsTotcalc=0;
@@ -117,7 +123,7 @@ export class AjoutFicheComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.listeIngredientsFinal = this.ingredientSelectedArray;
     this.listeEtapesFinal = this.listeEtapesSelected;
-    this.ficheService.addFiche(form.value,this.listeIngredientsFinal,this.listeEtapesFinal,this.tempsTot).//,this.listeIngredientsFinal)
+    this.ficheService.addFiche(form.value,this.categfinal.id,this.listeIngredientsFinal,this.listeEtapesFinal,this.tempsTot,this.couts).//,this.listeIngredientsFinal)
       then(() => form.reset());
   }
 
@@ -196,7 +202,7 @@ export class AjoutFicheComponent implements OnInit {
   }
  
 
-  setShowTrue(name: number){
+  setShowTrue(name: string){
     //this.ingredientSelectedArray.push(name);
     console.log(name)
   }
@@ -209,9 +215,33 @@ export class AjoutFicheComponent implements OnInit {
     //console.log(this.ingredientSelectedArray)
   }
 
+  addCateg(categ: string){
+    //getCategByName
+    console.log('gggg')
+    //this.categSelected = categ;
+    console.log(this.categSelected)
+    this.categService.getCategByName(this.categSelected).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.categfinal = data[0];
+      //console.log(this.categfinal.id)
+    });
+    //this.idCategSelected = this.categfinal.id;
+    
+
+  }
+
   addEtape(etape: IEtape){
     this.listeEtapesSelected.push(etape);
     console.log(this.listeEtapesSelected[0].nomEtape)
+  }
+
+  addCout(cout:ICout){
+   
   }
 
   
