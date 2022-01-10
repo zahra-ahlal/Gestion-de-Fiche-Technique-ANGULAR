@@ -8,18 +8,12 @@ import { IFiche } from '../../models/fiche.model';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { IEtape } from '../../models/etape.model';
 import { EtapeService } from 'src/app/services/etape.service';
-import { EtapeComponent } from '../etape/etape.component';
 import { CategFichesService } from 'src/app/services/categ-fiches.service';
-import { ActivatedRoute } from '@angular/router';
-import { ICategFiches } from 'src/app/models/categFiches.model';
+import { Router } from '@angular/router';
 import { IngredientInterface } from 'src/app/models/ingredient.model';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EditIngredientsFicheComponent } from '../../modal/edit-ingredients-fiche/edit-ingredients-fiche.component';
-import { Console } from 'console';
 import { ICout } from 'src/app/models/cout.model';
 import { ParametreService } from 'src/app/services/parametre.service';
-import { AnyTxtRecord } from 'dns';
-import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y/input-modality/input-modality-detector';
 
 
 
@@ -64,7 +58,6 @@ export class AjoutFicheComponent implements OnInit {
   listeIngredients : any;
   listeEtapes : any;
   listeCategories : any;
-  //listeCouts:any;
 
   closeModal: string;
 
@@ -78,13 +71,9 @@ export class AjoutFicheComponent implements OnInit {
 
   @Input() idCategFiche: string; 
   
-  
-  //@Input()etapes: IEtape[] = [];
-  
-
-  constructor(private paramsService: ParametreService,private ingrService: IngredientService,private route: ActivatedRoute,private modalService: NgbModal,
+  constructor(private paramsService: ParametreService,private ingrService: IngredientService,private modalService: NgbModal,
       public afAuth: AngularFireAuth,private ficheService: FicheService, 
-      private etapeService : EtapeService, private categService : CategFichesService,private modal: NgbModal) { }
+      private etapeService : EtapeService, private categService : CategFichesService,private modal: NgbModal,private router : Router) { }
 
   ngOnInit(): void {
     this.isSelected = false;
@@ -95,7 +84,6 @@ export class AjoutFicheComponent implements OnInit {
     //console.log(this.idCategFiche);
     this.getListeCategories() ;
     this.getListeIngredients() ;
-    //this.getCategFicheByID();
     
     this.getListeEtapes() ;
     this.ingrSelected = "";
@@ -127,37 +115,21 @@ export class AjoutFicheComponent implements OnInit {
     console.log("etape 1"+ this.listeEtapesSelected[0])
     this.ficheService.addFiche(form.value,this.categfinal.id,this.listeIngredientsFinal,this.listeEtapesFinal,this.tempsTot,this.couts).//,this.listeIngredientsFinal)
       then(() => form.reset());
+    this.router.navigate(['/accueil']);
   }
 
   validerFicheAvantAjout(){
     this.isValidate=true;
     for(let i=0;i<this.listeEtapesSelected.length;i++){
       for(let j=0;j<this.listeEtapesSelected[i].listeIngr.length;j++){
-        //this.q=this.listeEtapesSelected[i].listeIngr[j].quantite;
-        //console.log(this.listeEtapesSelected[i].listeIngr[j].quantite*this.listeEtapesSelected[i].listeIngr[j].prixU)
-        this.pHT += this.listeEtapesSelected[i].listeIngr[j].quantite*this.listeEtapesSelected[i].listeIngr[j].prixU
-        //console.log("hola")
+        this.pHT += this.listeEtapesSelected[i].listeIngr[j].quantite*this.listeEtapesSelected[i].listeIngr[j].prixU;
       }
     } 
-
-    //this.coutPers = this.params.coutHorMoy;
     this.nbCouverts = this.fiche.nbCouverts;
     this.couts.coutPersonnel =this.params.coutHorMoy*3;
     this.couts.coutMatiere =this.pHT + (this.pHT*this.assaisonnement);
   }
 
-
-  /*getCategFicheByID(){
-    this.categService.getCategByID(this.idCategFiche).snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(data => {
-      this.categ = data;
-    });
-  }*/
 
   
   getListeCategories(){
