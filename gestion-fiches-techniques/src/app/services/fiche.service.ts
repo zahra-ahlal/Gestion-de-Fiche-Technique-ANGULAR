@@ -36,6 +36,10 @@ export class FicheService {
   getFichesByIDCategorie(categ : String): AngularFirestoreCollection<IFiche>{
     return this.db.collection(this.dbPath,ref => ref.where('idCategFiche','==', categ ));
   }
+
+  getFichesByID(id : String): AngularFirestoreCollection<IFiche>{
+    return this.db.collection(this.dbPath,ref => ref.where('idF','==', id ));
+  }
   
 
 

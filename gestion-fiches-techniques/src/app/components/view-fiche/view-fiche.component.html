@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    </head>
+    <body>
+      <div class="testbox">
+      <form action="#" #ficheForm="ngForm" >
+        <div class="banner " >
+          <h1>{{fiche.nomPlat}}</h1>
+        </div>
+        <div class="item">
+          
+            
+                <div class="city-item">
+          <input type="text" class="form-control" name="nomResponsable"
+                   placeholder="Nom Responsable" disabled>
+                  <input type="text" class="form-control" name="nomPlat"  placeholder="Nom Plat" disabled/>
+                  <input type="text" class="form-control" name="nbCouverts"
+                  placeholder="Nombre de Couverts" disabled>
+         
+                  <div>
+                    <input type="text" class="form-control" name="nomCategFiche" disabled>
+                  </div>
+
+          </div>
+        </div>
+        
+        
+        <h5>1. Ma liste d'ingrédients pour ce plat</h5>
+        <div class="question">
+          <!--small> Please include the following in your application.</small-->
+          <div name="first"  class="question-answer checkbox-item">
+            <fieldset>
+              <ul>
+                <li *ngFor="let ingredient of listeIngredientsFiche">
+                <label for="coding" >{{ingredient.nomIngr}}</label></li>
+              </ul>
+            </fieldset>
+          </div>
+          </div>
+    
+        <h5>2. Mes étapes 🕑</h5>
+        <div class="item">
+          <div align="center" >
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Etape N°</th>
+                  <th scope="col">Nom etape</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Duree</th>
+                  <th scope="col">Ingredients</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let etape of listeEtapesFiche;index as i">
+                  <th scope="row">{{ i+1 }}</th>
+                  <td>{{ etape.nomEtape }}</td>
+                  <td>{{ etape.descritpion }}</td>
+                  <td>{{ etape.duree }}</td>
+                  <td><p *ngFor="let ingredient of etape.listeIngr"> {{ingredient.nomIngr}} : {{ingredient.quantite}} : {{ingredient.unite}} </p> </td>
+
+                </tr>
+                </tbody>
+            </table>
+            
+          </div>
+        </div>
+        <br>
+        <div class="interior">
+        </div>
+        <div>
+          <h5>3. Couts 💶</h5>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Total Denrées</th>
+                <th scope="col">Assaisonnement</th>
+                <th scope="col">Coût Matières</th>
+                <th scope="col">Coût Personnel</th>
+                <th scope="col">Coût Fluide</th>
+                <th scope="col">Coût de Production Total</th>
+                <th scope="col">Coût de Production Portion</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td>{{ pHT }}</td>
+                <td>{{ pHT*assaisonnement }}</td>
+                <td>{{ couts.coutMatiere }}</td>
+                <td>{{ coutPers }}</td>
+                <td>{{ coutFluide }}</td>
+                <td>{{ couts.coutMatiere + coutPers + coutFluide}}</td>
+                <td>{{ (couts.coutMatiere + coutPers + coutFluide)/nbCouverts }}</td>
+              </tr>
+              </tbody>
+          </table>
+        </div>
+        
+          <div class="btn-block">
+            <button type="submit" href="/">Modifier ma fiche</button>
+            <button type="submit" href="/">Supprimer ma fiche</button>
+            <button type="submit" href="/">Imprimer ma fiche</button>
+            <button type="submit" href="/">Imprimer l'étiquette</button>
+          </div>
+      </form>
+      </div>
+    </body>
+  </html>
