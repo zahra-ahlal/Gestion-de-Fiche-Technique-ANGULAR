@@ -219,7 +219,7 @@
                   <div clas="row">
                       <p>Sélectionner ceux dont vous aurez besoin <span class="required">*</span></p>
                       <ul class="ks-cboxtags">
-                      <li *ngFor="let ingredient of listeIngredients" ><input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value="" (change)="setShowTrue(ingredient.nomIngr)" ><label [for]="ingredient.nomIngr"  required>{{ingredient.nomIngr}}</label></li>
+                      <li *ngFor="let ingredient of listeIngredients" ><input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value="" (click)="addIngr(ingredient.nomIngr)" ><label [for]="ingredient.nomIngr"  required>{{ingredient.nomIngr}}</label></li>
                       </ul>
                   </div>
               </div>
@@ -331,13 +331,12 @@
           <thead>
             <tr>
               <th scope="col">Total Denrées</th>
-              <th scope="col">ASS 5%</th>
+              <th scope="col">Assaisonnement</th>
               <th scope="col">Coût Matières</th>
               <th scope="col">Coût Personnel</th>
               <th scope="col">Coût Fluide</th>
               <th scope="col">Coût de Production Total</th>
               <th scope="col">Coût de Production Portion</th>
-
 
               <!--th scope="col">Edit</th-->
               <!--th scope="col">Delete</th-->
@@ -345,13 +344,13 @@
           </thead>
           <tbody *ngIf="listeEtapes">
             <tr >
-              <td>{{ tempsTotcalc }}</td>
-              <td>{{ tempsTotcalc }}</td>
-              <td>{{ tempsTotcalc }}</td>
-              <td>{{ tempsTotcalc }}</td>
-              <td>{{ tempsTotcalc }}</td>
-              <td>{{ tempsTotcalc }}</td>
-              <td>{{ tempsTotcalc }}</td>
+              <td>{{ pHT }}</td>
+              <td>{{ pHT*assaisonnement }}</td>
+              <td>{{ couts.coutMatiere }}</td>
+              <td>{{ coutPers }}</td>
+              <td>{{ coutFluide }}</td>
+              <td>{{ couts.coutMatiere + coutPers + coutFluide}}</td>
+              <td>{{ (couts.coutMatiere + coutPers + coutFluide)/nbCouverts }}</td>
               <!--td>
                 <i class="bi bi-pencil-square" style="color: green;" 
                     (click)="editModal(listeEtapes)"></i>

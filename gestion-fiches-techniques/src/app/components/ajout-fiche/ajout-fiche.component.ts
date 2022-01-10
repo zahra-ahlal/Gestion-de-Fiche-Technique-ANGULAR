@@ -16,6 +16,10 @@ import { IngredientInterface } from 'src/app/models/ingredient.model';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditIngredientsFicheComponent } from '../../modal/edit-ingredients-fiche/edit-ingredients-fiche.component';
 import { Console } from 'console';
+import { ICout } from 'src/app/models/cout.model';
+import { ParametreService } from 'src/app/services/parametre.service';
+import { AnyTxtRecord } from 'dns';
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y/input-modality/input-modality-detector';
 
 
 
@@ -26,16 +30,30 @@ import { Console } from 'console';
 })
 export class AjoutFicheComponent implements OnInit {
 
-  fiche: IFiche = { nomPlat: "", nbCouverts: null, tempsTot: 0,idCategFiche:"", nomResponsable:"",listeEtapes:null}
+  fiche: IFiche = {
+    nomPlat: "", nbCouverts: null, tempsTot: 0, idCategFiche: "", nomResponsable: "", listeEtapes: [],
+    listeIngr: [],
+    listeCouts: null
+  }
   etape : IEtape = {nomEtape: '',descritpion: '',duree: '', listeIngr : null};
-  
+
+  couts:ICout={coutMatiere : 0,coutPersonnel : 0,coutFluides : 0};
+  params:any;
+  pHT:number = 0;
+  assaisonnement:number=0.5;
+  coutFluide:number=0.5;
+  coutPers:number=0;
+  nbCouverts:number=10;
+
+
   tempsTotcalc:number;
   categ : any;
   activeModal: any;
   isSelected: boolean;
   ingrSelected:string;
   categSelected:string;
-  etapeSelected:string;
+  
+  
   
   show: boolean = false;
   listeIngredients : any;
@@ -43,7 +61,13 @@ export class AjoutFicheComponent implements OnInit {
   listeCategories : any;
 
   closeModal: string;
-  ingredientSelectedArray:string[];
+
+  listeEtapesSelected:IEtape[];
+  listeEtapesFinal:  IEtape[] = new Array();
+  
+
+  ingredientSelectedArray:IngredientInterface[];
+  listeIngredientsFinal:  IngredientInterface[] = new Array();
 
 
   @Input() idCategFiche: string; 
@@ -52,12 +76,13 @@ export class AjoutFicheComponent implements OnInit {
   //@Input()etapes: IEtape[] = [];
   
 
-  constructor(private ingrService: IngredientService,private route: ActivatedRoute,private modalService: NgbModal,
+  constructor(private paramsService: ParametreService,private ingrService: IngredientService,private route: ActivatedRoute,private modalService: NgbModal,
       public afAuth: AngularFireAuth,private ficheService: FicheService, 
       private etapeService : EtapeService, private categService : CategFichesService,private modal: NgbModal) { }
 
   ngOnInit(): void {
     this.isSelected = false;
+    this.getParams();
 
     //this.idCategFiche =this.route.snapshot.params['idCategFiche'];
     //console.log(this.idCategFiche);
@@ -70,15 +95,38 @@ export class AjoutFicheComponent implements OnInit {
     this.ingrSelected = "";
     this.ingredientSelectedArray = [];
     this.tempsTotcalc=0;
-   
-
   }
 
-  
+  getParams():void{
+    this.paramsService.getParametres().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.params = data;
+    });
+  }
   
   onSubmit(form: NgForm) {
-    this.ficheService.addFiche(form.value).
+    this.listeIngredientsFinal = this.ingredientSelectedArray;
+    this.listeEtapesFinal = this.listeEtapesSelected;
+    this.ficheService.addFiche(form.value,this.listeIngredientsFinal,this.listeEtapesFinal).//,this.listeIngredientsFinal)
       then(() => form.reset());
+  }
+
+  validerFicheAvantAjout(){
+    for(let i=0;i<this.listeEtapesSelected.length;i++){
+      for(let j=0;i<this.listeEtapesSelected[i].listeIngr.length;j++){
+        this.pHT += this.listeEtapesSelected[i].listeIngr[j].quantite
+      }
+    } 
+
+    this.coutPers = this.params.coutHorMoy;
+    this.nbCouverts = this.fiche.nbCouverts;
+    this.couts.coutPersonnel =this.coutPers;
+    this.couts.coutMatiere =this.pHT + (this.pHT*this.assaisonnement);
   }
 
   /*getCategFicheByID(){
@@ -140,23 +188,24 @@ export class AjoutFicheComponent implements OnInit {
     //getted from binding
     //console.log(this.number)
   }
+ 
 
+  setShowTrue(name: IngredientInterface){
+    this.ingredientSelectedArray.push(name);
+    //console.log(this.ingredientSelectedArray)
+  }
 
-  addItem(ingrSelected : string ){
-    //console.log(ingrSelected);
-    //this.ingredientSelectedArray.push(ingrSelected);
-    //console.log("coucouuu");
+  addIngr(ingr: IngredientInterface){
+    this.ingredientSelectedArray.push(ingr);
+    //console.log(this.ingredientSelectedArray)
+  }
+
+  addetape(etape: IEtape){
+    this.listeEtapesSelected.push(etape);
+    //console.log(this.ingredientSelectedArray)
   }
 
   
-
-  setShowTrue(name: string){
-    this.ingredientSelectedArray.push(name);
-  }
-
-  valider(){
-
-  }
 
   onDrop(event: CdkDragDrop<any>){
     if (event.previousContainer === event.container) {

@@ -14,7 +14,11 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class EditFicheComponent implements OnInit {
  
-  fiche: IFiche = { nomPlat: "", nbCouverts: 0, tempsTot: 0,idCategFiche:"", nomResponsable:"",listeEtapes:null}
+  fiche: IFiche = {
+    nomPlat: "", nbCouverts: 0, tempsTot: 0, idCategFiche: "", nomResponsable: "", listeEtapes: [],
+    listeIngr: [],
+    listeCouts: null
+  }
   activeModal: any;
   isSelected: boolean;
   ingrSelected:string;
