@@ -219,7 +219,7 @@
                   <div clas="row">
                       <p>Sélectionner ceux dont vous aurez besoin <span class="required">*</span></p>
                       <ul class="ks-cboxtags">
-                      <li *ngFor="let ingredient of listeIngredients" ><input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value="" (click)="addIngr(ingredient.nomIngr)" ><label [for]="ingredient.nomIngr"  required>{{ingredient.nomIngr}}</label></li>
+                      <li *ngFor="let ingredient of listeIngredients" ><input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value="" (click)="addIngr(ingredient)" ><label [for]="ingredient.nomIngr"  required>{{ingredient.nomIngr}}</label></li>
                       </ul>
                   </div>
               </div>
@@ -240,7 +240,7 @@
             <fieldset>
               <ul>
                 <li *ngFor="let ingredient of ingredientSelectedArray">
-                <label for="coding" >{{ingredient}}</label></li>
+                <label for="coding" >{{ingredient.nomIngr}}</label></li>
               </ul>
               
             </fieldset>
@@ -254,44 +254,49 @@
           <div align="center" >
             <!-------      CHOISIR ETAPE        ---------->
             <div class="interior">
-              <a class="btn" href="#chosir-etape">Parcourir les étapes ⏱</a>
+              <a class="btn" href="#chosir-etape" (click)="triggerModal(modalData2)">Parcourir les étapes ⏱</a>
               <app-etape></app-etape>
             </div>
-              
-            <div id="chosir-etape" class="modal-window">
-              <div clas="row">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">Etape N°</th>
-                      <th scope="col">Nom etape</th>
-                      <th scope="col">Description</th>
-                      <th scope="col">Duree</th>
-                      <!--th scope="col">Edit</th-->
-                      <!--th scope="col">Delete</th-->
-                    </tr>
-                  </thead>
-                  <tbody *ngIf="listeEtapes">
-                    <tr *ngFor="let etape of listeEtapes;index as i">
-                      <th scope="row">{{ i+1 }}</th>
-                      <td>{{ etape.nomEtape }}</td>
-                      <td>{{ etape.descritpion }}</td>
-                      <td>{{ etape.duree }}</td>
-                      <!--td>
-                        <i class="bi bi-pencil-square" style="color: green;" 
-                            (click)="editModal(listeEtapes)"></i>
-                      </td>
-                      <td>
-                        <i class="bi bi-trash" (click)="deleteCout(listeEtapes)" style="color: red;"></i>
-                      </td-->
-                    </tr>
-                    </tbody>
-                </table>
-              </div>
-              <!-------      FIN CHOISIR ETAPE        ---------->
-              
             
-            </div>
+            <ng-template #modalData2 let-modal>
+              <div id="chosir-etape" class="modal-body" >
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <div clas="row">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Etape N°</th>
+                        <th scope="col">Nom etape</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Duree</th>
+                        <!--th scope="col">Edit</th-->
+                        <!--th scope="col">Delete</th-->
+                      </tr>
+                    </thead>
+                    <tbody *ngIf="listeEtapes">
+                      <tr *ngFor="let etape of listeEtapes;index as i" value="" (click)="addEtape(etape)" >
+                        <th scope="row">{{ i+1 }}</th>
+                        <td>{{ etape.nomEtape }}</td>
+                        <td>{{ etape.descritpion }}</td>
+                        <td>{{ etape.duree }}</td>
+                        <!--td>
+                          <i class="bi bi-pencil-square" style="color: green;" 
+                              (click)="editModal(listeEtapes)"></i>
+                        </td>
+                        <td>
+                          <i class="bi bi-trash" (click)="deleteCout(listeEtapes)" style="color: red;"></i>
+                        </td-->
+                      </tr>
+                      </tbody>
+                  </table>
+                </div>
+                <!-------      FIN CHOISIR ETAPE        ---------->
+                
+              
+              </div>
+            </ng-template>
             
             <table class="table table-striped">
               <thead>
@@ -306,7 +311,7 @@
                 </tr>
               </thead>
               <tbody *ngIf="listeEtapes">
-                <tr *ngFor="let etape of listeEtapes;index as i">
+                <tr *ngFor="let etape of listeEtapesSelected;index as i">
                   <th scope="row">{{ i+1 }}</th>
                   <td>{{ etape.nomEtape }}</td>
                   <td>{{ etape.descritpion }}</td>
@@ -325,42 +330,48 @@
             
           </div>
         </div>
-        
-        <h5>3. Couts 💶</h5>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Total Denrées</th>
-              <th scope="col">Assaisonnement</th>
-              <th scope="col">Coût Matières</th>
-              <th scope="col">Coût Personnel</th>
-              <th scope="col">Coût Fluide</th>
-              <th scope="col">Coût de Production Total</th>
-              <th scope="col">Coût de Production Portion</th>
+        <br>
+        <div class="interior">
+          <a class="btn" (click)="validerFicheAvantAjout()">Valider</a>
+          <app-etape></app-etape>
+        </div>
+        <div *ngIf="isValidate">
+          <h5>3. Couts 💶</h5>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Total Denrées</th>
+                <th scope="col">Assaisonnement</th>
+                <th scope="col">Coût Matières</th>
+                <th scope="col">Coût Personnel</th>
+                <th scope="col">Coût Fluide</th>
+                <th scope="col">Coût de Production Total</th>
+                <th scope="col">Coût de Production Portion</th>
 
-              <!--th scope="col">Edit</th-->
-              <!--th scope="col">Delete</th-->
-            </tr>
-          </thead>
-          <tbody *ngIf="listeEtapes">
-            <tr >
-              <td>{{ pHT }}</td>
-              <td>{{ pHT*assaisonnement }}</td>
-              <td>{{ couts.coutMatiere }}</td>
-              <td>{{ coutPers }}</td>
-              <td>{{ coutFluide }}</td>
-              <td>{{ couts.coutMatiere + coutPers + coutFluide}}</td>
-              <td>{{ (couts.coutMatiere + coutPers + coutFluide)/nbCouverts }}</td>
-              <!--td>
-                <i class="bi bi-pencil-square" style="color: green;" 
-                    (click)="editModal(listeEtapes)"></i>
-              </td>
-              <td>
-                <i class="bi bi-trash" (click)="deleteCout(listeEtapes)" style="color: red;"></i>
-              </td-->
-            </tr>
-            </tbody>
-        </table>
+                <!--th scope="col">Edit</th-->
+                <!--th scope="col">Delete</th-->
+              </tr>
+            </thead>
+            <tbody *ngIf="listeEtapes">
+              <tr >
+                <td>{{ pHT }}</td>
+                <td>{{ pHT*assaisonnement }}</td>
+                <td>{{ couts.coutMatiere }}</td>
+                <td>{{ coutPers }}</td>
+                <td>{{ coutFluide }}</td>
+                <td>{{ couts.coutMatiere + coutPers + coutFluide}}</td>
+                <td>{{ (couts.coutMatiere + coutPers + coutFluide)/nbCouverts }}</td>
+                <!--td>
+                  <i class="bi bi-pencil-square" style="color: green;" 
+                      (click)="editModal(listeEtapes)"></i>
+                </td>
+                <td>
+                  <i class="bi bi-trash" (click)="deleteCout(listeEtapes)" style="color: red;"></i>
+                </td-->
+              </tr>
+              </tbody>
+          </table>
+        </div>
         <!--
         <h5>4. Imprimer</h5>
         <div class="question">

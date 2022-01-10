@@ -44,6 +44,7 @@ export class AjoutFicheComponent implements OnInit {
   coutFluide:number=0.5;
   coutPers:number=0;
   nbCouverts:number=10;
+  isValidate:boolean=false;
 
 
   tempsTotcalc:number;
@@ -94,6 +95,7 @@ export class AjoutFicheComponent implements OnInit {
     this.getListeEtapes() ;
     this.ingrSelected = "";
     this.ingredientSelectedArray = [];
+    this.listeEtapesSelected = []
     this.tempsTotcalc=0;
   }
 
@@ -117,9 +119,10 @@ export class AjoutFicheComponent implements OnInit {
   }
 
   validerFicheAvantAjout(){
+    this.isValidate=true;
     for(let i=0;i<this.listeEtapesSelected.length;i++){
       for(let j=0;i<this.listeEtapesSelected[i].listeIngr.length;j++){
-        this.pHT += this.listeEtapesSelected[i].listeIngr[j].quantite
+        this.pHT += this.listeEtapesSelected[i].listeIngr[j].quantite*this.listeEtapesSelected[i].listeIngr[j].prixU
       }
     } 
 
@@ -200,9 +203,9 @@ export class AjoutFicheComponent implements OnInit {
     //console.log(this.ingredientSelectedArray)
   }
 
-  addetape(etape: IEtape){
+  addEtape(etape: IEtape){
     this.listeEtapesSelected.push(etape);
-    //console.log(this.ingredientSelectedArray)
+    console.log(this.listeEtapesSelected[0].nomEtape)
   }
 
   
