@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ParametreService } from 'src/app/services/parametre.service';
 import { EditParametreComponent } from '../modal/edit-parametre/edit-parametre.component';
 import { IParametre } from '../../models/parametre.model';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-parametre',
@@ -20,10 +21,16 @@ export class ParametreComponent implements OnInit {
   constructor(private parametreService: ParametreService, private modal: NgbModal) { }
 
   ngOnInit(): void {
-    this.parametreService.getParametres().subscribe((res: IParametre[]) => {
-      this.parametres = res;
-      
-    })
+   
+    this.parametreService.getParametres().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.parametres = data;
+    });
   }
 
   onSubmit(form: NgForm) {
