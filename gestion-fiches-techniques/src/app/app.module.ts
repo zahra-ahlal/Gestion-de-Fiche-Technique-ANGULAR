@@ -60,6 +60,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ViewFicheComponent } from './components/view-fiche/view-fiche.component';
 
 
 
@@ -99,6 +100,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     ListeEtapesComponent,
     EditIngredientsFicheComponent,
     BrouillonComponent,
+    ViewFicheComponent,
   ],
   imports: [
     BrowserModule,
