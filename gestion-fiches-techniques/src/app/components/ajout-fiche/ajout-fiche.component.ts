@@ -57,7 +57,7 @@ export class AjoutFicheComponent implements OnInit {
   isSelected: boolean;
   ingrSelected:string;
   categSelected:string;
-  
+  q:number;
   
   
   show: boolean = false;
@@ -122,7 +122,9 @@ export class AjoutFicheComponent implements OnInit {
   
   onSubmit(form: NgForm) {
     this.listeIngredientsFinal = this.ingredientSelectedArray;
+    console.log("ingr 1"+this.listeIngredientsFinal[0])
     this.listeEtapesFinal = this.listeEtapesSelected;
+    console.log("etape 1"+ this.listeEtapesSelected[0])
     this.ficheService.addFiche(form.value,this.categfinal.id,this.listeIngredientsFinal,this.listeEtapesFinal,this.tempsTot,this.couts).//,this.listeIngredientsFinal)
       then(() => form.reset());
   }
@@ -130,16 +132,20 @@ export class AjoutFicheComponent implements OnInit {
   validerFicheAvantAjout(){
     this.isValidate=true;
     for(let i=0;i<this.listeEtapesSelected.length;i++){
-      for(let j=0;i<this.listeEtapesSelected[i].listeIngr.length;j++){
+      for(let j=0;j<this.listeEtapesSelected[i].listeIngr.length;j++){
+        //this.q=this.listeEtapesSelected[i].listeIngr[j].quantite;
+        //console.log(this.listeEtapesSelected[i].listeIngr[j].quantite*this.listeEtapesSelected[i].listeIngr[j].prixU)
         this.pHT += this.listeEtapesSelected[i].listeIngr[j].quantite*this.listeEtapesSelected[i].listeIngr[j].prixU
+        //console.log("hola")
       }
     } 
 
-    this.coutPers = this.params.coutHorMoy;
+    //this.coutPers = this.params.coutHorMoy;
     this.nbCouverts = this.fiche.nbCouverts;
-    this.couts.coutPersonnel =this.coutPers;
+    this.couts.coutPersonnel =this.params.coutHorMoy*3;
     this.couts.coutMatiere =this.pHT + (this.pHT*this.assaisonnement);
   }
+
 
   /*getCategFicheByID(){
     this.categService.getCategByID(this.idCategFiche).snapshotChanges().pipe(
@@ -237,14 +243,11 @@ export class AjoutFicheComponent implements OnInit {
 
   addEtape(etape: IEtape){
     this.listeEtapesSelected.push(etape);
-    console.log(this.listeEtapesSelected[0].nomEtape)
-  }
-
-  addCout(cout:ICout){
-   
+    //console.log(this.listeEtapesSelected[0].nomEtape)
   }
 
   
+
 
   onDrop(event: CdkDragDrop<any>){
     if (event.previousContainer === event.container) {
