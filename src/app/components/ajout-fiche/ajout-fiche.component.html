@@ -1,226 +1,214 @@
-<!DOCTYPE html>
-  <html>
-    <head>
-      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    </head>
-    <body>
-      <div class="testbox" style="min-width: 1000px;">
-      <form action="#" #ficheForm="ngForm" (ngSubmit)="onSubmit(ficheForm)">
-        <div class="banner " >
-          <h1>Nouvelle Fiche Technique</h1>
-        </div>
-        <div class="item">
-          
-                <div class="city-item">
-          <input type="text" class="form-control" name="nomResponsable" #name="ngModel" 
-                  [(ngModel)]="fiche.nomResponsable" placeholder="Nom Responsable" required>
-                  <input type="text" class="form-control" name="nomPlat" #name="ngModel" [(ngModel)]="fiche.nomPlat" placeholder="Nom Plat" required/>
-                  <input type="number" class="form-control" name="nbCouverts" #name="ngModel" 
-                  [(ngModel)]="fiche.nbCouverts" placeholder="Nombre de Couverts" required>
-         
-                  <div>
-                    <select style="display: block;width:500px" [(ngModel)]="categSelected" name="nomCategFiche"   (change)="addCateg(categSelected)" required>
-                      <option *ngFor="let categorie of listeCategories"  [value]="categorie.nomCategFiche" value=""  > {{categorie.nomCategFiche}} </option>
-                    </select>
-                  </div>
+<div class="textbox" style="width: 100%;" align="center" >
+  <form action="#" #ficheForm="ngForm" (ngSubmit)="onSubmit(ficheForm)" >
+    <div class="banner " >
+      <h1>Nouvelle Fiche Technique</h1>
+    </div>
+    <div class="item">
+      
+            <div class="city-item">
+      <input type="text" class="form-control" name="nomResponsable" #name="ngModel" 
+              [(ngModel)]="fiche.nomResponsable" placeholder="Nom Responsable" required>
+              <input type="text" class="form-control" name="nomPlat" #name="ngModel" [(ngModel)]="fiche.nomPlat" placeholder="Nom Plat" required/>
+              <input type="number" class="form-control" name="nbCouverts" #name="ngModel" 
+              [(ngModel)]="fiche.nbCouverts" placeholder="Nombre de Couverts" required>
+     
+              <div>
+                <select style="display: block;width:450px" [(ngModel)]="categSelected" name="nomCategFiche"   (change)="addCateg(categSelected)" required>
+                  <option *ngFor="let categorie of listeCategories"  [value]="categorie.nomCategFiche" value=""  > {{categorie.nomCategFiche}} </option>
+                </select>
+              </div>
 
-                  <div >
-                    
-                  </div>
+              <div></div>
+      </div>
+    </div>
+    
+    <h5>1. Ma liste d'ingrédients pour ce plat</h5>
+    <div class="question">
+      <p>Faites vos courses pour votre recette:<span class="required">*</span></p>
+      <div class="interior">
+        <button type="button" class="btn btn-danger" (click)="triggerModal(modalData)">Ingrédients📙</button>
+        
+
+        <ng-template #modalData let-modal>
+          <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Liste des ingrédients</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+              </button>
           </div>
+          <div id="open-modal" class="modal-body">
+              <div clas="row">
+                  <p>Sélectionner ceux dont vous aurez besoin <span class="required">*</span></p>
+                  <ul class="ks-cboxtags">
+                  <li *ngFor="let ingredient of listeIngredients" ><input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value="" (click)="addIngr(ingredient)" ><label [for]="ingredient.nomIngr"  required>{{ingredient.nomIngr}}</label></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success"  (click)="modal.close('Save click')">Valider</button>
+          </div>
+        </ng-template>
+
+        
+
+        
+
+      </div>
+    <br>
+      <div name="first"  class="question-answer checkbox-item">
+        <div align="center">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom ingredient</th>
+                <th scope="col">Unité</th>
+                <th scope="col">Prix Unitaire</th>
+                <th scope="col">Allergène</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ingredient of ingredientSelectedArray;index as i">
+                <th scope="row">{{ i+1 }}</th>
+                <td>{{ ingredient.nomIngr }}</td>
+                <td>{{ ingredient.unite }}</td>
+                <td>{{ ingredient.prixU }} € </td>
+                <td>{{ ingredient.allergene }}</td>
+
+              </tr>
+              </tbody>
+          </table>
+        </div>
+
+      </div>
+      </div>
+
+    <h5>2. Mes étapes 🕑</h5>
+    <div class="item">
+          <p>Votre étape existe-elle ?<span class="required">*</span></p>
+      <div align="center" >
+        <!-------      CHOISIR ETAPE        ---------->
+        <div class="interior">
+          <a class="btn" href="#chosir-etape" (click)="triggerModal(modalData2)">Parcourir les étapes ⏱</a>
+          <app-etape></app-etape>
         </div>
         
-        <h5>1. Ma liste d'ingrédients pour ce plat</h5>
-        <div class="question">
-          <p>Faites vos courses pour votre recette:<span class="required">*</span></p>
-          <div class="interior">
-            <button type="button" class="btn btn-danger" (click)="triggerModal(modalData)">Ingrédients📙</button>
-            
-
-            <ng-template #modalData let-modal>
-              <div class="modal-header">
-                  <h4 class="modal-title" id="modal-basic-title">Liste des ingrédients</h4>
-                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                    <span aria-hidden="true">×</span>
-                  </button>
-              </div>
-              <div id="open-modal" class="modal-body">
-                  <div clas="row">
-                      <p>Sélectionner ceux dont vous aurez besoin <span class="required">*</span></p>
-                      <ul class="ks-cboxtags">
-                      <li *ngFor="let ingredient of listeIngredients" ><input type="checkbox" [id]="ingredient.nomIngr" [value]="ingredient.nomIngr" value="" (click)="addIngr(ingredient)" ><label [for]="ingredient.nomIngr"  required>{{ingredient.nomIngr}}</label></li>
-                      </ul>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-success"  (click)="modal.close('Save click')">Valider</button>
-              </div>
-            </ng-template>
-
-            
-
-            
-
-          </div>
-        <br>
-          <div name="first"  class="question-answer checkbox-item">
-            <div align="center">
+        <ng-template #modalData2 let-modal>
+          <div id="chosir-etape" class="modal-body" >
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">×</span>
+            </button>
+            <div clas="row">
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nom ingredient</th>
-                    <th scope="col">Unité</th>
-                    <th scope="col">Prix Unitaire</th>
-                    <th scope="col">Allergène</th>
+                    <th scope="col">Etape N°</th>
+                    <th scope="col">Nom etape</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Duree</th>
+                    <!--th scope="col">Edit</th-->
+                    <!--th scope="col">Delete</th-->
                   </tr>
                 </thead>
-                <tbody>
-                  <tr *ngFor="let ingredient of ingredientSelectedArray;index as i">
+                <tbody *ngIf="listeEtapes">
+                  <tr *ngFor="let etape of listeEtapes;index as i" value="" (click)="addEtape(etape)" >
                     <th scope="row">{{ i+1 }}</th>
-                    <td>{{ ingredient.nomIngr }}</td>
-                    <td>{{ ingredient.unite }}</td>
-                    <td>{{ ingredient.prixU }} € </td>
-                    <td>{{ ingredient.allergene }}</td>
-  
+                    <td>{{ etape.nomEtape }}</td>
+                    <td>{{ etape.descritpion }}</td>
+                    <td>{{ etape.duree }}</td>
+                    <!--td>
+                      <i class="bi bi-pencil-square" style="color: green;" 
+                          (click)="editModal(listeEtapes)"></i>
+                    </td>
+                    <td>
+                      <i class="bi bi-trash" (click)="deleteCout(listeEtapes)" style="color: red;"></i>
+                    </td-->
                   </tr>
                   </tbody>
               </table>
             </div>
-
+            <!-------      FIN CHOISIR ETAPE        ---------->
           </div>
-          </div>
-    
-        <h5>2. Mes étapes 🕑</h5>
-        <div class="item">
-              <p>Votre étape existe-elle ?<span class="required">*</span></p>
-          <div align="center" >
-            <!-------      CHOISIR ETAPE        ---------->
-            <div class="interior">
-              <a class="btn" href="#chosir-etape" (click)="triggerModal(modalData2)">Parcourir les étapes ⏱</a>
-              <app-etape></app-etape>
-            </div>
-            
-            <ng-template #modalData2 let-modal>
-              <div id="chosir-etape" class="modal-body" >
-                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                  <span aria-hidden="true">×</span>
-                </button>
-                <div clas="row">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">Etape N°</th>
-                        <th scope="col">Nom etape</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Duree</th>
-                        <!--th scope="col">Edit</th-->
-                        <!--th scope="col">Delete</th-->
-                      </tr>
-                    </thead>
-                    <tbody *ngIf="listeEtapes">
-                      <tr *ngFor="let etape of listeEtapes;index as i" value="" (click)="addEtape(etape)" >
-                        <th scope="row">{{ i+1 }}</th>
-                        <td>{{ etape.nomEtape }}</td>
-                        <td>{{ etape.descritpion }}</td>
-                        <td>{{ etape.duree }}</td>
-                        <!--td>
-                          <i class="bi bi-pencil-square" style="color: green;" 
-                              (click)="editModal(listeEtapes)"></i>
-                        </td>
-                        <td>
-                          <i class="bi bi-trash" (click)="deleteCout(listeEtapes)" style="color: red;"></i>
-                        </td-->
-                      </tr>
-                      </tbody>
-                  </table>
-                </div>
-                <!-------      FIN CHOISIR ETAPE        ---------->
-              </div>
-            </ng-template>
-            
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Etape N°</th>
-                  <th scope="col">Nom etape</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Duree</th>
-                  <th scope="col">Ingredients</th>
-                  <!--th scope="col">Edit</th-->
-                  <!--th scope="col">Delete</th-->
-                </tr>
-              </thead>
-              <tbody *ngIf="listeEtapes">
-                <tr *ngFor="let etape of listeEtapesSelected;index as i">
-                  <th scope="row">{{ i+1 }}</th>
-                  <td>{{ etape.nomEtape }}</td>
-                  <td>{{ etape.descritpion }}</td>
-                  <td>{{ etape.duree }}</td>
-                  <td><p *ngFor="let ingredient of etape.listeIngr"> {{ingredient.nomIngr}} : {{ingredient.quantite}} : {{ingredient.unite}} </p> </td>
-                  <td>
-                    <a class="col s1" (click)="removeEtape(etape)">x</a>
-                  </td>
-                  <!--td>
-                    <i class="bi bi-pencil-square" style="color: green;" 
-                        (click)="editModal(listeEtapes)"></i>
-                  </td>
-                  <td>
-                    <i class="bi bi-trash" (click)="deleteCout(listeEtapes)" style="color: red;"></i>
-                  </td-->
-                </tr>
-                </tbody>
-            </table>
-            
-          </div>
-          <div class="interior">
-            <a class="btn" (click)="validerFicheAvantAjout()">Valider</a>
-          </div>
-          <div *ngIf="isValidate" >
-            <h5>3. Couts 💶</h5>
-            <table class="table table-striped" style="display : relative; max-width:90%">
-              <thead>
-                <tr>
-                  <th scope="col">Total Denrées</th>
-                  <th scope="col">Assaisonnement<br><input type="number" min="0" max="1" step="0.05"  value="{{assaisonnement}}" (keyup)="onKey($event)" >{{assaisonnement}}</th>
-                  <th scope="col">Coût Matières</th>
-                  <th scope="col">Coût Personnel</th>
-                  <th scope="col">Coût Fluide</th>
-                  <th scope="col">Coût de Production Total</th>
-                  <th scope="col">Coût de Production Portion</th>
-  
-                  <!--th scope="col">Edit</th-->
-                  <!--th scope="col">Delete</th-->
-                </tr>
-              </thead>
-              <tbody *ngIf="listeEtapes">
-                <tr >
-                  <td>{{ pHT }}</td>
-                  <td>{{ pHT*assaisonnement }}</td>
-                  <td>{{ couts.coutMatiere }}</td>
-                  <td>{{ couts.coutPersonnel }}</td>
-                  <td>{{ coutFluide }}</td>
-                  <td>{{ couts.coutMatiere + coutPers + coutFluide}}</td>
-                  <td>{{ (couts.coutMatiere + coutPers + coutFluide)/nbCouverts }}</td>
-                  <!--td>
-                    <i class="bi bi-pencil-square" style="color: green;" 
-                        (click)="editModal(listeEtapes)"></i>
-                  </td>
-                  <td>
-                    <i class="bi bi-trash" (click)="deleteCout(listeEtapes)" style="color: red;"></i>
-                  </td-->
-                </tr>
-                </tbody>
-            </table>
-          </div>
-        </div>
-        <br>
-       
-          <div class="btn-block">
-            <button type="submit" >Ajouter ma fiche</button>
-          </div>
-      </form>
+        </ng-template>
+        
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Etape N°</th>
+              <th scope="col">Nom etape</th>
+              <th scope="col">Description</th>
+              <th scope="col">Duree</th>
+              <th scope="col">Ingredients</th>
+              <!--th scope="col">Edit</th-->
+              <!--th scope="col">Delete</th-->
+            </tr>
+          </thead>
+          <tbody *ngIf="listeEtapes">
+            <tr *ngFor="let etape of listeEtapesSelected;index as i">
+              <th scope="row">{{ i+1 }}</th>
+              <td>{{ etape.nomEtape }}</td>
+              <td>{{ etape.descritpion }}</td>
+              <td>{{ etape.duree }}</td>
+              <td><p *ngFor="let ingredient of etape.listeIngr"> {{ingredient.nomIngr}} : {{ingredient.quantite}} : {{ingredient.unite}} </p> </td>
+              <td>
+                <a class="col s1" (click)="removeEtape(etape)">x</a>
+              </td>
+              <!--td>
+                <i class="bi bi-pencil-square" style="color: green;" 
+                    (click)="editModal(listeEtapes)"></i>
+              </td>
+              <td>
+                <i class="bi bi-trash" (click)="deleteCout(listeEtapes)" style="color: red;"></i>
+              </td-->
+            </tr>
+            </tbody>
+        </table>
+        
       </div>
-    </body>
-  </html>
+      <div class="interior">
+        <a class="btn" (click)="validerFicheAvantAjout()">Valider</a>
+      </div>
+      <div *ngIf="isValidate" >
+        <h5>3. Couts 💶</h5>
+        <table class="table table-striped" style="display : relative; max-width:90%">
+          <thead>
+            <tr>
+              <th scope="col">Total Denrées</th>
+              <th scope="col">Assaisonnement<br><input type="number" min="0" max="1" step="0.05"  value="{{assaisonnement}}" (keyup)="onKey($event)" >{{assaisonnement}}</th>
+              <th scope="col">Coût Matières</th>
+              <th scope="col">Coût Personnel</th>
+              <th scope="col">Coût Fluide</th>
+              <th scope="col">Coût de Production Total</th>
+              <th scope="col">Coût de Production Portion</th>
+
+              <!--th scope="col">Edit</th-->
+              <!--th scope="col">Delete</th-->
+            </tr>
+          </thead>
+          <tbody *ngIf="listeEtapes">
+            <tr >
+              <td>{{ pHT }}</td>
+              <td>{{ pHT*assaisonnement }}</td>
+              <td>{{ couts.coutMatiere }}</td>
+              <td>{{ couts.coutPersonnel }}</td>
+              <td>{{ coutFluide }}</td>
+              <td>{{ couts.coutMatiere + coutPers + coutFluide}}</td>
+              <td>{{ (couts.coutMatiere + coutPers + coutFluide)/nbCouverts }}</td>
+              <!--td>
+                <i class="bi bi-pencil-square" style="color: green;" 
+                    (click)="editModal(listeEtapes)"></i>
+              </td>
+              <td>
+                <i class="bi bi-trash" (click)="deleteCout(listeEtapes)" style="color: red;"></i>
+              </td-->
+            </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+    <br>
+   
+      <div class="btn-block">
+        <button type="submit" >Ajouter ma fiche</button>
+      </div>
+  </form>
