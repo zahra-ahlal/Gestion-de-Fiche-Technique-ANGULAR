@@ -65,13 +65,29 @@
           </div>
         <br>
           <div name="first"  class="question-answer checkbox-item">
-            <fieldset>
-              <ul>
-                <li *ngFor="let ingredient of ingredientSelectedArray">
-                <label for="coding" >{{ingredient.nomIngr}}</label></li>
-              </ul>
-              
-            </fieldset>
+            <div align="center">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom ingredient</th>
+                    <th scope="col">Unité</th>
+                    <th scope="col">Prix Unitaire</th>
+                    <th scope="col">Allergène</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let ingredient of ingredientSelectedArray;index as i">
+                    <th scope="row">{{ i+1 }}</th>
+                    <td>{{ ingredient.nomIngr }}</td>
+                    <td>{{ ingredient.unite }}</td>
+                    <td>{{ ingredient.prixU }} € </td>
+                    <td>{{ ingredient.allergene }}</td>
+  
+                  </tr>
+                  </tbody>
+              </table>
+            </div>
 
           </div>
           </div>
@@ -143,6 +159,9 @@
                   <td>{{ etape.descritpion }}</td>
                   <td>{{ etape.duree }}</td>
                   <td><p *ngFor="let ingredient of etape.listeIngr"> {{ingredient.nomIngr}} : {{ingredient.quantite}} : {{ingredient.unite}} </p> </td>
+                  <td>
+                    <a class="col s1" (click)="removeEtape(etape)">x</a>
+                  </td>
                   <!--td>
                     <i class="bi bi-pencil-square" style="color: green;" 
                         (click)="editModal(listeEtapes)"></i>

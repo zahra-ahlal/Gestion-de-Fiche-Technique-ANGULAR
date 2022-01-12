@@ -22,7 +22,7 @@ import { CategFichesService } from './categ-fiches.service';
 export class FicheService {
   dbPath = '/fiches'
   fichesRef : AngularFirestoreCollection<IFiche>;
-
+  fiche:Observable<IFiche>;
   constructor(private firestore: Firestore, private db: AngularFirestore) {
     this.fichesRef = db.collection(this.dbPath)
   }
@@ -34,17 +34,21 @@ export class FicheService {
     return this.fichesRef;
   }
 
+  getTESTFiches(id:string){
+    //@ts-ignore
+    this.fiche = this.fichesRef.doc(id).valueChanges()
+    return this.fiche;
+  }
+
   getFichesByIDCategorie(categ : String): AngularFirestoreCollection<IFiche>{
     return this.db.collection(this.dbPath,ref => ref.where('idCategFiche','==', categ ));
   }
 
   getFichesByID(id : String): AngularFirestoreCollection<IFiche>{
-    return this.db.collection(this.dbPath,ref => ref.where('idF','==', id ));
+    return this.db.collection(this.dbPath,ref => ref.where('id','==', id )); 
   }
-  
 
-
-  addFiche(f: IFiche,categ:string,listeIngr : IngredientInterface[],listEtape : IEtape[],temps : number,couts:ICout){
+  addFiche(f: IFiche,categ:string,listeIngr : IngredientInterface[],listEtape : IEtape[],temps : number,couts:ICout,pv : number){
     return this.db.collection(this.dbPath).add({
       nomPlat: f.nomPlat,
       nbCouverts: f.nbCouverts,
@@ -54,19 +58,23 @@ export class FicheService {
       nomResponsable: f.nomResponsable,
       listeEtapes: listEtape,
       listeIngr : listeIngr,
-      listeCouts:couts
+      listeCouts:couts,
+      prixV : pv
     });
   }
-
   
 
   getFicheByName(fiche : String): AngularFirestoreCollection<IFiche>{
     return this.db.collection(this.dbPath,ref => ref.where('nomPlat','==', fiche ));
   }
+
+  getNomFicheByID(id : String): AngularFirestoreCollection<IFiche>{
+    return this.db.collection(this.dbPath,ref => ref.where('idF','==', id ));
+  }
   
   
-  getDocById(): AngularFirestoreCollection<IFiche>{
-    return this.db.collection(this.dbPath);
+  getDocById(id:String): AngularFirestoreCollection<IFiche>{
+    return this.db.collection(this.dbPath,ref => ref.where('idF','==', id ));
   }
 
   //modifier le stock quand impression pour vente

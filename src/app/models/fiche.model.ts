@@ -12,5 +12,5 @@ export interface IFiche {
     listeEtapes: IEtape[];
     listeIngr : IngredientInterface[];
     listeCouts : ICout;
-
+    prixV : number ;
 }

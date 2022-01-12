@@ -34,13 +34,13 @@ export class LoginComponent implements OnInit {
 
     this.authService.signInUser(email, password).then(
       () => {
-        this.router.navigate(['/accueil']);
+        //this.router.navigate(['/accueil']);
         console.log("SUCCESS");
       },
       (error) => {
         this.errorMessage = error;
+        console.log(this.errorMessage);
       }
     );
-    this.router.navigate(['/accueil']);
   }
 }

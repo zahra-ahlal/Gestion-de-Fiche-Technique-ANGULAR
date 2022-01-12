@@ -17,17 +17,24 @@ export class CategFichesService {
 
   dbPath = '/categFiches'
   categfichesRef: AngularFirestoreCollection<ICategFiches>;
+  categorie:Observable<ICategFiches>;
 
   constructor(private firestore: Firestore, private db: AngularFirestore) { 
     this.categfichesRef = db.collection(this.dbPath);
-  }
-
+  }  
+  
   getAll(): AngularFirestoreCollection<ICategFiches> {
     return this.categfichesRef;
   }
  
   getCategByName(categ : String): AngularFirestoreCollection<ICategFiches>{
     return this.db.collection(this.dbPath,ref => ref.where('nomCategFiche','==', categ ));
+  }
+
+  getTESTCategFiche(id:string){
+    //@ts-ignore
+    this.categorie = this.categfichesRef.doc(id).valueChanges()
+    return this.categorie;
   }
 
   getCategFiches(): Observable<ICategFiches[]> {

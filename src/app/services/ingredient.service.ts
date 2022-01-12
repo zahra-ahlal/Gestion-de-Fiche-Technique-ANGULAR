@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import {
   Firestore, addDoc, collection, collectionData,
   doc, docData, deleteDoc, updateDoc, DocumentReference, setDoc
@@ -15,11 +15,15 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class IngredientService {
-
+  
   dbPath = 'ingredients'
 
+  
+  ingrRef : AngularFirestoreCollection<IngredientInterface>;
+  
+
   constructor(private firestore: Firestore, private db: AngularFirestore,
-    private categService : CategoriesIngredientService) { }
+    private categService : CategoriesIngredientService) {this.ingrRef = db.collection(this.dbPath) }
 
 
   getAll(): AngularFirestoreCollection<IngredientInterface> {
@@ -46,30 +50,20 @@ export class IngredientService {
       idCategIngr: categ
     });
   }
-  //get stock
+  //gestion de stock
   getDocById(id : String): AngularFirestoreCollection<IngredientInterface>{
     return this.db.collection(this.dbPath,ref => ref.where('idIngr','==', id ));
   }
 
+
   //modifier le stock quand impression pour vente
-  updateStock(id : string , value : number){
-    var stock : any;
-    const ingrService : IngredientService = null;
-    this.getDocById(id).snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(data => {
-      stock = data[0].stock;
-      console.log("stock"+data[0].stock);
+  updateStock(nom : string , value : number){
+    console.log("ID "+ nom+ " Quantite: " + value)
+  
+      return this.db.collection('ingredients').doc("7oV6232dJZ2JfDv9imzY").update({
+        stock: value
     });
-
-    let newStock = stock - value;
-    this.db.collection(this.dbPath).doc(id).update({ stock: (newStock) });
   }
-
 
   /*getIngredients(): Observable<Ingred"ientInterface[]> {
     const ingredientRef = collection(this.firestore, 'ingredients');
@@ -115,6 +109,11 @@ export class IngredientService {
     const ingredientRef = doc(this.firestore, `ingredients/${ingredient.idIngr}`);
     return updateDoc(ingredientRef, { allergene: allerg });
   }
+
+  
+
+
+  
   
 
 }

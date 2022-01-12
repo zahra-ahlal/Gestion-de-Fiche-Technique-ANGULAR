@@ -1,30 +1,26 @@
-<div>
-    <h4 align="center"> Parametres de base</h4>
-    <table class="table table-striped" align="center">
-        <thead>
-         <tr>
-           <!--th scope="col">#</th-->
-           <th scope="col">cout horaire moyen</th>
-           <th scope="col">cout horaire forfaitaire</th>
-           <th scope="col">coefficient multiplicateur</th>
-           <th scope="col">coefficient</th>
-           <th scope="col">Modifier</th>
+<h4 align="center"> Parametres de base</h4>
+  <table class="table table-striped" style="width:400px" align="center">
+      <thead>
+        <tr>
+          <!--th scope="col">#</th-->
+          <th scope="col">cout horaire moyen</th>
+          <th scope="col">cout horaire forfaitaire</th>
+          <th scope="col">coefficient multiplicateur</th>
+          <th scope="col">coefficient</th>
+          <th scope="col">Modifier</th>
 
-         </tr>
-        </thead>
-        <tbody *ngIf="parametres">
-          <tr *ngFor="let parametre of parametres; index as i">
-            <!--th scope="row">{{ i+1 }}</th-->
-            <td>{{ parametre.coutHorMoy }}</td>
-            <td>{{ parametre.coutHorForf }}</td>
-            <td>{{ parametre.coeffMulti }}</td>
-            <td>{{ parametre.coeff }}</td>
-            <td>
-              <i class="bi bi-pencil-square" (click)="editModal(parametre)" style="color: green;" ></i>
-            </td>
-          </tr>
-        </tbody>
-    </table> 
-</div>
-
-
+        </tr>
+      </thead>
+      <tbody *ngIf="parametres" >
+        <tr *ngFor="let parametre of parametres; index as i">
+          <!--th scope="row">{{ i+1 }}</th-->
+          <td>{{ parametre.coutHorMoy }}</td>
+          <td>{{ parametre.coutHorForf }}</td>
+          <td>{{ parametre.coeffMulti }}</td>
+          <td>{{ parametre.coeff }}</td>
+          <td>
+            <i class="bi bi-pencil-square" (click)="editModal(parametre)" style="color: green;" ></i>
+          </td>
+        </tr>
+      </tbody>
+  </table>

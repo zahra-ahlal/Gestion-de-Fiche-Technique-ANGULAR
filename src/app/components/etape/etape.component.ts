@@ -19,6 +19,8 @@ export class EtapeComponent implements OnInit {
 
   quantite : number = 0;
 
+  listEtapes : IEtape[] = new Array();
+
   etape : IEtape = {
     nomEtape: '',
     descritpion: '',
@@ -28,6 +30,17 @@ export class EtapeComponent implements OnInit {
   constructor(private etapeService: EtapeService, private ingrService : IngredientService) { }
 
   ngOnInit(): void {
+
+    this.etapeService.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.listEtapes = data;
+    });
+
     this.ingrService.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>

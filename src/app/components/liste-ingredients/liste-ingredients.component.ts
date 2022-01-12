@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+
+
+import { Component, OnInit,Input } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
@@ -8,6 +12,8 @@ import { IngredientService } from 'src/app/services/ingredient.service';
 import { IngredientInterface } from 'src/app/models/ingredient.model';
 import {Location} from '@angular/common';
 import { IngredientComponent } from '../ingredient/ingredient.component';
+
+
 
 @Component({
   selector: 'app-liste-ingredients',
@@ -25,6 +31,13 @@ export class ListeIngredientsComponent implements OnInit {
   idCategIngr : string = "";
   nomCateg : string = "";
   listeIngredients : any;
+
+
+
+  ingredient: IngredientInterface = { nomIngr: '', prixU : 0, unite : '', allergene: false, stock : 0,idCategIngr : '', typeIngr: '' , quantite : 0};
+  @Input() idCategIngr2:string=""
+  nomCateg2 : string = "";
+
   constructor(private ingrService: IngredientService,
       public afAuth: AngularFireAuth,private location: Location, 
       private modalService: NgbModal, private route: ActivatedRoute,
@@ -34,6 +47,7 @@ export class ListeIngredientsComponent implements OnInit {
       } }
   
   ngOnInit(): void {
+
     this.idCategIngr = this.route.snapshot.params['idCategIngr'];
     console.log(this.idCategIngr);
     this.nomCateg = this.route.snapshot.params['nomCateg'];
@@ -69,6 +83,7 @@ export class ListeIngredientsComponent implements OnInit {
       this.ingrService.deleteIngredient(ingredient).then(() => 
        console.log('delete successful'));
     }
+    
   }
 
   open(content) {
@@ -102,4 +117,9 @@ export class ListeIngredientsComponent implements OnInit {
     modalRef.componentInstance.idCategIngr = this.idCategIngr;
   };
 
+
+  onSubmit(form: NgForm) {
+    this.ingrService.addIngrByIDCateg(form.value,this.idCategIngr).
+      then(() => form.reset());
+  }
 }

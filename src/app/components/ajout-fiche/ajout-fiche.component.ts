@@ -9,7 +9,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 import { IEtape } from '../../models/etape.model';
 import { EtapeService } from 'src/app/services/etape.service';
 import { CategFichesService } from 'src/app/services/categ-fiches.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IngredientInterface } from 'src/app/models/ingredient.model';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ICout } from 'src/app/models/cout.model';
@@ -27,7 +27,8 @@ export class AjoutFicheComponent implements OnInit {
   fiche: IFiche = {
     nomPlat: "", nbCouverts: null, tempsTot: 0, idCategFiche: "", nomResponsable: "", listeEtapes: [],
     listeIngr: [],
-    listeCouts: null
+    listeCouts: null,
+    prixV: 0
   }
   etape : IEtape = {nomEtape: '',descritpion: '',duree: '', listeIngr : null};
 
@@ -52,6 +53,7 @@ export class AjoutFicheComponent implements OnInit {
   ingrSelected:string;
   categSelected:string;
   q:number;
+  prixV : number = 0;
   
   
   show: boolean = false;
@@ -67,11 +69,23 @@ export class AjoutFicheComponent implements OnInit {
 
   ingredientSelectedArray:IngredientInterface[];
   listeIngredientsFinal:  IngredientInterface[] = new Array();
- 
 
-  @Input() idCategFiche: string; 
+  nomCateg : string;
+ 
+  idFicheSelected:string =" ";
+  @Input() idCategFiche: string; @Input()ficheAmodifier:IFiche={
+    nomPlat: '',
+    nbCouverts: 0,
+    tempsTot: 0,
+    idCategFiche: '',
+    nomResponsable: '',
+    listeEtapes: [],
+    listeIngr: [],
+    listeCouts: null,
+    prixV: 0
+  }
   
-  constructor(private paramsService: ParametreService,private ingrService: IngredientService,private modalService: NgbModal,
+  constructor(private route: ActivatedRoute,private paramsService: ParametreService,private ingrService: IngredientService,private modalService: NgbModal,
       public afAuth: AngularFireAuth,private ficheService: FicheService, 
       private etapeService : EtapeService, private categService : CategFichesService,private modal: NgbModal,private router : Router) { }
 
@@ -91,6 +105,31 @@ export class AjoutFicheComponent implements OnInit {
     this.ingredientSelectedArray = [];
     this.listeEtapesSelected = []
     this.tempsTotcalc=0;
+
+
+    ///////CAS FICHE A MODIFIER ////////////////////////
+    this.idFicheSelected =this.route.snapshot.params['idFiche'];
+    if(this.idFicheSelected != undefined){
+      console.log(this.idFicheSelected)
+      this.getFicheById()
+      //console.log("après print "+this.fiche.idCategFiche)
+    }
+  }
+
+  getFicheById(){
+    this.ficheService.getTESTFiches(this.idFicheSelected).subscribe(data => {
+      this.fiche=data;
+      for(let i=0;i<this.fiche.listeEtapes.length;i++){
+        for(let j=0;j<this.fiche.listeEtapes[i].listeIngr.length;j++){
+          this.pHT += this.fiche.listeEtapes[i].listeIngr[j].quantite*this.fiche.listeEtapes[i].listeIngr[j].prixU;
+        }
+      } 
+      this.categService.getTESTCategFiche(this.fiche.idCategFiche).subscribe(categ => {
+        this.nomCateg=categ.nomCategFiche;
+      })
+      console.log("avant print "+this.fiche.idCategFiche)
+    })
+    
   }
   
   print() {
@@ -110,21 +149,30 @@ export class AjoutFicheComponent implements OnInit {
   
   onSubmit(form: NgForm) {
     this.listeIngredientsFinal = this.ingredientSelectedArray;
-    console.log("ingr 1"+this.listeIngredientsFinal[0])
+   // console.log("ingr 1"+this.listeIngredientsFinal[0])
     this.listeEtapesFinal = this.listeEtapesSelected;
-    console.log("etape 1"+ this.listeEtapesSelected[0])
-    this.ficheService.addFiche(form.value,this.categfinal.id,this.listeIngredientsFinal,this.listeEtapesFinal,this.tempsTot,this.couts).//,this.listeIngredientsFinal)
+    //console.log("etape 1"+ this.listeEtapesSelected[0])
+    this.prixV = this.pHT * 1,2;
+    console.log("PRIX VENTE "+this.prixV);
+    this.ficheService.addFiche(form.value,this.categfinal.id,this.listeIngredientsFinal,this.listeEtapesFinal,this.tempsTot,this.couts,this.prixV).//,this.listeIngredientsFinal)
       then(() => form.reset());
     this.router.navigate(['/accueil']);
   }
 
   validerFicheAvantAjout(){
     this.isValidate=true;
+    
     for(let i=0;i<this.listeEtapesSelected.length;i++){
+      const s = this.listeEtapesSelected[i].duree.split(':');
+      const minutes = (+s[0]) * 60  + (+s[1]);
+      this.tempsTot += minutes
+      console.log(this.tempsTot)
       for(let j=0;j<this.listeEtapesSelected[i].listeIngr.length;j++){
         this.pHT += this.listeEtapesSelected[i].listeIngr[j].quantite*this.listeEtapesSelected[i].listeIngr[j].prixU;
       }
     } 
+
+
     this.nbCouverts = this.fiche.nbCouverts;
     this.couts.coutPersonnel =this.params.coutHorMoy*3;
     this.couts.coutMatiere =this.pHT + (this.pHT*this.assaisonnement);
@@ -194,9 +242,6 @@ export class AjoutFicheComponent implements OnInit {
   }
 
   addCateg(categ: string){
-    //getCategByName
-    console.log('gggg')
-    //this.categSelected = categ;
     console.log(this.categSelected)
     this.categService.getCategByName(this.categSelected).snapshotChanges().pipe(
       map(changes =>
@@ -252,6 +297,12 @@ export class AjoutFicheComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
+
+  removeEtape = etape => {
+    let index = this.listeEtapesSelected.indexOf(etape);
+    if (index > -1) this.listeEtapesSelected.splice(index, 1);
+    console.log("Suppression de la liste "+etape.nomEtape)
+  };
 
 
 }

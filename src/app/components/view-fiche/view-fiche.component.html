@@ -8,38 +8,61 @@
       <div class="testbox">
       <form action="#" #ficheForm="ngForm" >
         <div class="banner " >
-          <h1>{{fiche.nomPlat}}</h1>
+          <h1>{{fiche.nomPlat}} </h1>
         </div>
         <div class="item">
-          
-            
-                <div class="city-item">
-          <input type="text" class="form-control" name="nomResponsable"
-                   placeholder="Nom Responsable" disabled>
-                  <input type="text" class="form-control" name="nomPlat"  placeholder="Nom Plat" disabled/>
-                  <input type="text" class="form-control" name="nbCouverts"
-                  placeholder="Nombre de Couverts" disabled>
-         
-                  <div>
-                    <input type="text" class="form-control" name="nomCategFiche" disabled>
-                  </div>
+          <div align="center">
+            <table class="table table-striped">
+              <thead style="background-color: rgb(199, 180, 156);">
+                <tr>
+                  <th scope="col">Nom Responsable</th>
+                  <th scope="col">Nom Plat</th>
+                  <th scope="col">Nom Catégorie</th>
+                  <th scope="col">Nombre de Couverts</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ fiche.nomResponsable }}</td>
+                  <td>{{ fiche.nomPlat }}</td>
+                  <td>{{ nomCateg }} </td>
+                  <td >{{ fiche.nbCouverts }}</td>
 
+                </tr>
+                </tbody>
+            </table>
           </div>
         </div>
         
-        
-        <h5>1. Ma liste d'ingrédients pour ce plat</h5>
+        <br>
+        <h5>1. Ma liste d'ingrédients pour ce plat 🛒</h5>
         <div class="question">
           <!--small> Please include the following in your application.</small-->
-          <div name="first"  class="question-answer checkbox-item">
-            <fieldset>
-              <ul>
-                <li *ngFor="let ingredient of listeIngredientsFiche">
-                <label for="coding" >{{ingredient.nomIngr}}</label></li>
-              </ul>
-            </fieldset>
+          <div align="center">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nom ingredient</th>
+                  <th scope="col">Unité</th>
+                  <th scope="col">Prix Unitaire</th>
+                  <th scope="col">Allergène</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ingredient of fiche.listeIngr;index as i">
+                  <th scope="row">{{ i+1 }}</th>
+                  <td>{{ ingredient.nomIngr }}</td>
+                  <td>{{ ingredient.unite }}</td>
+                  <td>{{ ingredient.prixU }} € </td>
+                  <td>{{ ingredient.allergene }}</td>
+
+                </tr>
+                </tbody>
+            </table>
           </div>
-          </div>
+
+        </div>
     
         <h5>2. Mes étapes 🕑</h5>
         <div class="item">
@@ -55,7 +78,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let etape of listeEtapesFiche;index as i">
+                <tr *ngFor="let etape of fiche.listeEtapes;index as i">
                   <th scope="row">{{ i+1 }}</th>
                   <td>{{ etape.nomEtape }}</td>
                   <td>{{ etape.descritpion }}</td>
@@ -69,13 +92,16 @@
           </div>
         </div>
         <br>
-        <div class="interior">
+        
+        <div class="btn-block doNotPrint">
+          <button type="button" (click)="afficher()">Afficher les Couts</button>
         </div>
-        <div>
+
+        <div *ngIf="vente">
           <h5>3. Couts 💶</h5>
           <table class="table table-striped">
             <thead>
-              <tr>
+              <tr >
                 <th scope="col">Total Denrées</th>
                 <th scope="col">Assaisonnement</th>
                 <th scope="col">Coût Matières</th>
@@ -83,28 +109,29 @@
                 <th scope="col">Coût Fluide</th>
                 <th scope="col">Coût de Production Total</th>
                 <th scope="col">Coût de Production Portion</th>
-
+                <th scope="col">PRIX DE VENTE(TTC)</th>
               </tr>
             </thead>
             <tbody>
-              <tr >
-                <td>{{ pHT }}</td>
-                <td>{{ pHT*assaisonnement }}</td>
-                <td>{{ couts.coutMatiere }}</td>
-                <td>{{ coutPers }}</td>
-                <td>{{ coutFluide }}</td>
-                <td>{{ couts.coutMatiere + coutPers + coutFluide}}</td>
-                <td>{{ (couts.coutMatiere + coutPers + coutFluide)/nbCouverts }}</td>
+              <tr *ngIf="fiche.listeCouts" >
+                <td>{{ pHT }} €</td>
+                <td>{{ pHT*assaisonnement }} €</td>
+                <td>{{ couts.coutMatiere }} €</td>
+                <td>{{ coutPers }} €</td>
+                <td>{{ coutFluide }} €</td>
+                <td>{{ couts.coutMatiere + coutPers + coutFluide}} €</td>
+                <td>{{ (couts.coutMatiere + coutPers + coutFluide)/nbCouverts }} €</td>
+                <td>{{ fiche.prixV }} €</td>
               </tr>
               </tbody>
           </table>
         </div>
-        
+   
           <div class="btn-block doNotPrint">
-            <button type="submit" href="/">Modifier ma fiche</button>
-            <button type="submit" href="/">Supprimer ma fiche</button>
-            <button type="submit" href="/" (click)="printComponent()">Imprimer ma fiche</button>
-            <button type="submit" href="/">Imprimer l'étiquette</button>
+            <button type="button" (click)="modifierFiche()">Modifier ma fiche</button>
+            <button type="button" (click)="supprimerFiche()">Supprimer ma fiche</button>
+            <button type="button" (click)="printComponent()">Imprimer ma fiche</button>
+            <button type="button" (click)="vendreFiche()">Vendre</button>
           </div>
       </form>
       </div>

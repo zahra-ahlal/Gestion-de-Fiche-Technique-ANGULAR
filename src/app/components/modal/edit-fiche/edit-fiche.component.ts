@@ -17,7 +17,8 @@ export class EditFicheComponent implements OnInit {
   fiche: IFiche = {
     nomPlat: "", nbCouverts: 0, tempsTot: 0, idCategFiche: "", nomResponsable: "", listeEtapes: [],
     listeIngr: [],
-    listeCouts: null
+    listeCouts: null,
+    prixV: 0
   }
   activeModal: any;
   isSelected: boolean;
