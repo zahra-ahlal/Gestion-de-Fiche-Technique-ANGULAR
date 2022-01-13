@@ -49,19 +49,6 @@
   box-sizing: border-box;
 }
 
-body {
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  min-height: 100vh;
-  margin: 0;
-  padding: 1rem;
-  line-height: 1.5;
-  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
-    helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
-  color: #444;
-  background-color: #fff;
-}
 
 .card h3 {
   margin-top: 1rem;

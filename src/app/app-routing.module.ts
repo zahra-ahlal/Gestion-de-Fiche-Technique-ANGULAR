@@ -42,8 +42,10 @@ const routes: Routes = [
   { path: ':idFiche', canActivate:[AuthGuardService], component: ViewFicheComponent, },
   { path: ':idCategFiche/:nomCateg/listeFiches',canActivate:[AuthGuardService], component: ListeFichesComponent, },
   { path: ':idCategFiche/:nomCateg/listeFiches/ajoutFiche', canActivate:[AuthGuardService],component: AjoutFicheComponent, },
-  { path: 'profil', component: ProfilComponent, },
+  //{ path: 'profil', component: ProfilComponent, },
   { path: 'modifierFiche/:idFiche', component: AjoutFicheComponent, },
+  { path: 'historiqueVentes/ventes', component: ProfilComponent, },
+  
   //
   { path: '**', component: NotFoundComponent }
 ];

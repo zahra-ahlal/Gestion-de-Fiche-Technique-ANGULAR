@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { CategFichesService } from 'src/app/services/categ-fiches.service';
 import { map } from 'rxjs/operators';
+import {Location} from '@angular/common';
 import { EditFicheComponent } from '../modal/edit-fiche/edit-fiche.component';
 
 @Component({
@@ -21,7 +22,7 @@ export class ListeFichesComponent implements OnInit {
   idCategFiche:string;
   nomCateg:string;
   constructor(private ficheService: FicheService,
-    private modal: NgbModal,private router: Router,private route: ActivatedRoute) { }
+    private modal: NgbModal,private router: Router,private route: ActivatedRoute, private location : Location) { }
    
 
   
@@ -40,6 +41,9 @@ export class ListeFichesComponent implements OnInit {
     console.log(this.fiches);*/
   }
 
+  goBack() {
+    this.location.back();
+  }
 
   getListeFiche() : void {
     this.ficheService.getFichesByIDCategorie(this.idCategFiche).snapshotChanges().pipe(

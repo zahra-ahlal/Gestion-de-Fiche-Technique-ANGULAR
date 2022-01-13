@@ -1,43 +1,30 @@
-<div>
-    <h1></h1>
-    <p class="text-center">
-        <!--strong>{{ fiches.length }} Fiches sont disponibles</strong-->
-    </p>
-  </div>
-  
-
-  <table class="table table-striped">
+<div align="center" style="height: 100%;">
+  <p class="text-center">
+      <strong>{{ fiches.length }} Fiches sont disponibles</strong>
+  </p>
+  <table class="table table-striped" >
     <thead>
-      <tr>
+      <tr >
         <th scope="col">#</th>
-        <th scope="col">nomPlat</th>
-        <th scope="col">nbCouverts</th>
-        <th scope="col">listeEtapes</th>
+        <th scope="col">Nom du Plat</th>
+        <th scope="col">Nombre de Couverts</th>
+        <th scope="col">Nom etape(s)</th>
         <!--th scope="col">Edit</th>
         <th scope="col">Delete</th-->
       </tr>
     </thead>
     <tbody *ngIf="fiches">
-      <tr *ngFor="let fiche of fiches; index as i">
+      <tr style="cursor: pointer;" *ngFor="let fiche of fiches; index as i" (click)="clicSurBouton(fiche.id)">
         <th scope="row">{{ i+1 }}</th>
         <td>{{ fiche.nomPlat }}</td>
         <td>{{ fiche.nbCouverts }}</td>
-        <td>{{ fiche.listeEtapes }}</td>
-        <td>
-          <i class="bi bi-trash" (click)="deleteOneFiche(fiche)" style="color: red;"></i>
+        <td *ngFor="let etape of fiche.listeEtapes;index as i">
+          <p>{{ etape.nomEtape }}</p>
         </td>
-        <!--td>
-          <i class="bi bi-pencil-square" style="color: green;" 
-              (click)="editModal(cout)"></i>
-        </td>
-        <td>
-          <i class="bi bi-trash" (click)="deleteCout(cout)" style="color: red;"></i>
-        </td-->
       </tr>
       </tbody>
   </table>
-
-  <div class="form-group float-right">
-    <button type="submit" class="btn btn-success" (click)="clicSurBouton('' + idCategFiche + '\/' + nomCateg + '\/listeFiches/ajoutFiche')" >
-      <i class="bi bi-plus"></i>Ajouter une Fiche à cette categorie </button>
+  <div class="interior">
+    <button type="button" class="btn btn-primary" (click)="goBack()" >Retour</button>
   </div>
+</div>

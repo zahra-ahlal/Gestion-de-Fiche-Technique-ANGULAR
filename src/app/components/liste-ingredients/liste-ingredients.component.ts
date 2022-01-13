@@ -32,6 +32,7 @@ export class ListeIngredientsComponent implements OnInit {
   nomCateg : string = "";
   listeIngredients : any;
 
+  choix: boolean;
 
 
   ingredient: IngredientInterface = { nomIngr: '', prixU : 0, unite : '', allergene: false, stock : 0,idCategIngr : '', typeIngr: '' , quantite : 0};
@@ -54,8 +55,12 @@ export class ListeIngredientsComponent implements OnInit {
     console.log(this.nomCateg)
     
     this.getIngredients();
+    this.choix=false;
   }
-
+  
+  changeAllergene(){
+    this.choix=true;
+  }
   getIngredients() : void {
     this.ingrService.getByIdCateg(this.idCategIngr).snapshotChanges().pipe(
       map(changes =>
@@ -68,19 +73,19 @@ export class ListeIngredientsComponent implements OnInit {
     });
   }
   
-  editModal(ingredient: IngredientInterface) {
+  editModal(ingredient: any) {
     const modalRef = this.modalService.open(EditIngredientComponent, {
       size: 'lg',
       centered: true,
       windowClass: 'dark-modal',
     });
-    modalRef.componentInstance.id = ingredient.idIngr;
+    modalRef.componentInstance.id = ingredient.id;
   }
 
-  deleteIngredient(ingredient: IngredientInterface) {
-    console.log("ingr à supprimer " + ingredient.idIngr)
+  deleteIngredient(ingredient: any) {
+    console.log("ingr à supprimer " + ingredient.id)
     if (confirm('Are you sure to delete this record ?') == true) {
-      this.ingrService.deleteIngredient(ingredient).then(() => 
+      this.ingrService.deleteIngredient(ingredient.id).then(() => 
        console.log('delete successful'));
     }
     

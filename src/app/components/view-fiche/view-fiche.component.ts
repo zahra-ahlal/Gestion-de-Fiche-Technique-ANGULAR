@@ -1,4 +1,4 @@
-import { formatDate } from '@angular/common';
+import { formatDate, Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -51,7 +51,7 @@ export class ViewFicheComponent implements OnInit {
   }
   ;//categFiche:ICategFiches;
   //fiches: { idF?: string; nomPlat: string; nbCouverts: number; tempsTot: number; idCategFiche: string; nomResponsable: string; listeEtapes: IEtape[]; listeIngr: import("c:/Users/afaf/Documents/COURS_POLYTECH/S7/AWI/Gestion-de-Fiche-Technique-ANGULAR/gestion-fiches-techniques/src/app/models/ingredient.model").IngredientInterface[]; listeCouts: ICout; id: string; }[];
-  constructor(private ingrService:IngredientService,private venteService:VenteService,private router: Router,private ficheService:FicheService,private route: ActivatedRoute,private categService:CategFichesService) { }
+  constructor(private ingrService:IngredientService,private venteService:VenteService,private router: Router,private ficheService:FicheService,private route: ActivatedRoute,private categService:CategFichesService , private location : Location) { }
  
   ngOnInit(): void {
     this.idFicheSelected =this.route.snapshot.params['idFiche'];
@@ -64,10 +64,13 @@ export class ViewFicheComponent implements OnInit {
   }
 
   getFicheById(){
+    
     this.ficheService.getTESTFiches(this.idFicheSelected).subscribe(data => {
       this.fiche=data;
+      //let ff : any = data
       for(let i=0;i<this.fiche.listeEtapes.length;i++){
         for(let j=0;j<this.fiche.listeEtapes[i].listeIngr.length;j++){
+          //console.log(ff.listeEtapes[i].listeIngr[j].id)
           this.pHT += this.fiche.listeEtapes[i].listeIngr[j].quantite*this.fiche.listeEtapes[i].listeIngr[j].prixU;
         }
       } 
@@ -101,7 +104,10 @@ export class ViewFicheComponent implements OnInit {
     this.vente=true;
   }
   
-
+  goBack() {
+    this.location.back();
+  }
+  
   vendreFiche(){
     //this.vente=true;
     if (confirm('Voulez-vous vendre cette fiche ?') == true) {
@@ -110,17 +116,16 @@ export class ViewFicheComponent implements OnInit {
       const prixVente = (this.fiche.listeCouts.coutFluides+this.fiche.listeCouts.coutMatiere+this.fiche.listeCouts.coutPersonnel)*1.2
       const cValue = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
       this.venteService.addVente(this.fiche,cValue)
-
+      let ff : any = data
       for(let i=0;i<this.fiche.listeEtapes.length;i++){
         for(let j=0;j<this.fiche.listeEtapes[i].listeIngr.length;j++){
-          console.log(this.fiche.listeEtapes[i].listeIngr[j].nomIngr)
-          this.ingrService.updateStock(this.fiche.listeEtapes[i].listeIngr[j].nomIngr,this.fiche.listeEtapes[i].listeIngr[j].stock-this.fiche.listeEtapes[i].listeIngr[j].quantite)
+          //console.log(this.fiche.listeEtapes[i].listeIngr[j].id)
+          this.ingrService.updateStock(ff.listeEtapes[i].listeIngr[j].id,this.fiche.listeEtapes[i].listeIngr[j].stock-this.fiche.listeEtapes[i].listeIngr[j].quantite)
         }
       } 
 
      })
     }
-    
-    //window.print();
+
   }
 }

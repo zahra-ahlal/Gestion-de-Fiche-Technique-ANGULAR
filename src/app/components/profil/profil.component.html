@@ -1,26 +1,23 @@
-    <div class="card">
-      <img src="https://lh3.googleusercontent.com/ytP9VP86DItizVX2YNA-xTYzV09IS7rh4WexVp7eilIcfHmm74B7odbcwD5DTXmL0PF42i2wnRKSFPBHlmSjCblWHDCD2oD1oaM1CGFcSd48VBKJfsCi4bS170PKxGwji8CPmehwPw=w200-h247-no" alt="Person" class="card__image">
-      <input type="text"  value=""/>Admin
-      <input type="password" class="card__name"/>Mot de passe
-      <div class="grid-container">
-  
-        <div class="grid-child-posts">
-          156 Post
-        </div>
-  
-        <div class="grid-child-followers">
-          1012 Likes
-        </div>
-  
-      </div>
-      <ul class="social-icons">
-        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-        <li><a href="#"><i class="fa fa-codepen"></i></a></li>
-      </ul>
-      <button class="btn draw-border">Follow</button>
-      <button class="btn draw-border">Message</button>
-  
-    </div>
-    
+<div align="center">
+   <h4 ><strong>Ventes</strong> </h4>
+  <table class="table-striped" style="width:50% ">
+    <thead>
+      <tr class="active-row" style="background-color: rgba(169, 179, 167, 0.815); " >
+        <th scope="col">#</th>
+        <th scope="col">Nom du Plat</th>
+        <th scope="col">Date de vente</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let v of ventes; index as i" class="active-row">
+        <th scope="row">{{ i+1 }}</th>
+        <th scope="row">{{ v.fiche.nomPlat }}</th>
+        <th scope="row">{{ v.date }}</th>
+
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <button type="button" class="btn btn-primary" (click)="goBack()" style="background-color:#974705" >Retour</button>
+
+</div>    

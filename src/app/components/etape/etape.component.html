@@ -59,36 +59,5 @@
             <!------>
         </form>
     </div>
-    <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Etape N°</th>
-                  <th scope="col">Nom etape</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Duree</th>
-                  <th scope="col">Ingredients</th>
-                  <!--th scope="col">Edit</th-->
-                  <!--th scope="col">Delete</th-->
-                </tr>
-              </thead>
-              <tbody *ngIf="listeEtapes">
-                <tr *ngFor="let etape of listeEtapesSelected;index as i">
-                  <th scope="row">{{ i+1 }}</th>
-                  <td>{{ etape.nomEtape }}</td>
-                  <td>{{ etape.descritpion }}</td>
-                  <td>{{ etape.duree }}</td>
-                  <td><p *ngFor="let ingredient of etape.listeIngr"> {{ingredient.nomIngr}} : {{ingredient.quantite}} : {{ingredient.unite}} </p> </td>
-                  <td>
-                    <a class="col s1" (click)="removeEtape(etape)">x</a>
-                  </td>
-                  <!--td>
-                    <i class="bi bi-pencil-square" style="color: green;" 
-                        (click)="editModal(listeEtapes)"></i>
-                  </td>
-                  <td>
-                    <i class="bi bi-trash" (click)="deleteCout(listeEtapes)" style="color: red;"></i>
-                  </td-->
-                </tr>
-                </tbody>
-            </table>
+    
 </div>

@@ -57,10 +57,10 @@ export class IngredientService {
 
 
   //modifier le stock quand impression pour vente
-  updateStock(nom : string , value : number){
-    console.log("ID "+ nom+ " Quantite: " + value)
+  updateStock(id : string , value : number){
+    console.log("ID "+ id+ " Quantite: " + value)
   
-      return this.db.collection('ingredients').doc("7oV6232dJZ2JfDv9imzY").update({
+      return this.db.collection('ingredients').doc(id).update({
         stock: value
     });
   }
@@ -76,11 +76,11 @@ export class IngredientService {
    * 
    * encore des methodes a convertir vers FIRESTORE
    * 
-   * 
+   * la gestion du stock
    * ******************* */
 
-  deleteIngredient(ingredient: IngredientInterface) {
-    const ingredientRef = doc(this.firestore, `ingredients/${ingredient.idIngr}`);
+  deleteIngredient(id: string) {
+    const ingredientRef = doc(this.firestore, `ingredients/${id}`);
     return deleteDoc(ingredientRef);
   }
 
@@ -109,11 +109,5 @@ export class IngredientService {
     const ingredientRef = doc(this.firestore, `ingredients/${ingredient.idIngr}`);
     return updateDoc(ingredientRef, { allergene: allerg });
   }
-
-  
-
-
-  
-  
 
 }

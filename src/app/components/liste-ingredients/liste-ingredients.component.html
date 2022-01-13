@@ -35,7 +35,7 @@
   </table>
   <!--BUTTON ADD-->
   <div class="interior">
-    <button type="button" class="btn btn-primary" (click)="goBack()" >Back</button>
+    <button type="button" class="btn btn-primary" (click)="goBack()" >Retour</button>
     <a class="btn" href="#open-modal">Ajouter un ingredient</a>
   </div>
 </div>
@@ -79,20 +79,19 @@
     
             <!--ALLERGENE-->
             <span class="input-label">Allergene ? </span>
-            <div > 
-              <label for="alergene" class="btn btn-primary">
-                OUI
-              </label> <input type="radio" value="oui" name="allergene" [(ngModel)]="ingredient.allergene"> 
-              <label for="alergene" class="btn btn-primary">
-                NON
-              </label> <input type="radio" value="non" name="allergene" [(ngModel)]="ingredient.allergene">
+            <div>
+              <div class="form-group">
+                <!--UNITE-->
+                <select style="display: block;" name="allergene" #name=ngModel [(ngModel)]="ingredient.allergene">
+                  <option value="true">Oui</option><option value="false">Non</option>
+                </select>
+              </div>
             </div>
-            
             <!--BUTTON ADD-->
             <div class="interior" align="center">  
-              <button type="submit" class="btn" style="width:50%"
+              <button type="submit" class="btn" style="width:80%"
                     [disabled]="!ingrForm.valid" [disabled]="ingrForm.invalid">
-                    <i class="bi bi-plus"></i>Ajouter Ingredient</button>
+                    <i style="width:80%" class="bi bi-plus"></i>Ajouter Ingredient</button>
             </div>  
         </form>
 

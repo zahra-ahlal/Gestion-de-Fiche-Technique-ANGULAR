@@ -1,23 +1,25 @@
-<div>
-  <table class="styled-table" >
-  <thead>
-    <tr class="active-row">
-      <th scope="col"><i class="bi bi-plus-circle-fill" style="color: rgb(231, 238, 233); font-size: 20px; " 
-        (click)="editModal()"></i></th>
-      <th scope="col">
-        Categorie Ingredient         
-      </th>
-      <th scope="col">    
-      </th>
-    </tr>
-  </thead>
-  <tbody *ngIf="categoriesIngredients">
-    <tr *ngFor="let categorie of categoriesIngredients; index as i" class="active-row">
-      <th scope="row">{{ i+1 }}</th>
-      <td>{{ categorie.nomCategIngr }}</td>
-      <td><i class="bi bi-arrow-right-circle" style="color:#6e3806;size: 10px; " 
-      (click)="selectCategorie(categorie)"></i></td>
-    </tr>
-  </tbody>
-</table>
+<div align="center">
+  <table class="table-striped" >
+    <thead>
+      <tr class="active-row" style="background-color: rgba(130, 155, 125, 0.384); " >
+        <th></th>
+        <th scope="col"><h4><i class="bi bi-plus-circle-fill" style="color: rgb(12, 122, 39); font-size: 20px;cursor: pointer; " 
+          (click)="editModal()"></i></h4></th>
+        <th scope="col" style="color:#974705">
+          <h4><strong>Categorie Ingredient</strong> </h4>       
+        </th>
+        <th scope="col">    
+        </th>
+      </tr>
+    </thead>
+    <tbody *ngIf="categoriesIngredients">
+      <tr *ngFor="let categorie of categoriesIngredients; index as i" class="active-row">
+        <th></th>
+        <th scope="row">{{ i+1 }}</th>
+        <th scope="row">{{ categorie.nomCategIngr }}</th>
+        <th scope="row"><h4><i class="bi bi-arrow-right-circle-fill" style="color:#3a723d ;cursor: pointer; " 
+        (click)="selectCategorie(categorie)"></i></h4></th>
+      </tr>
+    </tbody>
+  </table>
 </div>

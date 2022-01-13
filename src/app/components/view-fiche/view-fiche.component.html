@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-  <html>
-    <head>
-      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    </head>
-    <body>
-      <div class="testbox">
+<div align="center">
+  <button type="button" class="btn btn-primary" (click)="goBack()" >Retour</button>
+</div>
+<div class="testbox">
       <form action="#" #ficheForm="ngForm" >
         <div class="banner " >
           <h1>{{fiche.nomPlat}} </h1>
@@ -128,12 +124,10 @@
         </div>
    
           <div class="btn-block doNotPrint">
-            <button type="button" (click)="modifierFiche()">Modifier ma fiche</button>
-            <button type="button" (click)="supprimerFiche()">Supprimer ma fiche</button>
-            <button type="button" (click)="printComponent()">Imprimer ma fiche</button>
+            <button type="button" (click)="modifierFiche()">Modifier fiche</button>
+            <button type="button" (click)="supprimerFiche()">Supprimer fiche</button>
+            <button type="button" (click)="printComponent()">Imprimer fiche</button>
             <button type="button" (click)="vendreFiche()">Vendre</button>
           </div>
       </form>
       </div>
-    </body>
-  </html>
